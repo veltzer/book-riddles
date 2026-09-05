@@ -34,10 +34,7 @@ int main(int argc, char** argv, char** envp) {
 			}
 			count++;
 		}
-		// cppcheck-suppress identicalInnerCondition ; max and max_memoize are separate knobs that happen to be equal
-		if(current<max_memoize) {
-			array_count[current]=count;
-		}
+		array_count[current]=count;
 		if(count>best_count) {
 			best_count=count;
 			best_value=current;
