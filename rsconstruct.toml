@@ -32,8 +32,6 @@ dep_inputs = [
 [processor.ruff]
 src_dirs = ["src", "scripts", "config"]
 
-[processor.pylint]
-src_dirs = ["src", "scripts", "config"]
 
 [processor.mypy]
 src_dirs = ["src", "scripts", "config"]
