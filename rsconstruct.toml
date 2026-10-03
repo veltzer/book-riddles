@@ -53,11 +53,6 @@ src_dirs = [".github/workflows"]
 [processor.rumdl]
 src_files = ["README.md"]
 
-# ─── json ────────────────────────────────────────────────────────────────────
-
-[processor.ijsonlint]
-src_files = ["package.json"]
-
 # ─── perl ────────────────────────────────────────────────────────────────────
 
 [processor.perlcritic]
