@@ -16,7 +16,7 @@ reject_dot_src_dirs = true
 # listed here must exist: rsconstruct rejects a missing one at config load.
 # Repos still on config/*.py keep a dep_inputs override in their local
 # overlay until converted.
-[processor.tera]
+[processor.generator.tera]
 dep_auto = [
 	"config/project.lua",
 	"config/personal.lua",
@@ -29,40 +29,40 @@ dep_inputs = [
     "config/version.lua",
 ]
 
-[processor.ruff]
+[processor.checker.ruff]
 src_dirs = ["src", "scripts", "config"]
 
 
-[processor.mypy]
+[processor.checker.mypy]
 src_dirs = ["src", "scripts", "config"]
 
-[processor.luacheck]
+[processor.checker.luacheck]
 src_dirs = ["config"]
 
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
 
-[processor.taplo]
+[processor.checker.taplo]
 src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.actionlint]
+[processor.checker.actionlint]
 src_dirs = [".github/workflows"]
 
 # ─── markdown ────────────────────────────────────────────────────────────────
 
-[processor.rumdl]
+[processor.checker.rumdl]
 src_files = ["README.md"]
 
 # ─── perl ────────────────────────────────────────────────────────────────────
 
-[processor.perlcritic]
+[processor.checker.perlcritic]
 src_dirs = ["instances"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
 
 # not linted: instances/print_stars (the sources are the riddle text verbatim:
 # the unused and shadowed `i` are the puzzle, not a defect to fix)
-[processor.cppcheck]
+[processor.checker.cppcheck]
 src_dirs = ["instances"]
 src_exclude_dirs = ["instances/print_stars"]
 args = [
@@ -73,12 +73,12 @@ args = [
 
 # ─── java ────────────────────────────────────────────────────────────────────
 
-[processor.checkstyle]
+[processor.checker.checkstyle]
 src_dirs = ["instances/path"]
 args = ["-c", "checkstyle.xml"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
 # not linted: docs/web (vendored pdf.js viewer)
-[processor.tidy]
+[processor.checker.tidy]
 src_dirs = ["docs"]
