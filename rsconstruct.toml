@@ -80,5 +80,5 @@ args = ["-c", "checkstyle.xml"]
 # ─── html ────────────────────────────────────────────────────────────────────
 
 # not linted: docs/web (vendored pdf.js viewer)
-[processor.checker.tidy]
+[processor.checker.itidy]
 src_dirs = ["docs"]
