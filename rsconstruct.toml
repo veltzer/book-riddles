@@ -55,7 +55,7 @@ src_files = ["README.md"]
 
 # ─── perl ────────────────────────────────────────────────────────────────────
 
-[processor.checker.perlcritic]
+[processor.checker.iperlcritic]
 src_dirs = ["instances"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
@@ -73,9 +73,8 @@ args = [
 
 # ─── java ────────────────────────────────────────────────────────────────────
 
-[processor.checker.checkstyle]
+[processor.checker.icheckstyle]
 src_dirs = ["instances/path"]
-args = ["-c", "checkstyle.xml"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
