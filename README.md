@@ -18,6 +18,7 @@ version: 0.0.1
 ## build
 
 ![build](https://github.com/veltzer/book-riddles/workflows/build/badge.svg)
+![release](https://github.com/veltzer/book-riddles/workflows/release/badge.svg)
 
 ## contact me
 

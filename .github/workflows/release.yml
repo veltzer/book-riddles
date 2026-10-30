@@ -1,0 +1,48 @@
+name: release
+# A GitHub release after every successful build of master, carrying exactly
+# what GitHub Pages serves for that commit. Pages here is the legacy kind,
+# serving master:/docs, so the book on the site is the committed
+# docs/riddling.pdf, and that is the file released, from the commit the build
+# ran on.
+#
+# A workflow of its own, triggered by the build finishing, because build.yml is
+# byte-identical across the fleet. The tag is the build run's UTC creation time,
+# so re-running a build finds its release already there instead of making a
+# second one.
+on:
+  workflow_run:
+    workflows: [build]
+    types: [completed]
+    branches: [master]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: ${{ github.event.workflow_run.head_sha }}
+    - name: release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        SHA: ${{ github.event.workflow_run.head_sha }}
+        CREATED: ${{ github.event.workflow_run.created_at }}
+        RUN_URL: ${{ github.event.workflow_run.html_url }}
+      run: |
+        tag=$(date -u -d "$CREATED" +%Y%m%d-%H%M%S)
+        if gh release view "$tag" >/dev/null 2>&1; then
+          echo "release $tag already exists (a re-run of the same build)"
+          exit 0
+        fi
+        gh release create "$tag" docs/riddling.pdf \
+          --target "$SHA" \
+          --latest \
+          --title "Riddling, $(date -u -d "$CREATED" '+%Y-%m-%d %H:%M UTC')" \
+          --notes "The book as published on https://veltzer.org/book-riddles/ at commit $SHA, released by the build $RUN_URL"

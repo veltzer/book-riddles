@@ -1,19 +1,20 @@
 # Releases of the book
 
-Each GitHub release of this repo carries one asset: riddling.pdf, the book as
-committed in docs/riddling.pdf at the tagged commit (the same file GitHub Pages
-serves).
+Every successful build of master makes a GitHub release, by
+`.github/workflows/release.yml`. Each release carries one asset: riddling.pdf,
+the book as committed in docs/riddling.pdf at the commit that was built, which
+is the same file GitHub Pages serves (Pages here serves master:/docs).
 
-- Tags are dates, YYYYMMDD (the first release is 20261030), since the book has
-no version number. This follows the embeddings repo, the other non-semver
-release in the fleet.
-- Releases are made by hand, from a commit that is already pushed:
-
-    ```bash
-    gh release create YYYYMMDD docs/riddling.pdf --target <commit>
-    ```
-
-  Automating it cannot go in build.yml, which is byte-identical across the fleet.
+- Tags are the build run's UTC creation time, YYYYMMDD-HHMMSS, since the book
+  has no version number and there can be several builds a day. Re-running a
+  build finds its release already there and makes no second one. (The first
+  release, 20261030, was made by hand, before this workflow existed.)
+- The release is a workflow of its own, triggered by the build finishing,
+  because build.yml is byte-identical across the fleet. book-openbook releases
+  its books the same way.
+- The title page of each release's PDF shows the commit it was built from,
+  usually the one before the released commit, since the PDF is built before
+  it is committed.
 
 ## How many releases are kept
 
