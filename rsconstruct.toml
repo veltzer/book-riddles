@@ -41,8 +41,9 @@ output_files = ["docs/riddling.pdf"]
 required_tools = ["pdflatex"]
 
 # sketch and the TeX Live parts riddling.tex loads: hyperref (latex-base),
-# thumbpdf (latex-recommended), datetime (latex-extra), tikz (pictures),
-# pst-pdf (pstricks).
+# thumbpdf (latex-recommended), tikz (pictures), pst-pdf (pstricks), and what
+# pst-pdf itself requires: environ (latex-extra) and luatex85 (luatex, which
+# none of the others depends on).
 [dependencies]
 system = [
     "sketch",
@@ -51,6 +52,7 @@ system = [
     "texlive-latex-extra",
     "texlive-pictures",
     "texlive-pstricks",
+    "texlive-luatex",
 ]
 
 [processor.checker.ruff]

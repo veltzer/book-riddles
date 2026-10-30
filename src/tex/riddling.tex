@@ -43,16 +43,17 @@
 \usepackage{tikz} % for sketch with tikz (does not pdftex option)
 \usetikzlibrary{calc,fadings}
 
-\usepackage{datetime}
-\newdateformat{monthyeardate}{%
-	\monthname[\THEMONTH], \THEYEAR}
-
 \title{Riddling}
 \author{Mark Veltzer}
 
-% we use only month and year so that the PDF will not be different on each build
-%\date{\today}
-\monthyeardate
+% scripts/build_pdf.py defines these on the pdflatex command line; the
+% fallbacks are for running pdflatex by hand
+\providecommand{\buildtime}{unknown}
+\providecommand{\buildcommit}{unknown}
+\providecommand{\buildversion}{}
+\date{Built \buildtime\\
+	Commit \texttt{\buildcommit}%
+	\ifx\buildversion\empty\else\\Version \buildversion\fi}
 
 \begin{document}
 
