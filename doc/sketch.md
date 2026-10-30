@@ -11,7 +11,6 @@ http://www.frontiernet.net/~eugene.ressler/
 and
 http://groups.google.com/group/sketch-users
 
-If you want to read documentation checkout the makefile targets that open up the documentation.
 The documentation package also has examples that you can copy from.
 Ubuntu also has examples in the sketch-doc package and you can find them at:
 `/usr/share/doc/sketch-doc/examples`.

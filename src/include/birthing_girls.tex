@@ -32,3 +32,26 @@ so $s=1$: on average every family has one boy and one girl.
 \subsection{Follow up}
 What if the elder had said ``stop when you have six girls for every boy''?
 Unlike the previous rule, this condition may never happen. What are the chances that a family will ever stop?
+
+\subsection{Solution to the follow up}
+
+About $5.7\%$. Almost every family goes on forever.
+
+Keep track of $x = \textrm{girls} - 6\cdot\textrm{boys}$. It starts at $0$, every girl adds $1$ and every boy subtracts $6$,
+and the family stops when $x$ is back at $0$. On average a birth changes $x$ by $\frac{1-6}{2} = -2.5$,
+so $x$ drifts away towards $-\infty$ and a return to $0$ is far from certain.
+
+The family can only be back at $0$ after $7m$ births, $m$ of them boys, which happens with probability $\binom{7m}{m}/2^{7m}$.
+So the expected number of times $x$ is at $0$, counting the start, is
+\begin{center}
+$V = \sum_{m=0}^{\infty} \frac{\binom{7m}{m}}{2^{7m}} = 1 + \frac{7}{128} + \frac{91}{16384} + \ldots \approx 1.06096$
+\end{center}
+Now let $p$ be the chance of ever coming back to $0$. Every time $x$ is at $0$ the future looks the same as at the start,
+so $x$ visits $0$ exactly $k$ times with probability $p^{k-1}(1-p)$, and the expected number of visits is $V = \frac{1}{1-p}$.
+Therefore
+\begin{center}
+$p = 1 - \frac{1}{V} \approx 0.05746$
+\end{center}
+Most of it is the very first chance: $6$ girls and $1$ boy in the first $7$ births has probability $\frac{7}{128} \approx 5.47\%$,
+and all the later chances together add only about $0.28\%$.
+(The sum has a closed form: $p = \frac{7(2r-1)}{2r}$, where $r \approx 0.50414$ is the root of $r^7 - 2r + 1 = 0$ between $\frac{1}{2}$ and $1$.)

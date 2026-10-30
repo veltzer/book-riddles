@@ -56,11 +56,10 @@ system = [
 ]
 
 [processor.checker.ruff]
-src_dirs = ["src", "scripts", "config"]
-
+src_dirs = ["scripts", "instances"]
 
 [processor.checker.pyrefly]
-src_dirs = ["src", "scripts", "config"]
+src_dirs = ["scripts", "instances"]
 
 [processor.checker.iluacheck]
 src_dirs = ["config"]
@@ -87,11 +86,10 @@ src_dirs = ["instances"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
 
-# not linted: instances/print_stars (the sources are the riddle text verbatim:
-# the unused and shadowed `i` are the puzzle, not a defect to fix)
+# instances/print_stars is the riddle text verbatim: the unused and shadowed
+# `i` are the puzzle, so those lines carry inline cppcheck-suppress comments
 [processor.checker.cppcheck]
 src_dirs = ["instances"]
-src_exclude_dirs = ["instances/print_stars"]
 args = [
 	"--error-exitcode=1",
 	"--enable=warning,style,performance,portability",
@@ -105,6 +103,5 @@ src_dirs = ["instances/path"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
-# not linted: docs/web (vendored pdf.js viewer)
 [processor.checker.itidy]
 src_dirs = ["docs"]

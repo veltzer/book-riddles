@@ -15,25 +15,25 @@ public class Path {
 		int climb=abs(to-from);
 		// fill out the climbing code
 		for(int i=0;i<climb;i++) {
-			v.add(new Integer(sign));
+			v.add(Integer.valueOf(sign));
 		}
 		int left=steps-climb;
 		float zero=(float)left*zero_factor;
 		// fill out zeroes according to the zero factor
 		int izero=(int)zero;
 		for(int i=0;i<izero;i++) {
-			v.add(new Integer(0));
+			v.add(Integer.valueOf(0));
 		}
 		left-=izero;
 		// make sure that we have an even number left
 		if(left%2==1) {
-			v.add(new Integer(0));
+			v.add(Integer.valueOf(0));
 			left--;
 		}
 		// fill out the junk +1/-1 fillout
 		for(int i=0;i<left;i+=2) {
-			v.add(new Integer(+1));
-			v.add(new Integer(-1));
+			v.add(Integer.valueOf(+1));
+			v.add(Integer.valueOf(-1));
 		}
 		// scramble the vector
 		scramble(v);
@@ -59,11 +59,11 @@ public class Path {
 		}
 		
 		Vector<Integer> path=new Vector<Integer>();
-		path.add(new Integer(from));
+		path.add(Integer.valueOf(from));
 		int curr=from;
 		for(int i=0;i<v.size();i++) {
 			curr+=v.get(i);
-			path.add(new Integer(curr));
+			path.add(Integer.valueOf(curr));
 			if(debug) {
 				System.out.println("adding "+v.get(i));
 				System.out.println("curr is "+curr);

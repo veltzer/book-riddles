@@ -2,31 +2,35 @@
 
 """
 https://en.wikipedia.org/wiki/Birthday_problem
+
+For groups of several sizes, simulate many groups of people with random
+birthdays (365 days, no leap years) and print the fraction of groups in which
+two people share a birthday, next to the exact probability.
 """
 
 import random
 
-import tqdm
+DAYS = 365
+TRIALS = 100000
 
-num = 1000000000
 
-stat = 0
-for i in range(1):
-    s = set()
-    found = False
-    print("before random")
-    birthdays = []
-    for _i in tqdm.tqdm(range(num)):
-        birthdays.append(random.randint(0, 365))
-    # birthdays = [ random.randint(0, 365) for i in range(num)]
-    print("after random")
-    # print(birthdays)
-    count_found = 0
-    for birthday in tqdm.tqdm(birthdays):
-        if birthday in s:
-            count_found += 1
-        s.add(birthday)
-    #print(f"{count_found}")
-    stat +=  count_found
-    #input("press any key...")
-print(f"{stat}")
+def exact(n):
+    """ Probability that at least two of n people share a birthday. """
+    all_different = 1.0
+    for i in range(n):
+        all_different *= (DAYS - i) / DAYS
+    return 1 - all_different
+
+
+def simulate(n):
+    """ Fraction of TRIALS random groups of n people with a shared birthday. """
+    shared = 0
+    for _ in range(TRIALS):
+        birthdays = [random.randint(0, DAYS - 1) for _ in range(n)]
+        if len(set(birthdays)) < n:
+            shared += 1
+    return shared / TRIALS
+
+
+for size in (10, 20, 23, 30, 50):
+    print(f"{size} people: simulated {simulate(size):.4f}, exact {exact(size):.4f}")

@@ -38,6 +38,10 @@ for _ in range(stat_num):
             large_set_count = i
             stop = True
         i += 1
+    # the small set is a part of the large one, so it completes first
+    assert large_set_size_when_small_set_complete is not None
+    assert small_set_count is not None
+    assert large_set_count is not None
     stats[0].append(large_set_size_when_small_set_complete)
     stats[1].append(large_set_count)
     stats[2].append(small_set_count)

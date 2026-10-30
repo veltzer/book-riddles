@@ -23,3 +23,21 @@ So if $v = m$ he leaves the transmission alone, and otherwise he flips the bit a
 The value becomes $v \oplus v \oplus m = m$.
 
 This is the Hamming code of length 15 in disguise. Compare with the riddle of the coins on the chess board, which uses the same trick.
+
+\subsection{Follow up}
+
+Two prisoners agree on a method in advance. Then the first is told a two digit number (one of $00$ to $99$) and taken into a room
+with $11$ dials, each of which has $10$ positions and is set at random. He must turn exactly one dial to a different position.
+Then the second prisoner enters, looks at the dials and has to say the number. Can they do it?
+
+\subsection{Solution to the follow up}
+
+No. The first prisoner has only $11\cdot 9 = 99$ different moves, and the second sees only the result,
+so at most $99$ numbers can be told apart, one short of the $100$ needed.
+
+What if he may also leave the dials alone? Then he has exactly $1 + 99 = 100$ choices, so from \emph{every} setting of the dials
+the $100$ settings he can reach must all decode to different numbers. That makes the settings that decode to any one number a perfect
+code: every setting of the dials is at most one move away from exactly one of them. With a prime number $q$ of positions per dial
+(or a power of a prime) and $q+1$ dials this works, the same way as the spy's 15 bits, with arithmetic modulo $q$ in place of xor:
+for example $8$ dials with $7$ positions can carry one of $49$ numbers.
+But $10$ is not a prime power, and whether a perfect code of this kind exists for $10$ positions is, as far as I know, an open problem.

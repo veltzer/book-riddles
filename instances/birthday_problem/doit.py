@@ -1,20 +1,19 @@
 #!/usr/bin/env python
 
 """
-https://en.wikipedia.org/wiki/Birthday_problem
+Expected number of flips of a fair coin until the first 1.
+
+The number of flips has a geometric distribution with p=1/2, so the average
+printed should be close to 1/p = 2.
 """
 
 import random
 
+trials = 1000000
 stat = 0
-for i in range(1000000):
-    p = random.randint(0, 1)
-    #print(p)
+for _ in range(trials):
     count = 1
-    while p != 1:
-        p = random.randint(0, 1)
+    while random.randint(0, 1) != 1:
         count += 1
-        #print(p)
-    # print(f"count is {count}")
     stat += count
-print(f"average is {stat/1000000}")
+print(f"average is {stat/trials}")

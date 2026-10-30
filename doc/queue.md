@@ -4,8 +4,6 @@
     - and the holidays exercise.
         - this is a dynamic programming example.
     - the snake exercise
-    - the pirates riddle about dividing money.
-        - http://www.mathsisfun.com/puzzles/5-pirates-solution.html
     - maybe even write the two design exercises?
 - write eli shalom's riddle about giving out the largest number and index in equal probability.
 - why is (n k) (n over k) always a whole number?

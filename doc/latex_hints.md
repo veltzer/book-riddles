@@ -13,9 +13,11 @@ http://ringlord.com/latex-to-pdf-howto.html
 
 ## bookmarks in the pdf files
 
-If you want the bookmarks you need to run pdflatex TWO TIMES on the input.
+If you want the bookmarks you need to run pdflatex more than once on the input.
 If you only run one time you get no bookmarks (it's a second pass thing...).
-Stangely, this also reduces the size of the output file so it's good either way.
+The same goes for the table of contents, and this book needs three runs: the second typesets the
+table of contents, which moves every section a few pages on, and the third fixes their page numbers.
+See [building.md](building.md).
 
 ## comments in latex files
 
@@ -24,31 +26,8 @@ Just add % at the start of the line and the rest is a comment.
 references:
 http://www.rasmusen.org/x/2007/09/07/comments-in-latex/
 
-## hyperlinkx in latex files
+## links in latex files
 
-I tried to put them this way:
-
-```latex
-\href{http://en.wikipedia.org/wiki/Catalan_number}{Catalan numbers}
-```
-
-But it turned out that this works well in PDF but doesn't show nice in HTML.
-
-Then I tried this way:
-
-```latex
-\url{http://en.wikipedia.org/wiki/Catalan_number}
-```
-
-It works in both PDF and HTML but does not allow set custom text for the link and shows
-the entire link (ugly!).
-
-Then I tried this way:
-
-```latex
-\htmladdnormallink{Catalan numbers}{http://en.wikipedia.org/wiki/Catalan_number}
-```
-
-And it works well in both!!!
-
-Lets try it another way.
+Use `\href{http://en.wikipedia.org/wiki/Catalan_number}{Catalan numbers}`.
+(`\htmladdnormallink` was used while the book was also converted to HTML; see
+[history.md](history.md).)

@@ -15,11 +15,9 @@
 		
 		<p>current version is {{ version_str(path="config/version.lua") }}</p>
 
-		<h2>A demo for the impatient is
-			<a href="web/viewer.html?file=../riddling.pdf">here</a>
+		<h2>Read the book
+			<a href="riddling.pdf">here</a>
 		</h2>
-		<p>You can download the latest version of <b>{{ project.NAME }}</b> from <!--suppress HtmlUnknownTarget -->
-            <a href="riddling.pdf">here</a>.</p>
 
 		<p>
 			<b>{{ project.NAME }}</b> is collection of riddles in tex format.
@@ -33,7 +31,7 @@
 			The <b>{{ project.NAME }}</b> web site for the project is <a title="{{ project.NAME }} web site" href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}">here</a>
 			</li>
 			<li>
-			The <b>{{ project.NAME }}</b> git clone link is <a title="{{ project.NAME }} git clone link" href="git://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}.git">here</a>
+			The <b>{{ project.NAME }}</b> git clone link is <a title="{{ project.NAME }} git clone link" href="https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}.git">here</a>
 			</li>
 		</ul>
 		<p>

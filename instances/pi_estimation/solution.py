@@ -13,13 +13,11 @@ import random  # for uniform
 samples = 1000000
 good_samples = 0
 print_every = 100000
-i = 0
-while True:
+for i in range(1, samples + 1):
     x = random.uniform(-0.5, 0.5)
     y = random.uniform(-0.5, 0.5)
     if math.hypot(x, y) <= 0.5:
         good_samples += 1
-    pi = (float(good_samples) / float(i + 1)) * 4
     if i % print_every == 0:
-        print(pi)
-    i += 1
+        print(f"after {i} samples: {4 * good_samples / i}")
+print(f"estimate of pi: {4 * good_samples / samples}")

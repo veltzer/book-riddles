@@ -1,8 +1,8 @@
 # Names of files
 
-include files are `$ROOT/include/*.tex`
+Each riddle is a file `src/include/<name>.tex`.
 
 reasoning:
 
-- we want them to have the .tex suffix so tat various text editors (vscode) will auto complete etc
+- we want them to have the .tex suffix so that various text editors (vscode) will auto complete etc
   without the need for any special configuration.
