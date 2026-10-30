@@ -18,4 +18,4 @@ Findings from a code scan on 2026-10-04.
 - `instances/pi_estimation/solution.py:13` and `instances/pi_estimation/solution.py:17` - `samples = 1000000` is never used and the loop is `while True`, so the script never ends; loop `samples` times and print the final estimate.
 - `instances/path/Path.java:18` (also `:25`, `:30`, `:35`, `:36`, `:62`, `:66`) - `new Integer(...)` is deprecated for removal; use autoboxing or `Integer.valueOf`.
 - `rsconstruct.toml:26-30` - `dep_inputs` repeats exactly the three files already listed in `dep_auto`; delete the duplicate list.
-- `doc/TODO.txt:4-5` - item about running htmlhint is obsolete (htmlhint was removed); `doc/TODO.txt:23` refers to a `.htaccess` in `web/` that does not exist; `doc/TODO.txt:42-45` refer to "the makefile" and a perl lacheck wrapper (now a Python one exists); prune.
+- `doc/TODO.md` - the htmlhint item under "Now" is obsolete (htmlhint was removed); the "caching" item refers to a `.htaccess` in `web/` that does not exist; the "build system" items refer to "the makefile" and a perl lacheck wrapper (now a Python one exists); prune.

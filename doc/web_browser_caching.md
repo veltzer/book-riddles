@@ -1,3 +1,5 @@
+# Web browser caching
+
 When you embed the HTML output of this project into a web page and update
 to a new version of the material then some users may have issues with seeing
 the old data because of browser caches.

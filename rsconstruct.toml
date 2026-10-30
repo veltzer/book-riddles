@@ -77,6 +77,7 @@ src_dirs = [".github/workflows"]
 # ─── markdown ────────────────────────────────────────────────────────────────
 
 [processor.checker.rumdl]
+src_dirs = ["doc"]
 src_files = ["README.md"]
 
 # ─── perl ────────────────────────────────────────────────────────────────────
