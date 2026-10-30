@@ -47,6 +47,10 @@ def chmod_check(file, check):
 
 def main():
     """ main entry point """
+    # rsconstruct doctor probes every configured command with --version
+    if sys.argv[1:] == ["--version"]:
+        print("wrapper_sketch.py 1")
+        return
     if len(sys.argv) != 3:
         print("Usage: python script.py <input_file> <output_file>", file=sys.stderr)
         sys.exit(1)

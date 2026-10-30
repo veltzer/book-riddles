@@ -15,6 +15,44 @@ reject_dot_src_dirs = true
 [processor.generator.tera]
 src_dirs = ["tera.templates"]
 
+# ─── the book ────────────────────────────────────────────────────────────────
+
+# src/sk/*.sk are 3D scenes; sketch renders each one to TikZ code under
+# out/src/sk/, where riddling.tex \inputs it.
+[processor.generator.generic.sketch]
+command = "scripts/wrapper_sketch.py"
+src_dirs = ["src/sk"]
+src_extensions = [".sk"]
+output_dir = "out/src/sk"
+output_extension = "tex"
+batch = false
+
+# riddling.tex is one document assembled from src/include/*.tex and the
+# sketch figures, and it lands in docs/ because GitHub Pages serves
+# master:/docs. An explicit processor rather than generator.pdflatex: the
+# figures do not exist on a cold build, and only input_globs can name another
+# processor's outputs (dep_inputs only sees files already on disk), which is
+# also what orders sketch before pdflatex.
+[processor.explicit.generic.book]
+command = "scripts/build_pdf.py"
+inputs = ["src/tex/riddling.tex"]
+input_globs = ["src/include/*.tex", "out/src/sk/*.tex"]
+output_files = ["docs/riddling.pdf"]
+required_tools = ["pdflatex"]
+
+# sketch and the TeX Live parts riddling.tex loads: hyperref (latex-base),
+# thumbpdf (latex-recommended), datetime (latex-extra), tikz (pictures),
+# pst-pdf (pstricks).
+[dependencies]
+system = [
+    "sketch",
+    "texlive-latex-base",
+    "texlive-latex-recommended",
+    "texlive-latex-extra",
+    "texlive-pictures",
+    "texlive-pstricks",
+]
+
 [processor.checker.ruff]
 src_dirs = ["src", "scripts", "config"]
 

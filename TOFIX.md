@@ -2,10 +2,6 @@
 
 Findings from a code scan on 2026-10-04.
 
-## High
-
-- `src/tex/riddling.tex:129` - the book is no longer buildable: it `\input`s `out/src/sk/*.tex` (also `:139`, `:149`), which only the removed pydmt-era Makefile generated from `src/sk/*.sk` via sketch, and `rsconstruct.toml` has no sketch or `pdflatex` processor, so the published `docs/riddling.pdf` is a hand-copied artifact that edits to the `.tex` never reach. Add sketch + `pdflatex` steps (the unused `scripts/wrapper_sketch.py`/`scripts/wrapper_lacheck.py` were written for exactly this) and generate `docs/riddling.pdf` from the build.
-
 ## Medium
 
 - `docs/build/pdf.js:126` - the vendored pdf.js viewer served on Pages is version 2.3.41, which is affected by CVE-2024-4367 (arbitrary JavaScript execution when a crafted PDF is opened; fixed in 4.2.67); update the vendored viewer or link the PDF directly.
