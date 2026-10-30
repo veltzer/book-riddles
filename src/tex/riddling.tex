@@ -41,6 +41,7 @@
 \usepackage{amssymb} % for math symbols (does not pdftex option)
 %\usepackage{pstricks} % for sketch with pstricks support (default for sketch)
 \usepackage{tikz} % for sketch with tikz (does not pdftex option)
+\usetikzlibrary{calc,fadings}
 
 \usepackage{datetime}
 \newdateformat{monthyeardate}{%
@@ -372,7 +373,65 @@ Only one ball needs to be extracted from the bucket which is labeled $Mixed$. Si
 \section {Three or four boxes (Visual illusion)}
 Are there three or four boxes in the following drawing? How do you explain the illusion?
 
-\includegraphics[scale=.5]{src/jpg/3-4-sticks.jpg}
+\begin{center}
+\begin{tikzpicture}[scale=.45,line join=round]
+% Every long edge runs along the direction (1,.5). On the left the edges are
+% grouped into four boxes, on the right the same edges are grouped into three
+% boxes, so the floor between two boxes on the left becomes the top of a box
+% on the right, and the top of a box becomes its side.
+\foreach \k in {0,...,3} {
+	\coordinate (F\k) at (3*\k,-1.5*\k);
+}
+% the three cubes behind the far ends of the boxes
+\foreach \j in {0,1,2} {
+	\coordinate (G) at ($(3*\j+11.4,3.7-1.5*\j)$);
+	\filldraw[fill=gray!65] (G) -- ++(1,-.5) -- ++(0,-1) -- ++(-1,.5) -- cycle;
+	\filldraw[fill=gray!25] (G) -- ++(1,.5) -- ++(1,-.5) -- ++(-1,-.5) -- cycle;
+	\filldraw[fill=gray!55] ($(G)+(1,-.5)$) -- ++(1,.5) -- ++(0,-1) -- ++(-1,-.5) -- cycle;
+}
+% the long strips, shaded from their left reading to their right reading
+\foreach \j in {0,1,2} {
+	% floor on the left, top of a box on the right
+	\shade[left color=white,right color=gray!25]
+		($(F\j)+(1,-1.5)$) -- ($(3*\j+11,3.5-1.5*\j)$) -- ($(3*\j+12,3-1.5*\j)$) -- ($(F\j)+(3,-1.5)$) -- cycle;
+	% side of a box on the left, floor on the right
+	\shade[left color=gray!55,right color=white]
+		($(F\j)+(1,-.5)$) -- ++(9,4.5) -- ++(0,-1) -- ($(F\j)+(1,-1.5)$) -- cycle;
+}
+\foreach \k in {1,2,3} {
+	% top of a box on the left, side of a box on the right
+	\shade[left color=gray!25,right color=gray!55]
+		(F\k) -- ($(3*\k+9,4.5-1.5*\k)$) -- ++(0,-1) -- ($(F\k)+(1,-.5)$) -- cycle;
+}
+% the top and side of the first box and the side of the last box fade out
+\shade[left color=gray!25,right color=white] (F0) -- ++(9,4.5) -- ++(1,-.5) -- ($(F0)+(1,-.5)$) -- cycle;
+\shade[left color=gray!55,right color=white] ($(F3)+(1,-.5)$) -- ++(9,4.5) -- ++(0,-1) -- ($(F3)+(1,-1.5)$) -- cycle;
+% the long edges; the top and side of the first box and the side of the last
+% box belong to no box on the right, so their edges fade out
+\foreach \k in {1,2,3} {
+	\draw (F\k) -- ++(9,4.5);
+	\draw ($(F\k)+(1,-.5)$) -- ++(9,4.5);
+}
+\foreach \k in {0,1,2} {
+	\draw ($(F\k)+(1,-1.5)$) -- ++(10,5);
+}
+\coordinate (D0) at (F0);
+\coordinate (D1) at ($(F0)+(1,-.5)$);
+\coordinate (D2) at ($(F3)+(1,-1.5)$);
+\foreach \d in {0,1,2} {
+	\draw (D\d) -- ++(4,2);
+	\draw[path fading=east] ($(D\d)+(4,2)$) -- ++(5,2.5);
+}
+% the near ends of the four boxes
+\foreach \k in {0,...,3} {
+	\filldraw[fill=gray!65] (F\k) -- ++(1,-.5) -- ++(0,-1) -- ++(-1,.5) -- cycle;
+}
+% the far ends of the three boxes
+\foreach \j in {0,1,2} {
+	\draw ($(3*\j+11,3.5-1.5*\j)$) -- ++(1,-.5) -- ++(0,-1);
+}
+\end{tikzpicture}
+\end{center}
 
 \subsection{Solution}
 The heart of the illusion is the gradual transformation of floors on the right hand side of the drawing into sides of boxes in the left hand side of the drawing. That is also the reason for the gradual transformation of color of the floors.
