@@ -1,0 +1,40 @@
+\section {Regrouping coins (Combinatorics)}
+
+This riddle is from Doron.
+
+A collection of $\frac{n(n+1)}{2}$ identical coins is split into groups in some way.
+Now repeat the following step: take one coin from every group and put all the coins you took into a new group.
+A group that runs out of coins disappears.
+Prove that eventually the groups will have the sizes $1, 2, 3, \ldots, n$.
+
+\subsection{Solution}
+
+First notice that the sizes $1, 2, \ldots, n$ do not change once they are reached: taking a coin from each of the $n$ groups
+leaves groups of sizes $0, 1, \ldots, n-1$ and creates a new group of size $n$.
+
+Draw the groups as rows of coins, sorted from the largest group at the top to the smallest at the bottom,
+with all rows starting at the left. The coin in row $i$ and column $j$ sits at position $(i,j)$, and we say it is at level $i+j$.
+Taking one coin from every group means taking the first column, and the new group becomes a new row.
+Put the new row at the top for now, and push all the other rows down by one.
+A coin at $(i,j)$ with $j \ge 2$ moves to $(i+1, j-1)$ and a coin of the first column at $(i,1)$ moves to $(1,i)$.
+Either way, every coin stays on its level.
+Then the new row may have to move down to its place to keep the rows sorted.
+
+Let the energy of the coins be the sum of their levels. The step that moves the coins keeps the energy.
+Moving the new row down to its place lowers the energy: it moves the new row to a larger row number,
+but it moves the rows it passes, which are longer, to smaller row numbers. So the energy never grows,
+and since it is a positive whole number it can only go down a finite number of times.
+From some point on the new row is always at its place at the top, and the coins only move along their levels.
+
+A level $t+1$ has $t$ positions, $(1,t), (2,t-1), \ldots, (t,1)$, and every step moves the coins on it one position along this list,
+cyclically, with $(t,1)$ moving to $(1,t)$.
+So from that point on, the coins on level $t+1$ simply rotate with a period of $t$ steps.
+
+Suppose the groups never reach $1, 2, \ldots, n$. Then the levels $2, 3, \ldots, n+1$, which together have room for exactly
+$\frac{n(n+1)}{2}$ coins, are not all full. Let level $d+1$ be the lowest one that is not full.
+The coins that are not on the levels below it are more than it can hold, so there are coins above it, and because the rows start
+at the left there is a coin on level $d+2$.
+The empty position on level $d+1$ rotates with period $d$ and the coin on level $d+2$ rotates with period $d+1$.
+Since $d$ and $d+1$ have no common divisor, by the Chinese remainder theorem there is a step at which both are in the same row $r$:
+the empty position at $(r, d+1-r)$ and the coin right after it at $(r, d+2-r)$.
+But a row cannot have a coin right after an empty position. This contradiction shows that the groups do reach the sizes $1, 2, \ldots, n$.

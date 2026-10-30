@@ -1,0 +1,36 @@
+\section {Infinitely many dwarves (Set theory)}
+
+A countably infinite number of dwarves stand in a line, numbered $1, 2, 3, \ldots$, all facing the same direction,
+so that every dwarf sees all the dwarves in front of him (dwarf $1$ sees dwarves $2, 3, \ldots$) but not himself or the dwarves behind him.
+A black or white hat is placed on the head of each dwarf at random.
+Starting with dwarf $1$, each dwarf in turn has to guess the color of his own hat. If he is right he lives, otherwise he is killed.
+The dwarves can agree on a strategy beforehand.
+
+Is there a strategy in which only a finite number of dwarves guess wrong?
+Can it be done if the dwarves do not hear each other's guesses (in other words, if they all guess at the same time)?
+
+\subsection{Solution}
+
+Surprisingly the answer to both questions is yes, but the strategy uses the axiom of choice.
+
+Think of an assignment of hats as an infinite sequence of colors.
+Call two sequences equivalent if they differ in only a finite number of places.
+This is an equivalence relation, so it splits all the possible sequences into classes.
+Before the game, the dwarves use the axiom of choice to pick one representative sequence from every class and agree on these representatives.
+
+During the game every dwarf sees all the hats in front of him. That is all of the sequence except for a finite beginning,
+and changing a finite beginning does not change the class. So every dwarf knows the class of the real sequence,
+and therefore knows its representative $r$. Every dwarf $k$ guesses the color $r_k$.
+
+The real sequence and $r$ are in the same class, so they differ in only a finite number of places,
+which means that only a finite number of dwarves guess wrong.
+This strategy does not use the guesses of the other dwarves at all, so it works when they all guess at the same time.
+
+When the dwarves do hear each other they can do even better: everybody except dwarf $1$ survives.
+Dwarf $1$ counts the places $k \ge 2$ in which the hats he sees differ from $r$. There are finitely many of them,
+and he announces ``black'' if their number is even and ``white'' if it is odd.
+Dwarf $k$ knows his own color from this parity: he sees the hats of the dwarves in front of him,
+and he heard the correct colors of the dwarves $2, \ldots, k-1$ behind him, so he knows all the differences from $r$ except his own.
+
+Note that this strategy cannot be written down explicitly, since it depends on the axiom of choice.
+The set of hat assignments in which a given dwarf survives need not be measurable, so asking what the chance of a given dwarf to survive is may have no meaning.

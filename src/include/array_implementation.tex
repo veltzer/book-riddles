@@ -1,0 +1,52 @@
+\section {Array with constant time set all (Data structures)}
+
+Implement an array of a known size $n$ with the following API:
+
+\begin{verbatim}
+set(i, v)   - set the i'th element to v
+get(i)      - return the value of the i'th element
+set_all(v)  - set all the elements to v
+\end{verbatim}
+
+All three operations must run in $O(1)$ time.
+
+\subsection{Solution}
+
+Store a version number with every element, in addition to its value, and keep a global version
+and a global value. An element whose version is the global version holds its own value.
+Any other element was overwritten by the last \verb|set_all| and its value is the global value.
+
+\begin{verbatim}
+init():
+    global_version = 1
+    global_value = 0
+    allocate value[n] and version[n], all versions 0
+
+set(i, v):
+    value[i] = v
+    version[i] = global_version
+
+get(i):
+    if version[i] == global_version:
+        return value[i]
+    return global_value
+
+set_all(v):
+    global_version += 1
+    global_value = v
+\end{verbatim}
+
+\verb|set_all| does not touch the elements at all. It just makes every element stale by moving the global version forward.
+
+There is one problem with this solution: the version is stored in a finite integer which will
+eventually wrap around. After $2^{32}$ calls to \verb|set_all| (for a 32 bit version) the global
+version is back to an old value and an element that was set long ago suddenly looks fresh again.
+
+To solve this, every operation also does a little cleanup work. We keep a cursor that walks over
+the array cyclically and every operation advances it by one element. If the element under the cursor
+is stale (its version is not the global version) we set its version to \verb|global_version-1|.
+That element stays stale, so this does not change the result of any \verb|get|.
+But now every element is visited at least once every $n$ operations, so a stale version is never more
+than $n$ versions behind the global version. As long as $n$ is smaller than $2^{32}$ the global version
+can never wrap around to the version of a stale element.
+All operations are still $O(1)$.

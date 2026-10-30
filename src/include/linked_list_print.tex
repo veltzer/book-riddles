@@ -1,0 +1,26 @@
+\section {Printing a linked list in reverse (Algorithms)}
+
+Print a singly linked list of $N$ elements from its end to its start, using only $O(1)$ memory.
+You may not change the list. Make the running time as small as you can.
+
+\subsection{Solution}
+
+The simplest solution is to walk from the head to the last element and print it, then walk from the head to the element before last and print it,
+and so on. This takes $O(N^2)$ time. Let's call it the naive method; it prints any segment of $m$ elements backwards in $O(m^2)$ time.
+
+\textbf{First improvement.} Split the list into $\sqrt{N}$ blocks of $\sqrt{N}$ elements each.
+Go over the blocks from the last to the first. For each block, walk from the head to the start of the block, which takes $O(N)$,
+and print the block backwards with the naive method, which takes $O((\sqrt{N})^2) = O(N)$.
+There are $\sqrt{N}$ blocks, so the total time is $O(\sqrt{N} \cdot N) = O(N^{1.5})$.
+
+\textbf{Second improvement.} Split the list into $N^{1/3}$ blocks of $N^{2/3}$ elements each,
+and print each block backwards with the first improvement instead of the naive method.
+A block of $m = N^{2/3}$ elements takes $O(m^{1.5}) = O(N)$ time to print, and walking to the start of the block also takes $O(N)$.
+There are $N^{1/3}$ blocks, so the total time is $O(N^{4/3})$.
+
+\textbf{And so on.} Repeating the trick $k$ times gives a running time of $O(N^{1+1/k})$.
+Every level of the trick needs only a few variables, so for any fixed $k$ the memory is still $O(1)$,
+and the running time is $O(N^{1+\epsilon})$ for any $\epsilon > 0$ we like.
+
+If we allow $O(\log N)$ memory, we can go all the way: split the list into two halves, print the second half backwards and then the first half backwards,
+recursively. Every level of the recursion walks over the list once, and there are $\log N$ levels, so this takes $O(N \log N)$ time.

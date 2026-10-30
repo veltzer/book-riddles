@@ -1,0 +1,34 @@
+\section {Birthing girls (Probability)}
+
+A village elder wants more women in the village. He tells the villagers:
+every family should keep having babies until it has a daughter, and then stop.
+Will this make the village have more girls than boys?
+
+\subsection{Solution}
+
+No. The ratio of boys to girls will stay $1:1$.
+
+The short explanation: every birth is a boy or a girl with probability $1/2$, independently of all previous births.
+The rule only decides when a family stops, it cannot change the outcome of any single birth.
+So on average half of all the babies born are girls, no matter what the rule for stopping is.
+
+Here is another way to see it. Let the villagers have as many babies as they like, until every family has a daughter.
+Here the ratio is clearly $1:1$. Now remove every child that has an older sister.
+Each removed child is a boy or a girl with probability $1/2$, so the removed children are also $1:1$, and so are the
+children that are left. But the children that are left are exactly what the elder's rule produces.
+
+And here is the calculation. Every family has exactly one girl.
+A family has $k$ boys if its first $k$ babies are boys and the next one is a girl, which happens with probability $(1/2)^{k+1}$.
+So the expected number of boys in a family is
+\begin{center}
+$s = \sum_{k=1}^{\infty} \frac{k}{2^{k+1}} = \frac{1}{4} + \frac{2}{8} + \frac{3}{16} + \ldots$
+\end{center}
+Subtracting $\frac{s}{2} = \frac{1}{8} + \frac{2}{16} + \ldots$ gives
+\begin{center}
+$\frac{s}{2} = \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \ldots = \frac{1}{2}$
+\end{center}
+so $s=1$: on average every family has one boy and one girl.
+
+\subsection{Follow up}
+What if the elder had said ``stop when you have six girls for every boy''?
+Unlike the previous rule, this condition may never happen. What are the chances that a family will ever stop?

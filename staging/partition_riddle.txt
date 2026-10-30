@@ -1,7 +1,0 @@
-A n*(n+1)/2 collection of identical coins is partitioned in some way.
-Now an iterative process starts: at each state one coin is taken from
-each group and these are used to form a new group. Every group that
-has no more coins disappears. Prove that this process will converge
-to a situation where the group sizes are 1,2,3,...,n
-
-This is riddle from doron

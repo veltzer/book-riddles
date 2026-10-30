@@ -1,0 +1,14 @@
+\section {100 consecutive non primes (Number theory)}
+
+Find 100 consecutive numbers none of which is prime.
+
+\subsection{Solution}
+
+Take the numbers $101!+2, 101!+3, \ldots, 101!+101$.
+These are exactly 100 consecutive numbers ($2, 3, \ldots, 101$ is a list of 100 numbers).
+
+For every $k$ with $2 \le k \le 101$, $k$ divides $101!$ and $k$ divides itself, so $k$ divides $101!+k$.
+Since $101!+k$ is larger than $k$, it has a divisor other than $1$ and itself and is therefore not prime.
+
+The same trick works for any $N$: the numbers $(N+1)!+2, \ldots, (N+1)!+N+1$ are $N$ consecutive numbers none of which is prime.
+This shows that there are arbitrarily long gaps between consecutive primes.

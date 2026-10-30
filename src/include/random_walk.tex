@@ -1,0 +1,21 @@
+\section {Random walk (Probability)}
+
+A person stands at place $0$ on a line. Every second he jumps one place to the right or one place to the left, with probability $1/2$ each.
+What is the chance that he reaches $-1$ before he reaches $100$?
+
+\subsection{Solution}
+
+The answer is $\frac{100}{101}$.
+
+Let $p_k$ be the chance of reaching $100$ before $-1$ when starting at place $k$. Then $p_{-1} = 0$ and $p_{100} = 1$,
+and for every place in between the first jump goes to $k-1$ or $k+1$ with equal chances, so
+\begin{center}
+$p_k = \frac{p_{k-1} + p_{k+1}}{2}$
+\end{center}
+This says that $p_{k+1} - p_k = p_k - p_{k-1}$: the steps between consecutive values are all equal, so $p_k$ grows linearly from $0$ at $-1$ to $1$ at $100$.
+There are $101$ steps between $-1$ and $100$, so $p_k = \frac{k+1}{101}$, and in particular $p_0 = \frac{1}{101}$.
+
+The walk reaches one of the two ends with probability $1$, so the chance of reaching $-1$ first is $1 - \frac{1}{101} = \frac{100}{101}$.
+
+Another way to see it: the game is fair, so on average the person's position never changes. If he reaches $100$ with chance $q$ and $-1$ with chance $1-q$ then
+his average final position is $100q - (1-q) = 0$, so $q = \frac{1}{101}$.

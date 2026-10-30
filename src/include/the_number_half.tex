@@ -1,0 +1,20 @@
+\section {The number one half (Algebra)}
+
+A teacher writes $96$ fractions on the board: $\frac{1}{96}, \frac{2}{96}, \frac{3}{96}, \ldots, \frac{95}{96}, \frac{96}{96}$.
+A student then plays a game: in every turn he picks any two numbers $a$ and $b$ on the board, erases them, and writes $2ab - a - b + 1$ instead.
+After $95$ turns only one number is left. What is it?
+
+\subsection{Solution}
+
+The last number is $\frac{1}{2}$, no matter how the student plays.
+
+Let $f(a,b) = 2ab - a - b + 1$. Then $f(\frac{1}{2}, b) = b - \frac{1}{2} - b + 1 = \frac{1}{2}$, and in the same way $f(a, \frac{1}{2}) = \frac{1}{2}$.
+The number $\frac{48}{96} = \frac{1}{2}$ is on the board from the start. Whenever it is picked, the new number is $\frac{1}{2}$ again,
+so there is always a $\frac{1}{2}$ on the board, and therefore the last number is $\frac{1}{2}$.
+
+A cleaner way to see what is going on: $2f(a,b) - 1 = 4ab - 2a - 2b + 1 = (2a-1)(2b-1)$.
+So if we look at the numbers $2x-1$ for all the numbers $x$ on the board, every turn replaces two of them by their product,
+and the product of all of them never changes. At the start one of them is $2 \cdot \frac{1}{2} - 1 = 0$, so the product is $0$,
+and at the end the last number $x$ satisfies $2x-1 = 0$.
+
+This is also why the riddle uses an even number like $96$: with an odd number of fractions, $\frac{1}{2}$ would not be on the board.

@@ -1,0 +1,25 @@
+\section {The spy (Information theory)}
+
+A spy in an enemy country wants to send information home using the enemy's daily morning radio transmission, which is 15 bits long.
+Every morning the transmission is random. The spy can get into the radio station a few minutes before the transmission, look at the 15 bits that are about to be
+sent, and either leave them as they are or flip a single bit (flipping more would make the transmission look corrupt).
+His operators listen to the transmission and decode it according to a method agreed on in advance.
+How much information can the spy send every day?
+
+\subsection{Solution}
+
+The spy can send 4 bits, that is, one of 16 messages, every day.
+
+He cannot do better: every morning he has exactly 16 choices (flip one of the 15 bits, or flip nothing),
+and the operators see only the result, so at most 16 different messages can be told apart.
+
+Here is how to reach 16. Number the positions of the bits $1$ to $15$ and think of each position number as $4$ bits.
+The operators decode the transmission by computing the exclusive or (xor) of the positions of all the bits that are $1$.
+That is a number between $0$ and $15$, and it is the message.
+
+The spy computes the same value $v$ for the transmission he finds. He wants to send the message $m$.
+Flipping the bit at position $k$ adds $k$ to the set of positions of the $1$ bits or removes it, and either way the value becomes $v \oplus k$.
+So if $v = m$ he leaves the transmission alone, and otherwise he flips the bit at position $k = v \oplus m$, which is between $1$ and $15$.
+The value becomes $v \oplus v \oplus m = m$.
+
+This is the Hamming code of length 15 in disguise. Compare with the riddle of the coins on the chess board, which uses the same trick.

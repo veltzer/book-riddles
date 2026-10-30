@@ -1,0 +1,26 @@
+\section {Estimating $\pi$ (Algorithms)}
+
+Write a program that gives better and better estimates of $\pi$ without using a series like the Taylor series.
+The program should be easy to write and deterministic: the longer it runs, the better the estimate is guaranteed to be.
+
+\subsection{Solution}
+
+A popular answer is to pick random points in a square of side $1$ and count how many of them fall inside the circle of diameter $1$ drawn in it.
+The circle has area $\pi/4$ and the square has area $1$, so $4$ times the fraction of points inside the circle estimates $\pi$.
+But this does not meet the requirements: it depends on a good random number generator,
+and more samples only make a good estimate likely, they do not guarantee it.
+
+Instead, count squares deterministically. Cover the quarter of the circle of radius $N$ that lies in the first quadrant with a grid of $N \times N$ unit squares.
+The quarter circle has area $\frac{\pi N^2}{4}$.
+Let $L$ be the number of squares that lie completely inside the circle: the square whose far corner is $(i,j)$ is inside when $i^2+j^2 \le N^2$.
+Let $U$ be the number of squares that touch the inside of the circle: the square whose near corner is $(i,j)$ touches it when $i^2+j^2 < N^2$.
+Then
+\begin{center}
+$\frac{4L}{N^2} \le \pi \le \frac{4U}{N^2}$
+\end{center}
+The squares counted in $U$ but not in $L$ are the ones that the arc of the circle crosses. Going along the arc, every such square starts one step to the
+right or one step down from the previous one, so there are fewer than $2N$ of them and the two bounds are less than $\frac{8}{N}$ apart.
+
+Counting the squares is easy: in column $i$ there are $\lfloor \sqrt{N^2-i^2} \rfloor$ squares completely inside the circle.
+Run the program with $N = 10, 100, 1000, \ldots$ and you get guaranteed bounds that improve with every step:
+$N=1000$ gives $3.1375 \le \pi \le 3.1456$ and $N=10000$ gives $3.1411 \le \pi \le 3.1420$.

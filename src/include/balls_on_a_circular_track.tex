@@ -1,0 +1,23 @@
+\section {Balls on a circular track (Logic)}
+
+An unknown number of balls race around a circular track, each at a constant speed of one lap per second.
+Some of them go clockwise and some counter clockwise.
+When two balls collide they immediately reverse direction and continue at the same speed.
+During ten seconds there were 860 collisions.
+How many balls are there?
+
+\subsection{Solution}
+
+First let's get rid of the change of direction. The balls are identical, so a collision in which two balls bounce
+off each other looks exactly the same as two balls passing through each other.
+So we can pretend that the balls never change direction and just pass each other, and the number of collisions stays the same.
+
+Now every ball keeps its direction forever, and after one second every ball is back where it started.
+So the balls do exactly the same thing every second and the number of collisions per second is constant: $860/10 = 86$.
+
+Let $X$ be the number of balls going clockwise and $Y$ the number going counter clockwise.
+A clockwise ball and a counter clockwise ball approach each other at two laps per second, so they meet twice every second.
+Two balls going in the same direction never meet.
+So there are $2XY$ collisions per second, which gives $2XY = 86$ or $XY = 43$.
+Since $43$ is prime, one direction has a single ball and the other has $43$ balls.
+In total there are $44$ balls.

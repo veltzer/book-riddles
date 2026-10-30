@@ -1,0 +1,47 @@
+\section {Twelve coins (Information theory)}
+
+You have $12$ coins that look the same. One of them is fake and has a different weight from the others, but you do not know whether it is heavier or lighter.
+Using a balance scale only $3$ times, find the fake coin and tell whether it is heavier or lighter.
+There are two different kinds of solution: one in which every weighing depends on the results of the previous ones,
+and one in which all three weighings are decided in advance. Find both.
+
+\subsection{Solution}
+
+First, why this is tight: there are $24$ possibilities ($12$ coins, each heavier or lighter) and every weighing has $3$ results
+(left side heavier, right side heavier, or balance), so $3$ weighings have $27$ results, just enough.
+This means every weighing must split the remaining possibilities as evenly as possible.
+
+\textbf{Adaptive solution.} Number the coins $1$ to $12$. First weigh $1,2,3,4$ against $5,6,7,8$.
+
+If they balance, the fake coin is one of $9,10,11,12$ and the coins $1$ to $8$ are genuine.
+Weigh $9,10,11$ against $1,2,3$.
+If they balance, coin $12$ is fake; weigh it against coin $1$ to see whether it is heavier or lighter.
+Otherwise we know whether the fake coin, one of $9,10,11$, is heavier or lighter, and weighing $9$ against $10$ finds it:
+the one that tips the scale the known way is fake, and if they balance it is $11$.
+
+If the left side is heavier, then either one of $1,2,3,4$ is heavy or one of $5,6,7,8$ is light, and $9$ to $12$ are genuine.
+Weigh $1,2,5$ against $3,6,9$.
+If they balance, the fake is $4$ (heavy), $7$ or $8$ (light): weigh $7$ against $8$, the lighter one is fake, and if they balance $4$ is the heavy fake.
+If the left side is heavier, the fake is $1$ or $2$ (heavy) or $6$ (light): weigh $1$ against $2$, the heavier one is fake, and if they balance $6$ is the light fake.
+If the right side is heavier, the fake is $3$ (heavy) or $5$ (light): weigh $3$ against the genuine $9$. If $3$ is heavier it is the fake, and if they balance $5$ is the light fake.
+
+If the right side is heavier the first time, do the same with the roles of heavy and light swapped.
+
+\textbf{Non adaptive solution.} Do these three weighings:
+\begin{center}
+\begin{tabular}{c c c}
+weighing & left side & right side \\
+\hline
+1 & 4, 5, 6, 8 & 1, 2, 3, 7 \\
+2 & 7, 9, 10, 11 & 1, 2, 6, 8 \\
+3 & 2, 6, 9, 12 & 3, 5, 8, 11 \\
+\end{tabular}
+\end{center}
+Give every coin a code of three symbols, one per weighing: $L$ if the coin is on the left side, $R$ if it is on the right side, and $-$ if it is not on the scale.
+For example coin $6$ has the code $LRL$ and coin $12$ has the code $--L$.
+Record the result of each weighing the same way: $L$ if the left side was heavier, $R$ if the right side was heavier and $-$ if they balanced.
+
+If the fake coin is heavy, the result is exactly its code. If it is light, the result is its code with $L$ and $R$ swapped.
+The codes were chosen so that no two coins have the same code or swapped codes, so the result points at exactly one coin and tells whether it is heavy or light.
+For example the result $RLR$ is the code of coin $6$ swapped, so coin $6$ is light.
+Every weighing has $4$ coins on each side, and there are $26$ possible codes besides $---$, which come in $13$ swapped pairs, of which we use $12$.

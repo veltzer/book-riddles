@@ -1,0 +1,28 @@
+\section {Building a crack free wall (Algorithms)}
+
+This riddle is from Project Euler (problem 215).
+
+You need to build a wall $32$ units wide and $10$ units high out of bricks of size $2 \times 1$ and $3 \times 1$, laid horizontally.
+To make the wall strong, no two bricks in adjacent rows may end at the same place, except at the two ends of the wall:
+the gaps between bricks must never line up to form a running crack.
+In how many ways can the wall be built?
+
+\subsection{Solution}
+
+The rule cannot apply to the whole wall at once: a row of width $32$ has at least $10$ gaps between bricks,
+and there are only $31$ places for them, so ten rows cannot all have different gaps. That is why the rule is only about adjacent rows.
+
+First list all the possible rows. A row is a sequence of $2$s and $3$s that adds up to $32$, and it is described by the set of places where its gaps are.
+The number of rows $a_n$ of width $n$ satisfies $a_n = a_{n-2} + a_{n-3}$, since the last brick has length $2$ or $3$, and for width $32$ there are $3329$ rows.
+Represent the set of gaps of each row as a bit mask. Two rows can lie on top of each other exactly when the bitwise and of their masks is $0$.
+
+Now count the walls row by row. Let $c_h(r)$ be the number of walls of height $h$ whose top row is $r$. Then $c_1(r) = 1$ for every row and
+\begin{center}
+$c_{h+1}(r) = \sum_{s \text{ compatible with } r} c_h(s)$
+\end{center}
+The answer is the sum of $c_{10}(r)$ over all rows $r$.
+Each step goes over all the pairs of compatible rows, which is at most $3329^2$, about eleven million, so this is fast.
+The number of walls is $806{,}844{,}323{,}190{,}414$.
+
+As a check, the same method gives $8$ walls of width $9$ and height $3$.
+Note that this method depends on the number of possible rows being small: a wall $100$ units wide would have about $6.7 \cdot 10^{11}$ possible rows.

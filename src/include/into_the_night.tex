@@ -1,0 +1,24 @@
+\section {Into the night (Arithmetic)}
+
+This riddle was invented after watching the Netflix series ``Into the Night''.
+
+Assume that the circumference of the earth along the equator is 48,000 km, that a plane flies at 1,000 km/h,
+and that night is exactly half of the day. You fly along the equator and want to stay in the dark for as long as possible.
+Should you fly east or west, and for how long and how far can you fly?
+
+\subsection{Solution}
+
+Night covers half of the equator, a band of 24,000 km.
+The earth turns once a day, so this band moves west along the equator at $48000/24 = 2000$ km/h.
+Its western edge is dusk and its eastern edge is dawn.
+In both directions it is best to take off at dusk, when the whole band of night is still ahead of the sun.
+
+\textbf{Flying east.} Dawn is 24,000 km east of you and moves toward you at 2,000 km/h while you fly toward it at 1,000 km/h.
+If you fly for $n$ hours then $1000n + 2000n = 24000$, so $n=8$ and you cover 8,000 km.
+
+\textbf{Flying west.} Dusk runs away from you, since it moves west faster than you do.
+Dawn is 24,000 km behind you and catches up at $2000 - 1000 = 1000$ km/h.
+So $2000n = 1000n + 24000$, which gives $n=24$ and you cover 24,000 km.
+
+So you should fly west: you can stay in the dark for a whole day and cover half of the globe.
+Going around the globe in the dark takes two such flights when flying west, but six when flying east.

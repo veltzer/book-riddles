@@ -1,2 +1,0 @@
-You are given 13 rocks. Every 12 of them could be balance on a scale.
-Prove that all 13 have the same weight.

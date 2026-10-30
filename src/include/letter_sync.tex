@@ -1,0 +1,31 @@
+\section {A letter to a hundred people (Probability)}
+
+You get a letter that says: ``This letter was sent to exactly 100 people and you are one of them.
+You may reply to the return address or not. If I get exactly one reply, each of the 100 people will get a million dollars.
+If I get no reply, or more than one reply, nobody gets anything.''
+
+You cannot communicate with the other 99 people, and they are all at least as smart as you are.
+What should you do to maximize the chance of winning?
+
+\subsection{Solution}
+
+There is no way to break the symmetry between the 100 people: everybody is in exactly the same situation and is as smart as you,
+so whatever you decide, they decide too. If you decide to reply then everybody replies, and if you decide not to reply then nobody does.
+Either way nobody wins.
+
+The way out is to use randomness: reply with some probability $p$, for example by rolling dice.
+Everybody else will compute the same $p$. The letter writer gets exactly one reply if one person replies and the other 99 do not.
+There are 100 ways to choose that person, so the chance of winning is
+\begin{center}
+$f(p) = 100p(1-p)^{99}$
+\end{center}
+To find the maximum, take the derivative:
+\begin{center}
+$f'(p) = 100(1-p)^{99} - 100 \cdot 99 p (1-p)^{98} = 100(1-p)^{98}(1-p-99p)$
+\end{center}
+It is zero when $1 - 100p = 0$, that is, at $p = \frac{1}{100}$.
+So intuition is right: each person should reply with probability $\frac{1}{100}$, so that on average exactly one person replies.
+
+The chance of winning is then $\left(1-\frac{1}{100}\right)^{99} \approx 0.370$, which is surprisingly high.
+With $n$ people the chance is $\left(1-\frac{1}{n}\right)^{n-1}$, which tends to $\frac{1}{e} \approx 0.368$ as $n$ grows.
+So even with a million people the chance of winning is still almost $37\%$.

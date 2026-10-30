@@ -1,9 +1,0 @@
-nice strange one I just solved after I spent a day trying to prove it couldn't be done.
-
-There's an infinite (countable) number of dwarfs standing in a row, each wears a Black or White hat (chosen randomly by a coin toss which is equivalent to choosing a number from 0 to 1 included and distributing the hats according to the binary representation of the number).
-
-Then each dwarf starting from the first has to guess the hat on his head, if right he is left alive otherwise he is killed, is there a strategy where only a finite number of dwarfs makes the wrong guess.
-
-Can you do it if the dwarfs don't hear each other (in other words if they all guess simultaneously).
-
-Everyone sees whoever is in front of them, they are standing in one long line.

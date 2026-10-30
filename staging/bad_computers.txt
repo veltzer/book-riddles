@@ -1,1 +1,0 @@
-100 computers. At least 51 are good, the rest - at most 49 - are broken. You can ask computer A if computer B is ok or not. If A is good, it'll give the correct answer, but if it's bad, it can say whatever. Your task is to locate a good computer as efficiently as possible (specifically, find a protocol minimizing the number of questions in the worst case).

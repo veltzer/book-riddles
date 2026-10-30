@@ -1,0 +1,27 @@
+\section {Thirteen coins (Information theory)}
+
+The same as the previous riddle, but with $13$ coins: one of them is fake and is either heavier or lighter than the others.
+With $3$ weighings, can you find the fake coin and tell whether it is heavier or lighter?
+If not, what can you do?
+
+\subsection{Solution}
+
+Counting alone does not rule it out: there are $26$ possibilities and $27$ results of three weighings. But it cannot be done.
+
+Suppose the first weighing puts $k$ coins on each side.
+If the scale balances, the fake coin is one of the other $13-2k$ coins, and there are $2(13-2k)$ possibilities left for only $9$ results of the two remaining weighings,
+so $26-4k \le 9$, which means $k \ge 5$.
+If the left side is heavier, the fake is one of the $k$ coins on the left and heavy, or one of the $k$ coins on the right and light.
+That is $2k$ possibilities for $9$ results, so $k \le 4$.
+Both cases can happen, so we need both $k \ge 5$ and $k \le 4$, which is impossible.
+
+What can be done is to always find the fake coin, and almost always tell whether it is heavier or lighter.
+Weigh $1,2,3,4$ against $5,6,7,8$.
+If the scale does not balance, coins $9$ to $13$ are genuine and we go on exactly as in the twelve coin riddle, finding the coin and its weight.
+If it balances, the fake coin is one of $9$ to $13$ and coins $1$ to $8$ are genuine. Weigh $9,10,11$ against $1,2,3$.
+If this does not balance we know whether the fake is heavy or light, and weighing $9$ against $10$ finds it.
+If it balances, the fake is $12$ or $13$. Weigh $12$ against $1$: if it does not balance then $12$ is the fake and we see whether it is heavy or light,
+and if it balances then $13$ is the fake, but we never weighed it, so we do not know whether it is heavier or lighter.
+
+If we are also given one extra coin that is known to be genuine, then $13$ coins can be solved completely, since the genuine coin lets the first weighing
+put $5$ unknown coins against $4$ unknown coins and the genuine coin.

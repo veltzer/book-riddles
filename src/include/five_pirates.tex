@@ -1,0 +1,35 @@
+\section {Five pirates (Game theory)}
+
+Five pirates find a sack with 100 gold coins and want to divide them.
+The pirates are ranked by seniority: the most senior is \#5, then \#4 and so on down to the most junior, \#1.
+The most senior pirate proposes how to divide the coins and then all the pirates, including him, vote on the proposal.
+If at least half of the votes accept it, the coins are divided accordingly and they are done.
+Otherwise the pirate who made the proposal is shot, and the next in line makes a proposal, and so on.
+
+Every pirate is perfectly rational. His first priority is to stay alive, his second is to get as many coins as possible,
+and his third is blood: if a vote makes no difference to him otherwise, he votes against, hoping for a kill.
+
+What should pirate \#5 propose to stay alive and keep as many coins as possible?
+
+\subsection{Solution}
+
+Pirate \#5 gives one coin to pirate \#3 and one coin to pirate \#1 and keeps the other 98.
+
+To see why, solve the problem backwards, starting with fewer pirates.
+
+\textbf{Two pirates.} \#2 proposes to keep all 100 coins. He votes for it, which is already half of the votes, so it passes.
+\#1 gets nothing.
+
+\textbf{Three pirates.} \#3 needs two votes. He knows that if he is shot, \#1 gets nothing.
+So he offers \#1 a single coin, which is better for \#1 than what he would get otherwise, and \#1 votes for it.
+Proposal: \#3 gets 99, \#2 gets 0, \#1 gets 1.
+
+\textbf{Four pirates.} \#4 needs two votes out of four, his own and one more.
+If he is shot, \#2 gets nothing, so a single coin buys his vote.
+Proposal: \#4 gets 99, \#3 gets 0, \#2 gets 1, \#1 gets 0.
+
+\textbf{Five pirates.} \#5 needs three votes out of five, his own and two more.
+If he is shot, \#3 and \#1 get nothing, so a single coin buys each of their votes.
+Proposal: \#5 gets 98, \#4 gets 0, \#3 gets 1, \#2 gets 0, \#1 gets 1.
+
+Note that giving a pirate exactly what he would get anyway is not enough to buy his vote, since he would then vote against for the blood.

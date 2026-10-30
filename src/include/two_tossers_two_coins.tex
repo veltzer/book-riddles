@@ -1,0 +1,19 @@
+\section {Two coin tossers (Probability)}
+
+Two players play a game made of rounds. In every round each of them tosses a fair coin and sees only the result of his own coin,
+and then each of them guesses the result of his partner's coin, without any communication.
+A round is won if at least one of them guesses right, and lost if both are wrong.
+They can agree on a strategy before the game starts. What strategy wins the most rounds?
+
+\subsection{Solution}
+
+At first it seems that they cannot do better than $75\%$: each guess is right with probability $1/2$, so if they guess independently
+they are both wrong with probability $1/4$. But they can win every single round.
+
+One player guesses that his partner's coin is the same as his own coin, and the other player guesses that his partner's coin is the opposite of his own coin.
+
+In every round the two coins are either the same or different. If they are the same, the first player is right, and if they are different, the second player is right.
+So in every round exactly one of them is right.
+
+Each player is still right only half of the time, as he must be, since his partner's coin is independent of everything he knows.
+The strategy simply arranges that their mistakes never happen in the same round.

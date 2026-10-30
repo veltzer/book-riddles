@@ -1,0 +1,29 @@
+\section {50 dollars spent (Arithmetic)}
+
+I have 50 dollars and I spend them in four purchases.
+After each purchase I write down how much I spent and how much I have left:
+
+\begin{center}
+\begin{tabular}{r r}
+I spend & Left \\
+\hline
+20 & 30 \\
+15 & 15 \\
+9 & 6 \\
+6 & 0 \\
+\hline
+50 & 51 \\
+\end{tabular}
+\end{center}
+
+The first column sums to 50, as it should, but the second column sums to 51.
+Where did the extra dollar come from?
+
+\subsection{Solution}
+
+There is no extra dollar. The sum of the second column has no reason to be equal to 50 and the fact that it is close to 50 is a coincidence.
+
+The second column is a list of balances, and adding up balances at different points in time does not measure anything.
+If I spent the whole 50 dollars at once the second column would sum to $0$.
+If I spent the 50 dollars one dollar at a time the second column would sum to $49+48+\ldots+1+0 = \frac{49 \cdot 50}{2} = 1225$.
+Only the first column has to sum to 50.

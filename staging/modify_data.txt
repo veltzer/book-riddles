@@ -1,3 +1,0 @@
-Two prisoners conspire before one of them is given a 2 digit number and enters a room with 11 10 state switches (dimmers or what have you) and he has to move one of them to give the other prisoner (which comes after him) the number. 
-
-https://asicdigitaldesign.wordpress.com/2007/06/22/puzzle-6-the-spy-a-real-tough-one

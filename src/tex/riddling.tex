@@ -210,6 +210,24 @@ How does one go about "breaking" a cycle? A cycle is a list of urns $x_1, x_2, \
 \subsection{Follow up}
 A similar riddle. In this one you do not need to change the content of any urn. Imagine that 100 prisoners numbered zero to a hundred need to find their own number in the urns above and follow the same algorithm as in the solution. What are the chances that they will all succeed? Phrased a different way we ask what are the chances that given that the notes in the urns were randomally distributed what are the chances that there are no cycles greater than 50?
 
+In this version each prisoner may open at most 50 urns, and if even one of them fails to find his number they are all executed.
+If every prisoner opens urns at random, each one succeeds with probability $1/2$ and they all succeed with probability $(1/2)^{100}$, which is practically zero.
+
+\subsection{Solution to the follow up}
+Every prisoner $x$ starts at urn $x$ and follows the notes, as in the solution above. He walks along the cycle that contains urn $x$, and the note $x$ is in the
+last urn of that cycle before it returns to urn $x$. So he finds his number within 50 urns exactly when his cycle has at most 50 urns.
+All the prisoners succeed exactly when there is no cycle longer than 50.
+
+Let's count the arrangements of the notes that have a cycle of length $k > 50$. There can be only one such cycle, since two would need more than 100 urns.
+Choose the $k$ urns of the cycle in $\binom{100}{k}$ ways, arrange them in a cycle in $(k-1)!$ ways and arrange the other notes in $(100-k)!$ ways.
+That gives $\binom{100}{k}(k-1)!(100-k)! = \frac{100!}{k}$ arrangements out of $100!$, so the chance of a cycle of length $k$ is exactly $\frac{1}{k}$.
+The chance that they all succeed is
+\begin{center}
+$1 - \sum_{k=51}^{100} \frac{1}{k} \approx 0.312$
+\end{center}
+which is about $31\%$, an enormous improvement over $(1/2)^{100}$.
+For $2n$ prisoners the chance is $1 - \sum_{k=n+1}^{2n} \frac{1}{k}$, which tends to $1 - \ln 2 \approx 0.307$, so it stays above $30\%$ no matter how many prisoners there are.
+
 \section{Blue and red martians (Distributed algorithms)}
 On mars live two types of aliens: ones with blue dots on their head and ones with blue dots. No martian knows what color dot he/she has on their head and they do not have verbal skills. One day they get told that a new virus is out there that only kills the blue kind and therefor all the blue martians must leave the planet to space where the virus cannot survive. Red martians, however, must not leave the planet since they cannot survive in outer space. Each day a ship, large enough to hold all the martians, will leave at noon carrying martians to outer space. Can just the blue martians leave? if so how? P.S. there is at least one martian with a blue dot on his head and everyone knows so.
 
@@ -500,6 +518,93 @@ $= \pi r^2$
 We have successfully proven that the area of a circle with radius $r$ is $\pi r^2$.
 
 \input{src/include/square_root_of_i.tex}
+\input{src/include/100_consecutive_non_primes.tex}
+
+\input{src/include/13_rocks.tex}
+
+\input{src/include/50_dollars_spent.tex}
+
+\input{src/include/array_implementation.tex}
+
+\input{src/include/bad_computers.tex}
+
+\input{src/include/balls_on_a_circular_track.tex}
+
+\input{src/include/barrier_using_semaphore.tex}
+
+\input{src/include/birthing_girls.tex}
+
+\input{src/include/chess_board.tex}
+
+\input{src/include/circle_of_dwarves.tex}
+
+\input{src/include/clock_hands_meeting.tex}
+
+\input{src/include/covering_problem.tex}
+
+\input{src/include/equation_involving_roots.tex}
+
+\input{src/include/five_pirates.tex}
+
+\input{src/include/frogs_over_the_x_axis.tex}
+
+\input{src/include/graph_size_6_clique_of_3.tex}
+
+\input{src/include/triangle_of_single_color_in_a_17_with_three_colors.tex}
+
+\input{src/include/infinite_dwarves.tex}
+
+\input{src/include/infinite_regression_equation.tex}
+
+\input{src/include/into_the_night.tex}
+
+\input{src/include/keypad_knight_moves.tex}
+
+\input{src/include/letter_sync.tex}
+
+\input{src/include/linked_list_print.tex}
+
+\input{src/include/linked_list_random_number.tex}
+
+\input{src/include/lru.tex}
+
+\input{src/include/modify_data.tex}
+
+\input{src/include/moon_crescent.tex}
+
+\input{src/include/partition_riddle.tex}
+
+\input{src/include/pi_estimation.tex}
+
+\input{src/include/random_walk.tex}
+
+\input{src/include/five_card_trick.tex}
+
+\input{src/include/poisoned_glass.tex}
+
+\input{src/include/twelve_coins.tex}
+
+\input{src/include/thirteen_coins.tex}
+
+\input{src/include/rif.tex}
+
+\input{src/include/shape_not_touching_coordinates.tex}
+
+\input{src/include/the_number_half.tex}
+
+\input{src/include/two_eggs.tex}
+
+\input{src/include/two_linked_lists_combined.tex}
+
+\input{src/include/two_tossers_two_coins.tex}
+
+\input{src/include/wall_building.tex}
+
+\input{src/include/watermellon_percentages.tex}
+
+\input{src/include/without_if.tex}
+
+\input{src/include/work_rate_riddle.tex}
 
 \label{end}
 \end{document}

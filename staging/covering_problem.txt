@@ -1,9 +1,0 @@
-A farm of servers need to supply a map application with data about streets and so forth.
-The entire map and load cannot fit on a single server so that map and load has to
-be distributed among the servers.
-When an app wants data it issues a request which has the co-ordinates of a squre
-of 1 mile.
-The requirement is that the application be fast and it will require just one reponse
-from one serve to serve any 1 mile request.
-How will you distribute and organize the data on the server farm so as to meet
-the needs to the application?

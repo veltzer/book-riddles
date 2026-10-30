@@ -1,0 +1,23 @@
+\section {Circle of dwarves (Probability)}
+
+$N$ dwarves stand in a circle and a black or a white hat is placed on the head of each, at random.
+No dwarf can see his own hat but every dwarf sees the hats of all the others.
+No communication is possible once the hats are on. At some moment all the dwarves must shout, at the same time, the color of their own hat.
+They want to maximize the chance that \emph{all} of them are right. What strategy should they plan beforehand?
+How good can it be?
+
+\subsection{Solution}
+
+They agree to assume that the total number of black hats is even.
+Each dwarf counts the black hats he sees. If the count is even he shouts ``white'' and if it is odd he shouts ``black'',
+which is exactly the color that makes the total even.
+
+If the total number of black hats is indeed even then all the dwarves are right, and if it is odd then all of them are wrong.
+The total is even with probability $1/2$, so they all survive with probability $1/2$.
+
+This cannot be improved: the first dwarf alone is right with probability $1/2$, since he knows nothing about his own hat,
+so all of them together cannot be right more often than that.
+
+It seems strange that $N$ dwarves, each of whom guesses right only half of the time, are all right half of the time.
+The trick is that the strategy does not make anyone guess better. It makes the mistakes happen together:
+whenever one of the dwarves is wrong, all of them are wrong.

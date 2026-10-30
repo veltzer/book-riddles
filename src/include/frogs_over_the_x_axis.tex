@@ -1,0 +1,45 @@
+\section {Frogs over the x axis (Combinatorics)}
+
+Frogs sit on points of the plane with whole coordinates. A frog may jump over a frog that is right next to it
+(north, south, east or west) and land on the empty point right behind it, at a distance of $2$ from where it started.
+The frog that was jumped over is removed.
+
+At the start there is a frog on every point $(x,y)$ with $y \le 0$, and all the points with $y > 0$ are empty.
+How far north can a frog get after a finite number of jumps? Specifically, prove that no frog can reach the line $y=5$.
+
+\subsection{Solution}
+
+Assume a frog can reach some point on the line $y=5$; call this point the target.
+Let $\sigma = \frac{\sqrt{5}-1}{2} \approx 0.618$. It is the positive root of $\sigma^2 + \sigma = 1$.
+Give a frog that sits at distance $d$ from the target the weight $\sigma^d$, where the distance is measured along the grid,
+$|x-x_0|+|y-y_0|$, and let the weight of a set of frogs be the sum of their weights.
+A frog on the target has weight $1$.
+
+Every jump replaces two frogs by one. There are only three kinds of jumps:
+\begin{enumerate}
+\item A frog at distance $d+2$ jumps over a frog at distance $d+1$ and lands at distance $d$.
+The weight changes by $\sigma^d - \sigma^{d+1} - \sigma^{d+2} = \sigma^d(1-\sigma-\sigma^2) = 0$.
+\item A frog at distance $d$ jumps over a frog at distance $d+1$ to distance $d+2$.
+The weight changes by $\sigma^{d+2} - \sigma^d - \sigma^{d+1} < 0$.
+\item A frog lands at the same distance it started from (for example when jumping across the column of the target).
+The weight changes by minus the weight of the frog that was jumped over, which is negative.
+\end{enumerate}
+So the weight of the frogs never grows.
+
+Now let's compute the weight of all the frogs at the start. Put the target at $(0,5)$.
+The frogs on the line $y=0$ are at distances $5, 6, 6, 7, 7, \ldots$ from the target, so their weight is
+\begin{center}
+$\sigma^5 + 2\sigma^6 + 2\sigma^7 + \ldots = \sigma^5 + \frac{2\sigma^6}{1-\sigma} = \sigma^5 + 2\sigma^4$
+\end{center}
+using $1-\sigma = \sigma^2$. Every line further south is one step further away, so the weight of all the frogs is
+\begin{center}
+$\frac{\sigma^5 + 2\sigma^4}{1-\sigma} = \sigma^3 + 2\sigma^2 = (2\sigma - 1) + 2(1-\sigma) = 1$
+\end{center}
+using $\sigma^2 = 1-\sigma$ and $\sigma^3 = \sigma - \sigma^2 = 2\sigma - 1$.
+
+A finite number of jumps involves only a finite number of frogs. Their weight at the start is a finite part of a sum of
+positive numbers that adds up to $1$, so it is strictly less than $1$. The jumps never increase it, so at the end it is still less
+than $1$, and no frog can be on the target.
+
+On the other hand, frogs can reach the line $y=4$ (it takes 20 frogs), so $4$ is as far north as they can get.
+This riddle is known as Conway's soldiers.

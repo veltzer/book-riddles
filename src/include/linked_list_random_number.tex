@@ -1,0 +1,24 @@
+\section {Random element of a list (Algorithms)}
+
+This riddle is from Yaron Dorman.
+
+You are given a pointer to a linked list whose length you do not know.
+Select one of its elements at random, such that every element has the same chance of being selected,
+using $O(1)$ memory and a single pass over the list.
+
+\subsection{Solution}
+
+Walk over the list and keep one selected element. Select the first element.
+When you reach the $k$'th element, replace the selected element with it with probability $\frac{1}{k}$.
+When the list ends, return the selected element.
+
+Why is this uniform? The $k$'th element is selected when we reach it with probability $\frac{1}{k}$,
+and it then has to survive all the following elements: element $j$ does not replace it with probability $1-\frac{1}{j} = \frac{j-1}{j}$.
+So for a list of $N$ elements the chance that the $k$'th element is returned is
+\begin{center}
+$\frac{1}{k} \cdot \frac{k}{k+1} \cdot \frac{k+1}{k+2} \cdots \frac{N-1}{N} = \frac{1}{N}$
+\end{center}
+which is the same for all the elements.
+
+This is known as reservoir sampling. It also works for selecting $m$ elements: keep the first $m$, and replace a random one of them with the $k$'th element
+with probability $\frac{m}{k}$.

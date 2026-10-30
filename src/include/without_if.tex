@@ -1,0 +1,15 @@
+\section {Seven and nine without if (Programming)}
+
+Write a function that accepts a number, which is either $7$ or $9$. If the number is $7$ it returns $9$, and if the number is $9$ it returns $7$.
+Do not use an \verb|if| statement (or any other kind of condition).
+
+\subsection{Solution}
+
+There are several ways. Arithmetic: \verb|return 16 - x|, since $7+9 = 16$.
+
+Logic: \verb|return x ^ 14|, where \verb|^| is the bitwise exclusive or. Since $7 \oplus 9 = 14$,
+we get $7 \oplus 14 = 9$ and $9 \oplus 14 = 7$. In binary, $7 = 0111$, $9 = 1001$ and $14 = 1110$.
+
+A data structure: \verb|return {7: 9, 9: 7}[x]|, a lookup table.
+
+The first two use the same idea: for any two numbers $a$ and $b$, both $a + b - x$ and $a \oplus b \oplus x$ swap $a$ and $b$.

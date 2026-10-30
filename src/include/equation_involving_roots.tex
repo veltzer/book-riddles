@@ -1,0 +1,21 @@
+\section {Equation involving roots (Algebra)}
+
+Solve the equation $\sqrt{x} + \sqrt{x+87} = 87$.
+
+\subsection{Solution}
+
+Let $a = \sqrt{x}$ and $b = \sqrt{x+87}$. Then $a+b = 87$ and $b^2 - a^2 = 87$.
+Since $b^2-a^2 = (b-a)(b+a)$ we get $(b-a) \cdot 87 = 87$, so $b-a = 1$.
+Together with $a+b=87$ this gives $a=43$ and $b=44$, so $x = 43^2 = 1849$.
+
+Indeed $\sqrt{1849} + \sqrt{1849+87} = \sqrt{1849} + \sqrt{1936} = 43 + 44 = 87$.
+
+The same thing can be seen from the list of squares $1, 4, 9, 16, \ldots$ whose differences are the odd numbers $3, 5, 7, \ldots$:
+the difference between $n^2$ and $(n+1)^2$ is $2n+1$, and $87 = 2 \cdot 43 + 1$ is the difference between $43^2$ and $44^2$.
+
+\subsection{Follow up}
+Solve $\sqrt{x} + \sqrt{x+87} = \sqrt{87}$.
+
+\subsection{Solution}
+$x=0$ is a solution. There are no others: for every $x > 0$ we have $\sqrt{x} > 0$ and $\sqrt{x+87} > \sqrt{87}$,
+so the left side is larger than $\sqrt{87}$.

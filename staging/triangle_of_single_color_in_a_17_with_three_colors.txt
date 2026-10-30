@@ -1,5 +1,0 @@
-There is a graph is K(17) meaning a klick of size 17.
-All edges in this graph are colored using three colors.
-Prove that there exists a triangle which is colored with the same color somewhere in this graph.
-
-This relates to the riddle that in a K(6) which is colored with two colors there exists a triangle of the same color.

@@ -1,0 +1,16 @@
+\section {Seventeen points and three colors (Graph theory)}
+
+Every edge of the complete graph on 17 vertices is colored with one of three colors.
+Prove that there is a triangle whose edges all have the same color.
+
+\subsection{Solution}
+
+This builds on the previous riddle, which shows that if the edges of the complete graph on 6 vertices are colored with
+two colors then there is a triangle of a single color.
+
+Pick any vertex $A$. It has 16 edges, each in one of three colors, so by the pigeonhole principle at least $6$ of them
+have the same color, say red. Let $B_1, \ldots, B_6$ be the other ends of these red edges.
+
+If any edge $B_iB_j$ is red then $A$, $B_i$, $B_j$ is a red triangle.
+Otherwise all the edges between $B_1, \ldots, B_6$ are colored with only the two other colors.
+That is a complete graph on 6 vertices colored with two colors, so it has a triangle of a single color.

@@ -1,0 +1,32 @@
+\section {Finding a good computer (Algorithms)}
+
+There are 100 computers. At least 51 of them are good and the rest, at most 49, are broken.
+You may ask computer $A$ whether computer $B$ is good or broken.
+If $A$ is good its answer is correct, but if $A$ is broken its answer can be anything.
+Find a good computer while asking as few questions as possible in the worst case.
+
+\subsection{Solution}
+
+First set one computer aside and never use it. Among the remaining 99 computers at least 50 are good and at most 49 are broken,
+so the good computers are still a strict majority.
+
+We build a chain of computers in which every computer has said that the next one is good.
+Go over the 99 computers one by one. For each computer $x$:
+if the chain is empty, put $x$ on the chain without asking anything.
+Otherwise ask the computer at the top of the chain about $x$.
+If it says that $x$ is good, put $x$ at the top of the chain.
+If it says that $x$ is broken, remove the top of the chain and throw away both it and $x$.
+When all the computers are processed, the computer at the top of the chain is good.
+
+Why does this work?
+\begin{enumerate}
+\item If a good computer is on the chain then the computer after it on the chain is good too, since a good computer vouched for it.
+So the chain is made of some broken computers followed by some good computers, and if there is any good computer on the chain then the top is good.
+\item Whenever we throw away two computers, at least one of them is broken: if the top of the chain is good then its answer is correct and $x$ is broken,
+and if it is not good then it is broken itself.
+So throwing away a pair never hurts the majority: among the computers that were not thrown away the good ones remain a strict majority.
+\item At the end all the computers that were not thrown away are on the chain. They have a good majority so the chain is not empty and holds a good computer,
+which means that its top is good.
+\end{enumerate}
+
+Every computer except the first costs at most one question, so this protocol asks at most 98 questions.

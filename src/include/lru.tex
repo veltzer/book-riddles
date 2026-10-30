@@ -1,0 +1,26 @@
+\section {LRU cache (Data structures)}
+
+Design a cache that holds at most $n$ elements and, when it is full, throws away the least recently used element.
+Looking up an element and adding an element should both take $O(1)$ time.
+
+\subsection{Solution}
+
+Use a hash table together with a doubly linked list.
+The list holds the elements in the order in which they were used: the least recently used at the head and the most recently used at the tail.
+The hash table maps each key to its node in the list, so we can find any element in $O(1)$.
+
+\begin{verbatim}
+access(key):
+    if key in hash:
+        node = hash[key]
+        cut node out of the list
+    else:
+        if size of the list == n:
+            remove the node at the head of the list
+            and remove its key from the hash
+        node = new node for key
+        hash[key] = node
+    add node at the tail of the list
+\end{verbatim}
+
+The list must be doubly linked so that a node can be cut out of the middle of the list in $O(1)$, given only a pointer to it.

@@ -1,5 +1,0 @@
-You need to build a wall 100x30 big with brick the size of which are 2x1 and 3x1
-No two brick may end at the same X position except at the ends of the wall.
-Calculate a way to do this and number of posibilities.
-
-This is supposed to be from project euler.

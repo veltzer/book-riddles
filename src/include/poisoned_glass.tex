@@ -1,0 +1,18 @@
+\section {The poisoned glass (Information theory)}
+
+A king has $1000$ glasses of wine and knows that exactly one of them is poisoned.
+The poison is so strong that a single sip kills, but it acts slowly: whoever drinks it dies a day later.
+The king wants to know which glass is poisoned by tomorrow, and he has $10$ servants who can taste the wine.
+Each servant may take a sip from as many glasses as he likes. How can the king find the poisoned glass?
+
+\subsection{Solution}
+
+Number the glasses $0$ to $999$ and write each number in binary using $10$ bits. That is enough, since $2^{10} = 1024 \ge 1000$.
+Number the servants $0$ to $9$. Servant $i$ sips from every glass whose number has a $1$ in bit $i$.
+
+The next day, look at which servants died. Servant $i$ died exactly when bit $i$ of the number of the poisoned glass is $1$.
+So writing a $1$ for every servant that died and a $0$ for every servant that survived spells out the number of the poisoned glass in binary.
+If nobody dies, the poisoned glass is glass number $0$.
+
+$10$ servants is the least possible: each servant either dies or not, so $9$ servants can produce only $2^9 = 512$ different outcomes,
+which is not enough to tell apart $1000$ glasses.

@@ -1,0 +1,20 @@
+\section {Infinite nested root (Algebra)}
+
+What is the value of $\sqrt{2+\sqrt{2+\sqrt{2+\ldots}}}$?
+
+\subsection{Solution}
+
+Call the whole expression $x$. The expression under the first root is $2$ plus the whole expression again, so
+\begin{center}
+$\sqrt{2+x} = x$
+\\
+$2+x = x^2$
+\\
+$x^2 - x - 2 = (x-2)(x+1) = 0$
+\end{center}
+The solutions are $x=2$ and $x=-1$. A square root is never negative, so $x=2$.
+
+To be careful, we should also check that the expression has a value at all.
+It is the limit of the sequence $a_1 = \sqrt{2}$, $a_{n+1} = \sqrt{2+a_n}$.
+If $a_n < 2$ then $a_{n+1} = \sqrt{2+a_n} < \sqrt{4} = 2$, and also $a_{n+1}^2 - a_n^2 = 2 + a_n - a_n^2 = (2-a_n)(1+a_n) > 0$.
+So the sequence is increasing and bounded by $2$, and therefore it has a limit, which by the calculation above is $2$.

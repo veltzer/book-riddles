@@ -1,0 +1,18 @@
+\section {A shape avoiding whole points (Geometry)}
+
+A shape with area less than $1$ is drawn on the plane.
+Show that the shape can be moved (without rotating it) so that it does not contain any point $(x,y)$ in which both $x$ and $y$ are whole numbers.
+
+\subsection{Solution}
+
+Cut the plane, together with the shape, along the lines $x=m$ and $y=n$ for all whole numbers $m$ and $n$, into unit squares.
+Now slide all the unit squares on top of the square $[0,1) \times [0,1)$, as if they were transparent slides stacked on each other,
+without rotating them. Each slide carries the piece of the shape that was in it.
+
+The pieces have a total area of less than $1$, so even stacked together they cannot cover the whole unit square:
+there is a point $(a,b)$ in the unit square that is not covered by any piece.
+
+Move the shape by $-a$ along the $x$ axis and by $-b$ along the $y$ axis.
+A whole point $(m,n)$ is in the moved shape exactly when the point $(m+a, n+b)$ is in the original shape.
+That point lies in the slide of the unit square whose corner is $(m,n)$, at the place that lands on $(a,b)$ when the slides are stacked.
+But no piece covers $(a,b)$, so $(m+a,n+b)$ is not in the shape, and the moved shape contains no whole point.

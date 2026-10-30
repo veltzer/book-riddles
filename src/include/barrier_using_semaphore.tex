@@ -1,0 +1,42 @@
+\section {Barrier using semaphores (Concurrency)}
+
+Implement a barrier for $n$ threads using semaphores.
+A thread that calls \verb|barrier()| must sleep until all $n$ threads have called it, and then all of them continue.
+The barrier must be reusable: the same threads will call it again and again.
+
+\subsection{Solution}
+
+We use three semaphores: \verb|mutex| protects the counter, \verb|sleep| is where the threads wait and
+\verb|done| lets the last thread know that everybody woke up.
+\verb|up(s, k)| and \verb|down(s, k)| add and subtract $k$ from a semaphore (as \verb|semop(2)| does).
+
+\begin{verbatim}
+init(n):
+    set(mutex, 1)
+    set(sleep, 0)
+    set(done, 0)
+    count = 0
+
+barrier():
+    down(mutex, 1)
+    count += 1
+    if count == n:
+        # the last thread to arrive wakes everybody up
+        count = 0
+        up(sleep, n-1)
+        down(done, n-1)
+        up(mutex, 1)
+    else:
+        # order matters: release the mutex and only then sleep
+        up(mutex, 1)
+        down(sleep, 1)
+        up(done, 1)
+\end{verbatim}
+
+A sleeping thread must release the mutex before it goes to sleep, otherwise no other thread could ever reach the barrier.
+
+Why does the last thread wait on \verb|done| while holding the mutex?
+Without it, a fast thread that was just woken could run ahead, call \verb|barrier()| again for the next round and grab one of the
+$n-1$ wake up tokens of the current round. It would then pass the barrier without waiting for the next round, and one of the
+threads of the current round would stay asleep. Holding the mutex until all $n-1$ threads have taken their tokens means that no
+thread can start the next round before the current round is over.

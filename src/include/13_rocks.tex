@@ -1,0 +1,31 @@
+\section {13 rocks (Number theory)}
+
+You are given 13 rocks. If you remove any one of them, the remaining 12 can be split
+into two groups of 6 rocks each that balance each other on a scale.
+Prove that all 13 rocks have the same weight.
+
+\subsection{Solution}
+
+First assume that all weights $w_1, \ldots, w_{13}$ are whole numbers and let $S$ be their sum.
+If we remove rock $i$, the remaining 12 rocks are split into two groups of equal weight, so $S-w_i$ is even.
+This holds for every $i$, so all the $w_i$ have the same parity as $S$: they are either all even or all odd.
+
+Notice that two operations keep the property of the rocks (any 12 balance as 6 against 6):
+subtracting the same number from all weights (each side of the scale holds 6 rocks, so both sides lose the same amount)
+and dividing all weights by the same number.
+
+Now subtract the smallest weight from all weights. The property still holds and one of the weights is $0$.
+Since all weights have the same parity as that $0$, they are all even.
+Divide all of them by $2$. They are still whole numbers, the property still holds, so they are again all even, and we can divide by $2$ again.
+We can repeat this forever, which is only possible if all the weights are $0$.
+That means that before subtracting, all the weights were equal to the smallest weight.
+
+If the weights are rational, multiply all of them by a common denominator. That gives whole numbers with the same property, which are therefore all equal.
+
+If the weights are any real numbers the argument needs one more step.
+Each balancing is a linear equation in $w_1, \ldots, w_{13}$ whose coefficients are $0$, $1$ and $-1$.
+The argument above shows that the only rational solutions of this system of equations are of the form $(c, c, \ldots, c)$,
+so the solution space over the rationals has dimension $1$.
+The dimension of the solution space of a system of linear equations is $13$ minus the rank of the matrix, and the rank
+is computed by Gaussian elimination, which never leaves the rationals when the coefficients are rational.
+So the rank is the same over the reals and the solution space over the reals also has dimension $1$: all the weights are equal.

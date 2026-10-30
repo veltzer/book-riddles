@@ -1,0 +1,32 @@
+\section {The five card trick (Combinatorics)}
+
+A magician and an assistant perform the following trick. Someone from the audience picks any $5$ cards from a standard deck of $52$ cards
+and hands them to the assistant. The assistant looks at them, hides one of them, and puts the other $4$ face up on the table in a row, in an order of his choice.
+The magician, who did not see anything until now, looks at the $4$ cards and names the hidden card.
+There is no other communication between them. How is the trick done?
+
+\subsection{Solution}
+
+There are $5$ cards and only $4$ suits, so at least two of the cards have the same suit.
+One of these two is hidden and the other one is put first, which tells the magician the suit of the hidden card.
+
+Now the value. Arrange the $13$ values in a circle: $A, 2, 3, \ldots, 10, J, Q, K$ and then $A$ again.
+Going clockwise from one of the two cards to the other takes some number of steps, and going the other way takes $13$ minus that number.
+One of the two ways is at most $6$ steps. The assistant hides the card that is reached at the end of the short way and puts the other card first.
+So the magician knows that the hidden card is $1$ to $6$ steps clockwise from the first card.
+For example, if the two cards are the $Q$ and the $3$ of hearts, the assistant hides the $3$, which is $4$ steps after the $Q$ ($K, A, 2, 3$).
+
+The remaining $3$ cards encode the number of steps. Agree on an order of the whole deck, for example by value and then by suit,
+so that among the $3$ cards there is a low, a middle and a high card. They can be put down in $3! = 6$ orders, one for each number of steps:
+\begin{center}
+\begin{tabular}{c c}
+low, middle, high & 1 \\
+low, high, middle & 2 \\
+middle, low, high & 3 \\
+middle, high, low & 4 \\
+high, low, middle & 5 \\
+high, middle, low & 6 \\
+\end{tabular}
+\end{center}
+The magician reads the suit and the starting value from the first card, the number of steps from the order of the other three, and names the hidden card.
+This trick is due to the mathematician William Fitch Cheney.

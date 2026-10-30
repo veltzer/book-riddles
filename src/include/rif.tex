@@ -1,0 +1,21 @@
+\section {Reduction in force (Logic)}
+
+A boss tells his 100 employees that tomorrow there will be a reduction in force.
+He will stand them in a line, one behind the other, all facing the same direction, so that each of them sees everyone in front of them but nobody behind them.
+He will put a white or a black cap on the head of each of them. Then each one in turn will say out loud the color of their own cap.
+Whoever is right keeps their job and whoever is wrong is fired.
+The employees may decide in advance in which order they speak, and agree on a strategy.
+How many of them can be sure to keep their job?
+
+\subsection{Solution}
+
+$99$ of them can be sure to keep their job, and the last one has a $50\%$ chance.
+
+Think of white as $0$ and black as $1$. The employees speak from the back of the line to the front.
+The one at the back sees all the other $99$ caps. She adds them up and says the color that makes the sum of all $100$ numbers even:
+``white'' if the sum she sees is even and ``black'' if it is odd. Her own cap has nothing to do with it, so she is right with probability $1/2$.
+
+Now everyone knows that the sum of the $99$ caps in front of her is even if she said ``white'' and odd if she said ``black''.
+Each of the following employees knows the color of every one of those $99$ caps except their own: they see the caps in front of them,
+and every employee who spoke before them, except the one at the back, said their color correctly.
+So they can compute their own color as the one that gives the known parity, and they are all right.

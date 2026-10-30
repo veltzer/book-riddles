@@ -1,0 +1,22 @@
+\section {Coins on a chess board (Information theory)}
+
+On a standard 8 by 8 chess board lie 64 coins, one on each square, each showing either heads or tails.
+Player $A$ enters the room. A host points at one of the squares.
+Player $A$ must flip exactly one coin of his choice and is then whisked away to a vacation in the Maldives.
+Player $B$ enters the room and must point at the square that the host chose.
+
+Find a strategy that $A$ and $B$ can agree on before the game that always succeeds.
+
+\subsection{Solution}
+
+Number the squares $0$ to $63$ and think of each number as $6$ bits.
+Define the value of the board as the bitwise exclusive or (xor) of the numbers of all the squares whose coin shows heads.
+Player $B$ simply computes the value of the board and points at that square.
+
+So the job of player $A$ is to make the value of the board equal to the square $t$ that the host chose.
+Let $v$ be the value of the board when $A$ enters.
+Flipping the coin on square $k$ either adds $k$ to the set of heads or removes it, and in both cases the value of the board becomes $v \oplus k$.
+So $A$ flips the coin on square $k = v \oplus t$ and the value becomes $v \oplus v \oplus t = t$.
+If the value of the board is already $t$ then $k=0$, and flipping the coin on square $0$ does not change the value.
+
+This works because flipping one of $64$ coins gives $A$ exactly $64$ choices, one for each value of the board.
