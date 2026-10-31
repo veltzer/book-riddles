@@ -21,16 +21,6 @@
 % if you use the following package straight latex running (not via pdflatex), will not work...
 \usepackage{pst-pdf}
 %\usepackage{auto-pst-pdf}
-%	colorlinks=true,
-%	urlcolor=rltblue, % \href{...}{...} external (URL)
-%	filecolor=rltgreen, % \href{...} local file
-%	linkcolor=rltred, % \ref{...} and \pageref{...}
-%	pagebackref,
-%	pdfpagemode=UseNone,
-%	bookmarksopen=true]{hyperref} % needed for sketch
-%\definecolor{rltred}{rgb}{0.75,0,0}
-%\definecolor{rltgreen}{rgb}{0,0.5,0}
-%\definecolor{rltblue}{rgb}{0,0,0.75}
 %\usepackage{amsmath,color,thumbpdf,html,hyperref}
 %\usepackage{pst-barcode,pstricks-add}
 
@@ -42,6 +32,18 @@
 %\usepackage{pstricks} % for sketch with pstricks support (default for sketch)
 \usepackage{tikz} % for sketch with tikz (does not pdftex option)
 \usetikzlibrary{calc,fadings}
+
+% links as coloured text instead of hyperref's default red and cyan boxes:
+% the table of contents and cross references stay black, web links take the
+% rust colour of the web site (docs/favicon.svg)
+\definecolor{riddlingrust}{HTML}{8A3B12}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=riddlingrust,
+	citecolor=riddlingrust,
+	filecolor=riddlingrust,
+}
 
 % itemize labels from the math fonts (LaTeX's classic defaults). Current
 % LaTeX takes levels 1, 3 and 4 from the TS1 text companion font, which
@@ -68,7 +70,7 @@
 
 \tableofcontents
 
-\section{Rational points on a circle (Calculus)}
+\section{Rational points on a circle (Number theory)}
 Could there be a circle on the plane where only one point has rational co-ordinates? A point $p=(x,y)$ has rational co-ordinates iff $x,y\in\mathbb{Q}$. What about a sphere? Are there circles with more than one rational point? Are there circles with infinite rational points? Can you find a circle with exactly $n$ rational points on it for each $n\in\mathbb{N}$?
 
 \subsection{Solution}
@@ -229,7 +231,7 @@ This is a strange paradox because it appears that the expected value is the aver
 
 The fault is in the wrong working out of the expetency. The $x$ in each option is not the same $x$ since the sums $1/2x$, $x$ and $2x$ do not occur simultaneously. Lets do the calculation more carefully. We will denote the envelopes with the sums $1/2x$ and $x$. With probability of $1/2$ you got the envelope with $1/2x$ which means you $1/2x$ to gain if you switch. With the same probability of $1/2$ you got the envelope with $x$ in which case you have $1/2x$ to lose if you switch. This means that the expected value of switching is $0$ as it should be. No paradox at all. If we had denoted the two envlopes $x$ and $2x$ we would have got the same result: with probability $1/2$ we got the envelope with $x$ in it and can gain $x$ if we switch. With the same probability we got the envelope with $2x$ and stand to lose $x$ if we switch. The overall expected value is again $0$ as it should be.
 
-\section{100 urns (Mathematics)}
+\section{100 urns (Combinatorics)}
 There's a room with 100 urns, 2 people standing outside, while they decide on what to do 100 notes with the numbers $1, 2, \ldots,100$ are randomly placed inside the urns. One of the people from outside will enter the room and will examine all the urns. That person will be allowed to switch at most one pair of notes. That person is then whisked away to a vacation in Mali. The other one will then enter, be given a random number and will be asked to find the note with that number on it. He needs to find it while checking as few urns as possible. Design a strategy for the pair that will allow the second person to look into less than 50 urns to find any number required and in general look at the least number of urns in order to find the note with the required number on it.
 
 \subsection{Solution}
@@ -277,7 +279,7 @@ A first solution would be to use a special designated person to act as counter. 
 
 The problem with this solution is that it's efficiency is quite low. Time is also wasted when a prisoner that has never been to the cell enters it and sees the light on which prevents him from turning the light on himself and makes him wait for the next time he/she is called to the holding cell.
 
-\section{Jumping frogs (Geometric)}
+\section{Jumping frogs (Geometry)}
 Four frogs are sitting on the vertices of a square the side of which is of length $1$. In turns, a frog may lep over any other frog jumping twice the distance between them. Could the frogs, after any number of steps, form a square of a size different than $1$? Another version would be: can you prove that if, after any number of jumps, the frogs form a square then the size of the square will be $1$?
 
 \subsection{Solution}
@@ -512,7 +514,7 @@ Are there three or four boxes in the following drawing? How do you explain the i
 \subsection{Solution}
 The heart of the illusion is the gradual transformation of floors on the right hand side of the drawing into sides of boxes in the left hand side of the drawing. That is also the reason for the gradual transformation of color of the floors.
 
-\section {Area of a circle}
+\section {Area of a circle (Calculus)}
 
 Prove the formula for the area of a circle by integrating the equation of a circle
 

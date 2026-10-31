@@ -6,7 +6,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Riddling - {{ project.NAME }}</title>
-		<link rel="icon" href="favicon.ico">
+		<link rel="icon" href="favicon.svg" type="image/svg+xml">
+		<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 		<meta name="description" content="{{ project.DESCRIPTION_SHORT }}">
 		<meta name="keywords" content="{{ personal.FULLNAME }}, {{ personal.SLUG }}, {{ project.NAME }}, {{ project.KEYWORDS | join(sep=", ") }}">
 		<style>
