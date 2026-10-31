@@ -12,14 +12,17 @@ The build writes `docs/riddling.pdf`, which is committed: GitHub Pages serves
 
 1. Every `src/sk/*.sk` 3D scene is rendered to TikZ code by sketch, through
    `scripts/wrapper_sketch.py`, into `out/src/sk/*.tex`.
+1. `scripts/build_riddles.py` writes `out/src/riddles.tex`, the body of the
+   book: a chapter per category, each `\input`-ing its riddles from
+   `src/include/*.tex`.
 1. `scripts/build_pdf.py` compiles `src/tex/riddling.tex`, which `\input`s
-   every riddle from `src/include/*.tex` and the sketch figures, and copies the
-   result to `docs/riddling.pdf`.
+   `out/src/riddles.tex` (and through it every riddle and the sketch figures),
+   and copies the result to `docs/riddling.pdf`.
 
-The second step is an explicit processor in `rsconstruct.toml` rather than
-rsconstruct's pdflatex processor, because only an explicit processor's
-`input_globs` can name another processor's outputs; that is also what makes
-sketch run first.
+The last two steps are explicit processors in `rsconstruct.toml` (the book
+rather than rsconstruct's pdflatex processor), because only an explicit
+processor's `input_globs` can name another processor's outputs; that is also
+what makes the first two steps run before pdflatex.
 
 ## Checks on the book
 
@@ -54,7 +57,14 @@ sketch run first.
 ## Adding a riddle
 
 Write it as `src/include/<name>.tex`, starting with
-`\section {Title (Category)}` and with a `\subsection{Solution}`, and add
-`\input{src/include/<name>.tex}` to `src/tex/riddling.tex` before
-`\label{end}`. See [names_of_files.md](names_of_files.md) for why the files end
+`\section {Title (Category)}` and with a `\subsection{Solution}`. That is all:
+the book has a chapter per category, so the riddle lands in the chapter of its
+category (a new category makes a new chapter), and the book prints the title
+without the category, which the chapter already names.
+
+Chapters are in alphabetical order, and so are the riddles in each chapter
+(ignoring a leading "The" or "A"). A riddle that builds on another one, and
+says "the previous riddle", puts it right before itself with a comment line
+`% follows: <name>`, where `<name>` is the other riddle's file name without
+`.tex`; both must be in the same category. See [names_of_files.md](names_of_files.md) for why the files end
 in `.tex`.

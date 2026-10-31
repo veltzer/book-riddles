@@ -1,0 +1,33 @@
+\section{100 urns (Combinatorics)}
+There's a room with 100 urns, 2 people standing outside, while they decide on what to do 100 notes with the numbers $1, 2, \ldots,100$ are randomly placed inside the urns. One of the people from outside will enter the room and will examine all the urns. That person will be allowed to switch at most one pair of notes. That person is then whisked away to a vacation in Mali. The other one will then enter, be given a random number and will be asked to find the note with that number on it. He needs to find it while checking as few urns as possible. Design a strategy for the pair that will allow the second person to look into less than 50 urns to find any number required and in general look at the least number of urns in order to find the note with the required number on it.
+
+\subsection{Solution}
+Let's give a solution which is not good, analyze it and then improve it.
+Here is the bad solution. Whenever the second person comes in he is given the task of finding the note marked $x$. He will proceed to look into urn $x$. If $x$ is there he is done. If not, then some other note $y$ is there. He will process to do the same for $y$.
+
+Analysis: Can the second person get stuck in an infinite loop? No. There are only 100 urns so in the worst case scenario he will check all 100 urns and find the note $x$ in the last one. Now let's take this further. Let's define an equivalence relation on the urns: two urns $x$ and $y$ are equivalent if there exists a route from $x$ to $y$. This is indeed an equivalence relation since there is always a route from $x$ to $x$. If there is a route from $x$ to $y$ then there is also a route from $y$ to $x$ since in our case there is only one route to each urn (only one urn carries the note with it's number). Since starting a route from $y$ must eventually lead back to $y$ (routes do not just end), it must pass through $x$. All this means is that our 100 urns are divided into cycles of equivalence.
+
+Now for the first players job. When the first player comes along he will either see all cycles with $size<=50$ in which case he need not do anything (unless he wants to break up the largest cycle to reduce the expected value of urns checked by the second player) or will be confronted with utmost a single cycle with $size > 50$ which means he needs to break just this one cycle.
+
+How does one go about "breaking" a cycle? A cycle is a list of urns $x_1, x_2, \ldots,x_{n-1} ,x_n$ that make up a cycle, which means their content is $x_2, x_3, \ldots, x_n, x_1$. In order to break the cycle you need to find the center of the cycle. If the length of the cycle is odd then the center is the middle element if the length is even pick any of the central two elements. In our case the longest cycle cannot be of length greater than $100$ which means that breaking it up in the center will  break it up to pieces less or equal to 50. Let's say the center is in urn $k$. Switch the content of urns $k$ and $n$. This will create two cycles: $x_1, x_2, \ldots, x_k$ with content $x_2, x_3, \ldots, x_1$ and another cycle $x_{k+1}, x_{k+2}, \ldots, x_n$ with content $x_{k+2}, x_{k+3}, \ldots, x_{k+1}$.
+
+\subsection{Follow up}
+A similar riddle. In this one you do not need to change the content of any urn. Imagine that 100 prisoners numbered zero to a hundred need to find their own number in the urns above and follow the same algorithm as in the solution. What are the chances that they will all succeed? Phrased a different way we ask what are the chances that given that the notes in the urns were randomly distributed what are the chances that there are no cycles greater than 50?
+
+In this version each prisoner may open at most 50 urns, and if even one of them fails to find his number they are all executed.
+If every prisoner opens urns at random, each one succeeds with probability $1/2$ and they all succeed with probability $(1/2)^{100}$, which is practically zero.
+
+\subsection{Solution to the follow up}
+Every prisoner $x$ starts at urn $x$ and follows the notes, as in the solution above. He walks along the cycle that contains urn $x$, and the note $x$ is in the
+last urn of that cycle before it returns to urn $x$. So he finds his number within 50 urns exactly when his cycle has at most 50 urns.
+All the prisoners succeed exactly when there is no cycle longer than 50.
+
+Let's count the arrangements of the notes that have a cycle of length $k > 50$. There can be only one such cycle, since two would need more than 100 urns.
+Choose the $k$ urns of the cycle in $\binom{100}{k}$ ways, arrange them in a cycle in $(k-1)!$ ways and arrange the other notes in $(100-k)!$ ways.
+That gives $\binom{100}{k}(k-1)!(100-k)! = \frac{100!}{k}$ arrangements out of $100!$, so the chance of a cycle of length $k$ is exactly $\frac{1}{k}$.
+The chance that they all succeed is
+\begin{center}
+$1 - \sum_{k=51}^{100} \frac{1}{k} \approx 0.312$
+\end{center}
+which is about $31\%$, an enormous improvement over $(1/2)^{100}$.
+For $2n$ prisoners the chance is $1 - \sum_{k=n+1}^{2n} \frac{1}{k}$, which tends to $1 - \ln 2 \approx 0.307$, so it stays above $30\%$ no matter how many prisoners there are.

@@ -1,0 +1,42 @@
+\section{Four Coke bottles on a table (Geometry)}
+Arrange four Coke bottles on a table so that the distances between each pair of caps will be the same. Assume that
+you can make a Coke bottle stand on it's head (this is a pretty strong hint!, maybe I should remove it?!?). The length
+or height of each bottle is ${h}$.
+
+\subsection{Solution}
+There are two solutions:
+
+The first solution is to put the bottles in a square where the side of the square is the length of the bottle. Bottles
+next to each other will stand \emph{in reverse} (if the first is on it's head the the second will stand straight).
+
+\begin{center}
+\input{out/src/sk/bottles.tex}
+\end{center}
+
+The shape created by the bottle caps is, of course, a perfect triangular pyramid with a side of length $d=\sqrt{2h^2}$.
+
+The second solution is to put three bottles on the vertices of an equilateral triangle standing one way. The fourth will be placed
+in the middle of the triangle and will be standing reversed to the others. The problem here is to calculate the side of the triangle.
+Let's use the following diagram:
+
+\begin{center}
+\input{out/src/sk/perfect_triangular_pyramid.tex}
+\end{center}
+
+What we are trying to find is $d$ as a function of $h$. Since $H$, $d/2$ and $d$ create a right angled triangle, it follows
+that $H^2+(d/2)^2=d^2$ and so $H=\sqrt{3}/2d$. Since the size of the inner triangle could be computed two ways then $hH=dH'$ and
+since $H'=\sqrt{H^2-(d/2)^2}$ it follows after some math that $d=\sqrt{3/2}h$ which makes $d$ about $1.224h$.
+
+The solution built on this analysis will look like this:
+
+\begin{center}
+\input{out/src/sk/bottles2.tex}
+\end{center}
+
+As is evident the key to solving this question is the perfect triangular pyramid as both solutions are based on it and it is the only
+way to put 4 elements in space being spaced equally apart. In theory you could place the bottles at any height and so
+infinite solutions to this riddle could be produced by making the side of the perfect pyramid as small or as large as you want. But we are
+constrained by the table and so the heights at which the caps are will be either $0$ or $h$. The two solutions above seem to be primary
+examples under this constraint. Minor variations on the above two solutions could be produced by making the bottles whose caps are at table
+level lay instead of stand on their heads. The first solution is more attractive than the second because it could be performed in practice
+without relying on measurement tools in order to place the bottles at the calculated distance from each other as per the second solution.

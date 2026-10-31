@@ -1,0 +1,38 @@
+\section{Rational points on a circle (Number theory)}
+Could there be a circle on the plane where only one point has rational co-ordinates? A point $p=(x,y)$ has rational co-ordinates iff $x,y\in\mathbb{Q}$. What about a sphere? Are there circles with more than one rational point? Are there circles with infinite rational points? Can you find a circle with exactly $n$ rational points on it for each $n\in\mathbb{N}$?
+
+\subsection{Solution}
+Yes, there could. Consider the circle: $(x-r)^2+y^2=r^2$ for some irrational $r$.
+$(0,0)$ is a point on this circle and is rational. But from the equation it follows
+that: $x^2-2xr+r^2+y^2=r^2$ or $x^2+y^2=2xr$ or $r=(x^2+y^2)/2x$. If there
+was a rational solution to this equation where $x\ne0$ then it would follow that
+$r$ is rational since it is the result of multiplication, division, addition and subtraction
+of rational numbers and this is a contradiction. This means this equation can only
+have rational solutions for $x=0$. If $x=0$ then $r^2+y^2=r^2$ and so $y=0$ and so
+$(0,0)$ is the only such solution.
+
+Same solution applies to a sphere: $(x-r)^2+y^2+z^2=r^2$ for some irrational $r$.
+In this case: $r=(x^2+y^2+z^2)/2x$. Which means that for $x\ne0$ any rational solution would imply a rational $r$.
+$(0,0,0)$ is therefore the only rational solution.
+
+Yes, there are circles with more than one rational point, and as soon as a circle has three rational
+points it has infinitely many. Three points which are not on one line determine a circle. Its center is
+where the perpendicular bisectors of two of the chords meet, and since these are lines with rational
+coefficients the center $(a,b)$ is rational, and so is $r^2$, the squared distance from the center to one
+of the points. Now take one rational point $P=(p,q)$ on the circle and draw through it the line
+$y-q=t(x-p)$ for some rational slope $t$. Substituting it into $(x-a)^2+(y-b)^2=r^2$ gives a quadratic
+equation in $x$ with rational coefficients. One of its roots is $p$, and the sum of its two roots is
+rational (it is minus the ratio of two of the coefficients), so the other root is rational too, and so is
+the second point where the line meets the circle. Different slopes give different points, so there are
+infinitely many. For the unit circle, starting from $P=(-1,0)$, this gives the points
+$\left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right)$ for $t\in\mathbb{Q}$, for example $(3/5,4/5)$ for $t=1/2$.
+And the circle $x^2+y^2=2$, which has the rational points $(1,1),(-1,1),(1,-1),(-1,-1)$, also has
+infinitely many, for example $(7/5,1/5)$.
+
+So a circle has $0$, $1$, $2$ or infinitely many rational points, and for $n\ge3$ there is no circle with
+exactly $n$ of them. The other three counts all happen. $1$ was shown above. For $0$ take the circle
+$(x-\sqrt{2})^2+y^2=1$: a rational point on it would satisfy $x^2+y^2+1=2\sqrt{2}x$, which for $x\ne0$
+would make $\sqrt{2}$ rational, and for $x=0$ gives $y^2=-1$. For $2$ take the circle with center
+$(1/2,\sqrt{2})$ through $(0,0)$ and $(1,0)$, that is $(x-1/2)^2+(y-\sqrt{2})^2=9/4$: a rational point on
+it would satisfy $x^2-x+y^2=2\sqrt{2}y$, which for $y\ne0$ would make $\sqrt{2}$ rational, and for $y=0$
+leaves only $x=0$ and $x=1$.

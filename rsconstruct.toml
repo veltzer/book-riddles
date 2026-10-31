@@ -27,8 +27,16 @@ output_dir = "out/src/sk"
 output_extension = "tex"
 batch = false
 
-# riddling.tex is one document assembled from src/include/*.tex and the
-# sketch figures, and it lands in docs/ because GitHub Pages serves
+# The body of the book, out/src/riddles.tex: a chapter per category, each
+# with its riddles from src/include/*.tex, ordered as scripts/build_riddles.py
+# explains.
+[processor.explicit.generic.riddles]
+command = "scripts/build_riddles.py"
+input_globs = ["src/include/*.tex"]
+output_files = ["out/src/riddles.tex"]
+
+# riddling.tex is one document assembled from out/src/riddles.tex, the
+# riddles it \inputs from src/include/*.tex, and the sketch figures, and it lands in docs/ because GitHub Pages serves
 # master:/docs. An explicit processor rather than generator.pdflatex: the
 # figures do not exist on a cold build, and only input_globs can name another
 # processor's outputs (dep_inputs only sees files already on disk), which is
@@ -36,7 +44,7 @@ batch = false
 [processor.explicit.generic.book]
 command = "scripts/build_pdf.py"
 inputs = ["src/tex/riddling.tex"]
-input_globs = ["src/include/*.tex", "out/src/sk/*.tex"]
+input_globs = ["src/include/*.tex", "out/src/riddles.tex", "out/src/sk/*.tex"]
 output_files = ["docs/riddling.pdf"]
 required_tools = ["pdflatex"]
 
@@ -47,7 +55,7 @@ required_tools = ["pdflatex"]
 [processor.explicit.generic.lacheck]
 command = "scripts/wrapper_lacheck.py"
 inputs = ["src/tex/riddling.tex"]
-input_globs = ["src/include/*.tex", "out/src/sk/*.tex"]
+input_globs = ["src/include/*.tex", "out/src/riddles.tex", "out/src/sk/*.tex"]
 output_files = ["out/lacheck.stamp"]
 required_tools = ["lacheck"]
 

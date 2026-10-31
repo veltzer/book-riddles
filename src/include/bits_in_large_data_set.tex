@@ -1,0 +1,8 @@
+\section {Find number of bits in large data set (Algorithms)}
+You get an array of $10000$ $32$ bit integers and need to find out how many bits are turned on in the entire array.
+You are allowed to do precomputation and prepare any data structure of any size you see fit. What will you do? What will you do in practice?
+
+\subsection{Solution}
+The idea is to prepare a $2^{32}$ array of integers where for each place $n$ the array contains the number of bits which are on for the number $n$. Then the computation is just a matter of iteration and summing up.
+
+In practice this is a bad idea since the $2^{32}$ array is too large and could cause cache misses. Better is to hold an array of size $2^{16}$ or maybe even $2^{8}$ so as to make a cache hit all the time for L1 cache. The size of the array should depend on the size of cache you want to keep hitting and the tradeoff between cache hit and doing more inside the loop should be determined by tests in practice.

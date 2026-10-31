@@ -1,0 +1,62 @@
+\section {Area of a circle (Algebra)}
+
+Prove the formula for the area of a circle by integrating the equation of a circle
+
+\subsection{Solution}
+The equation of a circle with radius $r$ centered at the origin is $x^2 + y^2 = r^2$.
+In the first quadrant (where $x$ and $y$ are both positive), we can solve for $y$:
+\begin{center}
+$y^2 = r^2 - x^2$
+\\
+$y = \sqrt{r^2 - x^2}$
+\end{center}
+The integral represents the area of one-quarter of the circle.
+\begin{center}
+$q = \int_0^r \sqrt{r^2 - x^2} \, dx$
+\end{center}
+To get the area of the full circle, we multiply the area of the quarter circle by 4.
+\begin{center}
+$a = 4 \int_0^r \sqrt{r^2 - x^2} \, dx$
+\end{center}
+To solve this integral, we use the trigonometric substitution:
+\begin{center}
+$x = r \sin(\theta)$
+\\
+$dx = r \cos(\theta) \, d\theta$
+\end{center}
+Change of Limits:
+When $x = 0$, $\theta = 0$
+When $x = r$, $\theta = \frac{\pi}{2}$
+\\
+Substituting into the Integral:
+\begin{center}
+$a = 4 \int_0^{\frac{\pi}{2}} \sqrt{r^2 - (r \sin(\theta))^2} \cdot r \cos(\theta) \, d\theta$
+\\
+$= 4 \int_0^{\frac{\pi}{2}} \sqrt{r^2 - r^2 \sin^2(\theta)} \cdot r \cos(\theta) \, d\theta$
+\\
+$= 4 \int_0^{\frac{\pi}{2}} \sqrt{r^2 (1 - \sin^2(\theta))} \cdot r \cos(\theta) \, d\theta$
+\\
+$= 4 \int_0^{\frac{\pi}{2}} \sqrt{r^2 \cos^2(\theta)} \cdot r \cos(\theta) \, d\theta$
+\\
+$= 4 \int_0^{\frac{\pi}{2}} r \cos(\theta) \cdot r \cos(\theta) \, d\theta$
+\\
+$= 4r^2 \int_0^{\frac{\pi}{2}} \cos^2(\theta) \, d\theta$
+\end{center}
+We use the trigonometric identity:
+\begin{center}
+$\cos^2(\theta) = \frac{1 + \cos(2\theta)}{2}$
+\end{center}
+\begin{center}
+$a = 4r^2 \int_0^{\frac{\pi}{2}} \frac{1 + \cos(2\theta)}{2} \, d\theta$
+\\
+$= 2r^2 \int_0^{\frac{\pi}{2}} (1 + \cos(2\theta)) \, d\theta$
+\end{center}
+Integrating
+\begin{center}
+$a = 2r^2 \left[ \theta + \frac{\sin(2\theta)}{2} \right]_0^{\frac{\pi}{2}}$
+\\
+$= 2r^2 \left[ \left( \frac{\pi}{2} + 0 \right) - (0 + 0) \right]$
+\\
+$= \pi r^2$
+\end{center}
+We have successfully proven that the area of a circle with radius $r$ is $\pi r^2$.

@@ -1,0 +1,45 @@
+\section{25 horses, 3 best (Algorithms)}
+You need to find the 3 fastest horses out of 25. You can only race 5 at a time and you don't have a timer. What's
+the minimum number of races you need and who will you race?
+
+\subsection{Solution}
+Let's mark all horses as $H_1$ - $H_{25}$.
+First race 5 races $H_1$-$H_5$, $H_6$-$H_{10}$, $H_{11}$-$H_{15}$, $H_{16}$-$H_{20}$, $H_{21}$-$H_{25}$.
+Denote the winners as $W_{1,5}$, $W_{6,10}$, $W_{11,15}$, $W_{16,20}$, $W_{21,25}$. 
+Second runners up will be $SRU_{1,5}$, $SRU_{6,10}$, $SRU_{11,15}$, $SRU_{16,20}$, $SRU_{21,25}$.
+Third runners up will be $TRU_{1,5}$, $TRU_{6,10}$, $TRU_{11,15}$, $TRU_{16,20}$, $TRU_{21,25}$.
+We will race all the winners and get $WW_1$ - $WW_5$.
+
+Now let's use some logic.
+
+$WW_1$ is the fastest around so we don't need to race him again and he will be the top in the top 3.
+
+Discard anyone in the group that got won by $WW_4$ and $WW_5$ since they got beat by at least three horses ($WW_1, WW_2, WW_3$) so they, and by inference anyone they beat, cannot be in the top 3.
+
+Discard anyone in the group that got won by $WW_3$ but not $WW_3$ himself. This is because there are at least two horses better than $WW_3$ so anyone that $WW_3$ beat cannot be in the top 3 but $WW_3$ maybe the third in the entire group. So $WW_3$ joins the final race.
+
+In the group of horses won by $WW_2$ we can discard everyone but $WW_2$ and the second runner up. Third runner up and down have at least 3 horses better than them ($SRU_{WW_2}$, $WW_2$ and $WW_1$). So $WW_2$ and $SRU_{WW_2}$ joins the race.
+
+In the group of $WW_1$ we can discard everyone but the second and third runners up. So $SRU_{WW_1}$ and $TRU_{WW_1}$ join the race.
+
+So now we will race $WW_3$, $WW_2$, $SRU_{WW_2}$, $SRU_{WW_1}$, $TRU_{WW_1}$. The first two will join $WW_1$ in being the fastest 3.
+
+Number of races: 7
+
+Why can't it be done in $6$? Imagine that the results are decided by a spiteful demon, who only has to stay
+consistent with some real order of the horses. Call a horse \emph{unbeaten} as long as it has not finished
+behind any other horse. An unbeaten horse could still be the fastest, so when we are done exactly one horse
+may be unbeaten. The demon's rule is that in every race the unbeaten horses finish ahead of the rest. This
+never contradicts anything already known, since no horse is known to be faster than an unbeaten one. So a
+race with $k$ unbeaten horses beats at most $k-1\le4$ of them for the first time, and we need $24$ first
+defeats, which takes at least $6$ races. And with only $6$ races, every race must be made of $5$ unbeaten
+horses, so a horse that has been beaten never races again.
+
+Now look at the 6th race. The first $5$ races beat $20$ different horses, and the winner of the 5th race is
+not one of them, so at least $21$ horses raced before the 6th race and at most $4$ did not. So some horse in
+the 6th race has raced before, and since it is unbeaten it won every race it ran. The demon lets it win the
+6th race too; call it $C$. Let $Q$ be the runner-up of an earlier race won by $C$, and $R$ and $T$ the second
+and third horses of the 6th race. $Q$ finished behind $C$ only and never raced again, and $R$ and $T$ never
+lost before the 6th race, so nothing links $Q$ to $R$ or $T$. Both orders $C,Q,R,T$ and $C,R,T,Q$ (with all
+the other horses behind) agree with every result, and they have different top $3$s. So $6$ races are never
+enough, and $7$ is the minimum.

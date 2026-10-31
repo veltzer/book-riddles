@@ -1,0 +1,14 @@
+\section{Liars and Truth tellers (Logic)}
+In a circle there are $n$ people, some tall and some short. Tall people always tell the truth while short people always lie. All of them tell you that the two people on their side are of different heights. How many liars and truth tellers are there?
+
+\subsection{Solution}
+Let's see what happens on the circle itself. Pick any spot and look at the two people from that spot onward. There could be only 4 possibilities: $(t,t) (l,t) (t,l) (l,l)$. If possibility one occurs then the next person must be a liar for the truth teller in the middle to be right, creating $(t,t,l)$. If possibility two occurs then the next person must be a truth teller for the same reason and we get $(l,t,t)$. If the third option is the one then the next person must be a truth teller so that the liar reports, wrongly, that two people of different height are near him. This will give us $(t,l,t)$. Consider these three options, they all combine to form an endless chain of $(t,t,l,t,t,l,t,t,l,\ldots)$ which means that a third of people are liars. Option 4, $(l,l)$ means that the next person is also a liar and so on forever which gives us all liars. To sum up: either a third of people are liars or all of them.
+
+There is also a formula. Write $a_i=1$ if person $i$ is tall and $a_i=0$ if short. A tall person tells the
+truth, so their two neighbors differ: $a_{i-1}+a_{i+1}\equiv1 \pmod 2$. A short person lies, so their two
+neighbors are the same: $a_{i-1}+a_{i+1}\equiv0 \pmod 2$. In both cases $a_{i-1}+a_{i+1}\equiv a_i$, or
+$a_{i+1}\equiv a_i+a_{i-1} \pmod 2$, which is the Fibonacci rule taken modulo $2$. Whatever two neighbors we
+start from, the sequence is either $0,0,0,\ldots$ or repeats $0,1,1,0,1,1,\ldots$ with period $3$. Going
+around the circle it must come back to where it started after $n$ steps, so the second pattern needs $n$ to
+be divisible by $3$. This also shows what the solution above glossed over: if $n$ is divisible by $3$ then
+either everybody lies or exactly $n/3$ people are liars, and otherwise everybody lies.

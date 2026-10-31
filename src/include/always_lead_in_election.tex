@@ -1,0 +1,42 @@
+\section{Always lead in election (Combinatorics)}
+An election was voted a perfect tie (even number of electors) and was decided by way of putting
+all the votes into a hat, mixing them uniformly and counting them one by one. What is the chance
+that one of the candidates was leading during the entire counting process?
+
+\subsection{Solution}
+The question could be rephrased as how many graphs that go either one step up or one step down (let's call those binary graphs) do not go down below zero out of the set of all graphs that go from zero to zero. At first let's note that in the following solution $n$ is even and so there is no problem with $n/2$. A first observation is that the set of all graphs going from 0 to 0 in $n$ steps is ${n \choose n/2}$.
+
+Let's try to count the graphs that tip below 0. Every graph that tips below 0 will reach -1 at one or more points. Let's find the first place where the graph reaches -1. From that point on the graph climbs one more than it descends since it finally reaches 0. Let's flip it from that point on - meaning switch every climb with descent and every descent with a climb. Now the graph descends one more than it climbs and since it starts from that point at height -1 then it now reaches a height -2 at $n$ instead of the original 0.
+
+The main proposition is that \emph{every} graph which travels from 0 to -2 corresponds with a \emph{1-1 correspondence} to graphs that travel from 0 to 0 and reach -1 at some point (convince yourself
+of this).
+
+If this is so then the number of graphs that go from 0 to -2 is ${n \choose n/2+1}$ since we need to
+choose points at which the graph will go down and we have $n/2+1$ descends. If so then the number of
+graphs that do not reach -1 is:
+
+${n \choose n/2} - {n \choose n/2+1} = \frac{(n)!}{(n/2+1)!(n/2)!} = \frac{1}{n/2+1}{n \choose n/2}$.
+
+And now back to the original question "What is the chance that one of the candidates was leading during the entire counting process?". Let's divide the latter result with the former and get:
+
+$\frac{1}{n/2+1}{n \choose n/2} / {n \choose n/2} = \frac{1}{n/2+1}$
+
+This is the chance that one particular candidate was never behind. "Leading" can only mean "never behind"
+here, since the count starts and ends in a tie. If a candidate is never behind then the first vote is
+theirs, and so the other candidate is behind after the first vote: the two events never happen together,
+and the chance that one of the two candidates was never behind is $\frac{2}{n/2+1}$.
+
+The result is all about \href{https://en.wikipedia.org/wiki/Catalan_number}{Catalan numbers}
+and \href{https://en.wikipedia.org/wiki/Bertrand\%27s_ballot_theorem}{Bertrand's ballot theorem}.
+
+One of the interesting results of this question is that ${n \choose n/2}$ is divisible by $n/2+1$. The
+direct reason is the identity used above, ${n \choose n/2}-{n \choose n/2+1}=\frac{1}{n/2+1}{n \choose n/2}$,
+whose left side is a difference of two integers. The same flipping works for any $k\le n/2$. Of the
+${n \choose k}$ graphs with $k$ steps down, the ones that reach $-1$ are flipped into graphs which end at
+$-(n-2k)-2$, and those have $n-k+1$ steps down, so the graphs that never go below 0 number
+\begin{center}
+${n \choose k}-{n \choose k-1} = \frac{n-2k+1}{n-k+1}{n \choose k}$
+\end{center}
+and so $n-k+1$ always divides $(n-2k+1){n \choose k}$. This is the ballot theorem: if one candidate gets
+$n-k$ votes and the other $k$, the chance that the first was never behind during the count is
+$\frac{n-2k+1}{n-k+1}$. For $k=n/2$ it is the $\frac{1}{n/2+1}$ found above.
