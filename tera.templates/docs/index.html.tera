@@ -1,42 +1,171 @@
 {% set project = load_lua(path="config/project.lua") -%}
 {% set personal = load_lua(path="config/personal.lua") -%}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>{{ project.NAME }}</title>
-		<!--suppress HtmlUnknownTarget -->
-		<link rel="shortcut icon" href="favicon.ico"/>
-		<meta name="Description" content="{{ project.DESCRIPTION_SHORT }}"/>
-		<meta name="Keywords" content="{{ personal.FULLNAME }}, {{ personal.SLUG }}, {{ project.NAME }}, {{ project.KEYWORDS | join(sep=", ") }}"/>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Riddling - {{ project.NAME }}</title>
+		<link rel="icon" href="favicon.ico">
+		<meta name="description" content="{{ project.DESCRIPTION_SHORT }}">
+		<meta name="keywords" content="{{ personal.FULLNAME }}, {{ personal.SLUG }}, {{ project.NAME }}, {{ project.KEYWORDS | join(sep=", ") }}">
+		<style>
+			:root {
+				--bg: #f6f1e7;
+				--card: #fffdf8;
+				--ink: #2b2620;
+				--muted: #6f665b;
+				--accent: #8a3b12;
+				--accent-ink: #fffdf8;
+				--rule: #e2d8c6;
+			}
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--bg: #1b1916;
+					--card: #25221e;
+					--ink: #ece5d8;
+					--muted: #a89e90;
+					--accent: #e0915a;
+					--accent-ink: #1b1916;
+					--rule: #3a352f;
+				}
+			}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
+				background: var(--bg);
+				color: var(--ink);
+				font: 1.0625rem/1.6 Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif;
+			}
+			main {
+				max-width: 40rem;
+				margin: 0 auto;
+				padding: 3rem 1rem 2rem;
+			}
+			header {
+				text-align: center;
+				margin-bottom: 2.5rem;
+			}
+			.mark {
+				font-size: 4rem;
+				line-height: 1;
+				color: var(--accent);
+			}
+			h1 {
+				font-size: 2.75rem;
+				font-weight: normal;
+				letter-spacing: 0.02em;
+				margin: 0.5rem 0 0.25rem;
+			}
+			.tagline {
+				color: var(--muted);
+				font-style: italic;
+				margin: 0;
+			}
+			.card {
+				background: var(--card);
+				border: 1px solid var(--rule);
+				border-radius: 0.5rem;
+				padding: 1.75rem 1.5rem;
+				text-align: center;
+			}
+			.card p {
+				margin-top: 0;
+			}
+			.actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				justify-content: center;
+				margin-top: 1.25rem;
+			}
+			.button {
+				display: inline-block;
+				padding: 0.6rem 1.4rem;
+				border-radius: 0.375rem;
+				border: 1px solid var(--accent);
+				text-decoration: none;
+				font-family: system-ui, sans-serif;
+				font-size: 0.95rem;
+			}
+			.primary {
+				background: var(--accent);
+				color: var(--accent-ink);
+			}
+			.secondary {
+				color: var(--accent);
+			}
+			.button:hover {
+				filter: brightness(1.1);
+			}
+			h2 {
+				font-size: 1.25rem;
+				font-weight: normal;
+				border-bottom: 1px solid var(--rule);
+				padding-bottom: 0.25rem;
+				margin: 2.5rem 0 0.75rem;
+			}
+			a {
+				color: var(--accent);
+			}
+			ul {
+				padding-left: 1.25rem;
+			}
+			code {
+				overflow-wrap: anywhere;
+				font-size: 0.875em;
+			}
+			footer {
+				margin-top: 3rem;
+				padding-top: 1rem;
+				border-top: 1px solid var(--rule);
+				color: var(--muted);
+				font-size: 0.875rem;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Welcome to the <i>{{ project.NAME }}</i> web site</h1>
-		
-		<p>current version is {{ version_str(path="config/version.lua") }}</p>
+		<main>
+			<header>
+				<div class="mark" aria-hidden="true">?</div>
+				<h1>Riddling</h1>
+				<p class="tagline">A collection of riddles, puzzles and brain teasers</p>
+			</header>
 
-		<h2>Read the book
-			<a href="riddling.pdf">here</a>
-		</h2>
+			<section class="card">
+				<p>
+					Logic, probability, geometry and lateral thinking: riddles to
+					chew on, each followed by a worked solution. Try them before you
+					turn the page.
+				</p>
+				<div class="actions">
+					<a class="button primary" href="riddling.pdf">Read the book (PDF)</a>
+					<a class="button secondary" href="https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}/releases">Past editions</a>
+				</div>
+			</section>
 
-		<p>
-			<b>{{ project.NAME }}</b> is collection of riddles in tex format.
-		</p>
-		<p>Some related <b>{{ project.NAME }}</b> project links:</p>
-		<ul>
-			<li>
-			The <b>{{ project.NAME }}</b> github project is <a title="{{ project.NAME }} github project" href="https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}">here</a>
-			</li>
-			<li>
-			The <b>{{ project.NAME }}</b> web site for the project is <a title="{{ project.NAME }} web site" href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}">here</a>
-			</li>
-			<li>
-			The <b>{{ project.NAME }}</b> git clone link is <a title="{{ project.NAME }} git clone link" href="https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}.git">here</a>
-			</li>
-		</ul>
-		<p>
-			Copyright {{ personal.FULLNAME }} © {{ copyright_years() }}
-			<a href="mailto:{{ personal.EMAIL }}">{{ personal.EMAIL }}</a>
-		</p>
+			<h2>About</h2>
+			<p>
+				The book is written in LaTeX, with its drawings done in TikZ and
+				sketch, and is rebuilt and released on every change. The title page
+				of the PDF says exactly when and from which commit it was built.
+				Corrections and new riddles are welcome as issues or pull requests.
+			</p>
+
+			<h2>Links</h2>
+			<ul>
+				<li><a href="https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}">Source on GitHub</a></li>
+				<li><a href="https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}/issues">Report a mistake or suggest a riddle</a></li>
+				<li>Clone it: <code>git clone https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}.git</code></li>
+			</ul>
+
+			<footer>
+				Copyright © {% set years = copyright_years() | split(pat=", ") %}{{ years | first }}–{{ years | last }} {{ personal.FULLNAME }}
+				· <a href="mailto:{{ personal.EMAIL }}">{{ personal.EMAIL }}</a>
+			</footer>
+		</main>
 	</body>
 </html>
