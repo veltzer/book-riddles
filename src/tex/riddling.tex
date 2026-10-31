@@ -76,22 +76,36 @@ Yes, there could. Consider the circle: $(x-r)^2+y^2=r^2$ for some irrational $r$
 $(0,0)$ is a point on this circle and is rational. But from the equation it follows
 that: $x^2-2xr+r^2+y^2=r^2$ or $x^2+y^2=2xr$ or $r=(x^2+y^2)/2x$. If there
 was a rational solution to this equation where $x\ne0$ then it would follow that
-$r$ is rational since it is the result of multiplication, division, addition and subtration
+$r$ is rational since it is the result of multiplication, division, addition and subtraction
 of rational numbers and this is a contradiction. This means this equation can only
 have rational solutions for $x=0$. If $x=0$ then $r^2+y^2=r^2$ and so $y=0$ and so
 $(0,0)$ is the only such solution.
 
 Same solution applies to a sphere: $(x-r)^2+y^2+z^2=r^2$ for some irrational $r$.
-In this case: $r=(x^2+y^2+z^2)/2x$. Which means that for $x\ne0$ any rational soultion would imply a rational $r$.
-$(0,0,0)$ is therefor the only rational solution.
+In this case: $r=(x^2+y^2+z^2)/2x$. Which means that for $x\ne0$ any rational solution would imply a rational $r$.
+$(0,0,0)$ is therefore the only rational solution.
 
-Yes, there are circles with more than one rational point. Take $x^2+y^2=2$ which is the circle whose
-center is at $(0,0)$ and whose radius is $\sqrt{2}$. The points $(1,1),(-1,1),(1,-1),(-1,-1)$ are four rational
-points which are on this circle.
+Yes, there are circles with more than one rational point, and as soon as a circle has three rational
+points it has infinitely many. Three points which are not on one line determine a circle. Its center is
+where the perpendicular bisectors of two of the chords meet, and since these are lines with rational
+coefficients the center $(a,b)$ is rational, and so is $r^2$, the squared distance from the center to one
+of the points. Now take one rational point $P=(p,q)$ on the circle and draw through it the line
+$y-q=t(x-p)$ for some rational slope $t$. Substituting it into $(x-a)^2+(y-b)^2=r^2$ gives a quadratic
+equation in $x$ with rational coefficients. One of its roots is $p$, and the sum of its two roots is
+rational (it is minus the ratio of two of the coefficients), so the other root is rational too, and so is
+the second point where the line meets the circle. Different slopes give different points, so there are
+infinitely many. For the unit circle, starting from $P=(-1,0)$, this gives the points
+$\left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right)$ for $t\in\mathbb{Q}$, for example $(3/5,4/5)$ for $t=1/2$.
+And the circle $x^2+y^2=2$, which has the rational points $(1,1),(-1,1),(1,-1),(-1,-1)$, also has
+infinitely many, for example $(7/5,1/5)$.
 
-Yes, there are circles with infinite rational points (TODO).
-
-What about for each $n\in\mathbb{N}$? (TODO).
+So a circle has $0$, $1$, $2$ or infinitely many rational points, and for $n\ge3$ there is no circle with
+exactly $n$ of them. The other three counts all happen. $1$ was shown above. For $0$ take the circle
+$(x-\sqrt{2})^2+y^2=1$: a rational point on it would satisfy $x^2+y^2+1=2\sqrt{2}x$, which for $x\ne0$
+would make $\sqrt{2}$ rational, and for $x=0$ gives $y^2=-1$. For $2$ take the circle with center
+$(1/2,\sqrt{2})$ through $(0,0)$ and $(1,0)$, that is $(x-1/2)^2+(y-\sqrt{2})^2=9/4$: a rational point on
+it would satisfy $x^2-x+y^2=2\sqrt{2}y$, which for $y\ne0$ would make $\sqrt{2}$ rational, and for $y=0$
+leaves only $x=0$ and $x=1$.
 
 \section{Always lead in election (Combinatorics)}
 An election was voted a perfect tie (even number of electors) and was decided by way of putting
@@ -116,12 +130,25 @@ And now back to the original question "What is the chance that one of the candid
 
 $\frac{1}{n/2+1}{n \choose n/2} / {n \choose n/2} = \frac{1}{n/2+1}$
 
-The result is all about \href{Catalan numbers}{http://en.wikipedia.org/wiki/Catalan\_number}
-and \href{Bertrand's ballot theorem}{http://en.wikipedia.org/wiki/Bertrand\%27s\_ballot\_theorem}.
+This is the chance that one particular candidate was never behind. "Leading" can only mean "never behind"
+here, since the count starts and ends in a tie. If a candidate is never behind then the first vote is
+theirs, and so the other candidate is behind after the first vote: the two events never happen together,
+and the chance that one of the two candidates was never behind is $\frac{2}{n/2+1}$.
 
-One of the interesting results of this question is that ${n \choose n/2}$ is divisible by $n/2+1$. One reason
-is the argument stated above but a more direct number theory based argument may be found. A more general result
-relating to ${n \choose k}$ for any $k$ may also be obtained (TODO).
+The result is all about \href{https://en.wikipedia.org/wiki/Catalan_number}{Catalan numbers}
+and \href{https://en.wikipedia.org/wiki/Bertrand\%27s_ballot_theorem}{Bertrand's ballot theorem}.
+
+One of the interesting results of this question is that ${n \choose n/2}$ is divisible by $n/2+1$. The
+direct reason is the identity used above, ${n \choose n/2}-{n \choose n/2+1}=\frac{1}{n/2+1}{n \choose n/2}$,
+whose left side is a difference of two integers. The same flipping works for any $k\le n/2$. Of the
+${n \choose k}$ graphs with $k$ steps down, the ones that reach $-1$ are flipped into graphs which end at
+$-(n-2k)-2$, and those have $n-k+1$ steps down, so the graphs that never go below 0 number
+\begin{center}
+${n \choose k}-{n \choose k-1} = \frac{n-2k+1}{n-k+1}{n \choose k}$
+\end{center}
+and so $n-k+1$ always divides $(n-2k+1){n \choose k}$. This is the ballot theorem: if one candidate gets
+$n-k$ votes and the other $k$, the chance that the first was never behind during the count is
+$\frac{n-2k+1}{n-k+1}$. For $k=n/2$ it is the $\frac{1}{n/2+1}$ found above.
 
 \section{Four Coke bottles on a table (Geometry)}
 Arrange four Coke bottles on a table so that the distances between each pair of caps will be the same. Assume that
@@ -256,13 +283,20 @@ Four frogs are sitting on the vertices of a square the side of which is of lengt
 \subsection{Solution}
 If we put the frogs on an infinite grid of size $1$ then after each jump all frogs must be located on that grid. So if the frogs can create a square of a size bigger than $1$ then that size must be a whole number which is bigger than $1$. Now lets note that if the frogs can create a square bigger than $1$ then, starting from that square, then can reverse their steps and create a square which is of size $1$. This means that the frogs can make the square they form bigger or smaller by some factor at any time. The problem with this is that this is also true for the original sized $1$ square: the frogs can make it smaller by that same factor but that is a contradiction to the fact that the frogs always remain on the grid.
 
-\section{Liers and Truth tellers (Logic)}
-In a cicle there be $n$ people, some tall and some short. Tall people always tell the truth while short people always lie. All of them tell you that the two people on their side are of different heights. How many liers and truth tellers are there?
+\section{Liars and Truth tellers (Logic)}
+In a circle there are $n$ people, some tall and some short. Tall people always tell the truth while short people always lie. All of them tell you that the two people on their side are of different heights. How many liars and truth tellers are there?
 
 \subsection{Solution}
-Lets see what happens on the circle itself. Pick any spot and look at the two people from that spot onwards. There could be only 4 possibilities: $(t,t) (l,t) (t,l) (l,l)$. If possibility one occurs then the next person must be a lier for the truth teller in the middle to be right, creating $(t,t,l)$. If possibility two occurs then the next person must be a truth teller for the same reaons and we get $(l,t,t)$. If the third option is the one then the next person must be a truth teller so that the lier reports, wrongly, that two people of different height are near him. This will give us $(t,l,t)$. Consider these three options, they all combine to form an endless chain of $(t,t,l,t,t,l,t,t,l,\ldots)$ which means that a third of people are liers. Option 4, $(l,l)$ means that the next person is also a lier and so on forever which gives us all liers. To sum up: either a third of people are liers or all of them.
+Lets see what happens on the circle itself. Pick any spot and look at the two people from that spot onwards. There could be only 4 possibilities: $(t,t) (l,t) (t,l) (l,l)$. If possibility one occurs then the next person must be a liar for the truth teller in the middle to be right, creating $(t,t,l)$. If possibility two occurs then the next person must be a truth teller for the same reason and we get $(l,t,t)$. If the third option is the one then the next person must be a truth teller so that the liar reports, wrongly, that two people of different height are near him. This will give us $(t,l,t)$. Consider these three options, they all combine to form an endless chain of $(t,t,l,t,t,l,t,t,l,\ldots)$ which means that a third of people are liars. Option 4, $(l,l)$ means that the next person is also a liar and so on forever which gives us all liars. To sum up: either a third of people are liars or all of them.
 
-TODO: is there a way to solve this using a formula? I feel there should be \ldots
+There is also a formula. Write $a_i=1$ if person $i$ is tall and $a_i=0$ if short. A tall person tells the
+truth, so their two neighbours differ: $a_{i-1}+a_{i+1}\equiv1 \pmod 2$. A short person lies, so their two
+neighbours are the same: $a_{i-1}+a_{i+1}\equiv0 \pmod 2$. In both cases $a_{i-1}+a_{i+1}\equiv a_i$, or
+$a_{i+1}\equiv a_i+a_{i-1} \pmod 2$, which is the Fibonacci rule taken modulo $2$. Whatever two neighbours we
+start from, the sequence is either $0,0,0,\ldots$ or repeats $0,1,1,0,1,1,\ldots$ with period $3$. Going
+around the circle it must come back to where it started after $n$ steps, so the second pattern needs $n$ to
+be divisible by $3$. This also shows what the solution above glossed over: if $n$ is divisible by $3$ then
+either everybody lies or exactly $n/3$ people are liars, and otherwise everybody lies.
 
 \section{$2^{2n}-1$ (Number theory)}
 Prove that for each $n\in \mathbb{N}>0$, $2^{2n}-1$ is divisible by 3
@@ -303,7 +337,23 @@ So now we will race $WW_3$, $WW_2$, $SRU_{WW_2}$, $SRU_{WW_1}$, $TRU_{WW_1}$. Th
 
 Number of races: 7
 
-TODO: how do I prove this is the minimum?
+Why can't it be done in $6$? Imagine that the results are decided by a spiteful demon, who only has to stay
+consistent with some real order of the horses. Call a horse \emph{unbeaten} as long as it has not finished
+behind any other horse. An unbeaten horse could still be the fastest, so when we are done exactly one horse
+may be unbeaten. The demon's rule is that in every race the unbeaten horses finish ahead of the rest. This
+never contradicts anything already known, since no horse is known to be faster than an unbeaten one. So a
+race with $k$ unbeaten horses beats at most $k-1\le4$ of them for the first time, and we need $24$ first
+defeats, which takes at least $6$ races. And with only $6$ races, every race must be made of $5$ unbeaten
+horses, so a horse that has been beaten never races again.
+
+Now look at the 6th race. The first $5$ races beat $20$ different horses, and the winner of the 5th race is
+not one of them, so at least $21$ horses raced before the 6th race and at most $4$ did not. So some horse in
+the 6th race has raced before, and since it is unbeaten it won every race it ran. The demon lets it win the
+6th race too; call it $C$. Let $Q$ be the runner-up of an earlier race won by $C$, and $R$ and $T$ the second
+and third horses of the 6th race. $Q$ finished behind $C$ only and never raced again, and $R$ and $T$ never
+lost before the 6th race, so nothing links $Q$ to $R$ or $T$. Both orders $C,Q,R,T$ and $C,R,T,Q$ (with all
+the other horses behind) agree with every result, and they have different top $3$s. So $6$ races are never
+enough, and $7$ is the minimum.
 
 \section {Find number of bits in large data set (Computing efficiency)}
 You get an array of $10000$ $32$ bit integers and need to find out how many bits are turned on in the entire array.
