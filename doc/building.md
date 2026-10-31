@@ -21,6 +21,19 @@ rsconstruct's pdflatex processor, because only an explicit processor's
 `input_globs` can name another processor's outputs; that is also what makes
 sketch run first.
 
+## Checks on the book
+
+- aspell checks the spelling of `src/tex` and `src/include` in US English.
+  Words it does not know but are right (names, terms, the codes in the coin
+  riddles) go in `.aspell.en.pws`. Its TeX mode does not skip math, so one and
+  two letter words are not checked at all.
+- lacheck checks the LaTeX of the whole book, through
+  `scripts/wrapper_lacheck.py`, which makes warnings fail the build. It lists
+  the few kinds of warning that are wrong for this book (TikZ `\foreach` lists,
+  factorials), each only on the kind of line it is wrong for.
+- `scripts/check_categories.py` fails when a riddle's title does not end with
+  its category in parentheses.
+
 ## Details worth knowing
 
 - pdflatex runs three times: the first pass writes the table of contents, the

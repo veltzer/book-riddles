@@ -13,7 +13,7 @@ squares (or on the corner of four squares) would need several servers. So the re
 
 Let each server hold a square of side $s$ miles, and place these squares on a grid with a step of $d = s-1$ miles:
 the server $(i,j)$ holds the square $[id, id+s] \times [jd, jd+s]$.
-Neighbouring squares overlap by exactly 1 mile.
+Neighboring squares overlap by exactly 1 mile.
 
 A request for the square whose lower left corner is $(x,y)$ is sent to server $(\lfloor x/d \rfloor, \lfloor y/d \rfloor)$.
 Indeed, if $i = \lfloor x/d \rfloor$ then $id \le x < id+d$, so $x+1 < id+d+1 = id+s$ and the whole range $[x,x+1]$ lies inside

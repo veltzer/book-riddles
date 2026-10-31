@@ -6,13 +6,14 @@
 %\usepackage[pdftex]{} % for pdf features
 \usepackage{thumbpdf} % for thumbnails
 %\usepacakge{tex4ht}
-\usepackage[pdftex,
+\usepackage[pdftex]{hyperref}
+\hypersetup{
 	pdftitle={Riddling},
 	pdfauthor={Mark Veltzer},
 	pdfsubject={A collection of riddles},
 	pdfkeywords={riddling, riddles, math, mathematics, geometry, combinatorics, Mark Veltzer, veltzer, Veltzer},
 	pdfproducer={Mark Veltzer <mark.veltzer@gmail.com>},
-	]{hyperref}
+}
 \pdfminorversion=5
 \pdfoutput=1
 \pdfcompresslevel=0
@@ -115,11 +116,11 @@ all the votes into a hat, mixing them uniformly and counting them one by one. Wh
 that one of the candidates was leading during the entire counting process?
 
 \subsection{Solution}
-The question could be rephrased as how many graphs that go either one step up or one step down (lets call those binary graphs) do not go down below zero out of the set of all graphs that go from zero to zero. At first lets note that in the following solution $n$ is even and so there is no problem with $n/2$. A first observation is that the set of all graphs going from 0 to 0 in $n$ steps is ${n \choose n/2}$.
+The question could be rephrased as how many graphs that go either one step up or one step down (let's call those binary graphs) do not go down below zero out of the set of all graphs that go from zero to zero. At first let's note that in the following solution $n$ is even and so there is no problem with $n/2$. A first observation is that the set of all graphs going from 0 to 0 in $n$ steps is ${n \choose n/2}$.
 
-Let's try to count the graphs that tip below 0. Every graph that tips below 0 will reach -1 at one or more points. Lets find the first place where the graph reaches -1. From that point on the graph climbs one more than it descends since it finally reaches 0. Lets flip it from that point on - meaning switch every climb with descent and every descent with a climb. Now the graph descends one more than it climbs and since it starts from that point at height -1 then it now reaches a height -2 at $n$ instead of the original 0.
+Let's try to count the graphs that tip below 0. Every graph that tips below 0 will reach -1 at one or more points. Let's find the first place where the graph reaches -1. From that point on the graph climbs one more than it descends since it finally reaches 0. Let's flip it from that point on - meaning switch every climb with descent and every descent with a climb. Now the graph descends one more than it climbs and since it starts from that point at height -1 then it now reaches a height -2 at $n$ instead of the original 0.
 
-The main proposition is that \emph{every} graph which travels from 0 to -2 correspons with a \emph{1-1 correspondance} to graphs that travel from 0 to 0 and reach -1 at some point (convince yourself
+The main proposition is that \emph{every} graph which travels from 0 to -2 corresponds with a \emph{1-1 correspondence} to graphs that travel from 0 to 0 and reach -1 at some point (convince yourself
 of this).
 
 If this is so then the number of graphs that go from 0 to -2 is ${n \choose n/2+1}$ since we need to
@@ -128,7 +129,7 @@ graphs that do not reach -1 is:
 
 ${n \choose n/2} - {n \choose n/2+1} = \frac{(n)!}{(n/2+1)!(n/2)!} = \frac{1}{n/2+1}{n \choose n/2}$.
 
-And now back to the original question "What is the chance that one of the candidates was leading during the entire counting process?". Lets divide the latter result with the former and get:
+And now back to the original question "What is the chance that one of the candidates was leading during the entire counting process?". Let's divide the latter result with the former and get:
 
 $\frac{1}{n/2+1}{n \choose n/2} / {n \choose n/2} = \frac{1}{n/2+1}$
 
@@ -167,18 +168,18 @@ next to each other will stand \emph{in reverse} (if the first is on it's head th
 \input{out/src/sk/bottles.tex}
 \end{center}
 
-The shape created by the bottle caps is, ofcourse, a perfect triangular pyramid with a side of length $d=\sqrt{2h^2}$.
+The shape created by the bottle caps is, of course, a perfect triangular pyramid with a side of length $d=\sqrt{2h^2}$.
 
 The second solution is to put three bottles on the vertices of an equilateral triangle standing one way. The fourth will be placed
 in the middle of the triangle and will be standing reversed to the others. The problem here is to calculate the side of the triangle.
-Lets use the following diagram:
+Let's use the following diagram:
 
 \begin{center}
 \input{out/src/sk/perfect_triangular_pyramid.tex}
 \end{center}
 
-What we are trying to find is $d$ as a function of $h$. Since $H$, $d/2$ and $d$ create a right angeled triangle, it follows
-thae $H^2+(d/2)^2=d^2$ and so $H=\sqrt{3}/2d$. Since the size of the inner triangle could be computed two ways then $hH=dH'$ and
+What we are trying to find is $d$ as a function of $h$. Since $H$, $d/2$ and $d$ create a right angled triangle, it follows
+that $H^2+(d/2)^2=d^2$ and so $H=\sqrt{3}/2d$. Since the size of the inner triangle could be computed two ways then $hH=dH'$ and
 since $H'=\sqrt{H^2-(d/2)^2}$ it follows after some math that $d=\sqrt{3/2}h$ which makes $d$ about $1.224h$.
 
 The solution built on this analysis will look like this:
@@ -218,7 +219,7 @@ You should switch. Your chances are 2/3 if you do. The initial chances of your f
 Many people think the chances are 50/50 because there are two doors left, but that is not correct. If you're not convinced 2/3 is correct, consider a 100 door version: you pick 1 door and Monty opens 98 other doors avoiding the one with the prize. Now you have a 99\% chance if you switch.
 
 \section{4 Door Monty Hall Problem (Probability)}
-Behind 1 of 4 closed doors is a prize. You pick door 1. Monty opens the 4th door and it is empty. You switch your choice to door 2. Now monty opens door 3 and it is also empty. Given the choice, should you switch back to door 1, and what are your chances of winning if you do?
+Behind 1 of 4 closed doors is a prize. You pick door 1. Monty opens the 4th door and it is empty. You switch your choice to door 2. Now Monty opens door 3 and it is also empty. Given the choice, should you switch back to door 1, and what are your chances of winning if you do?
 
 \subsection{Solution}
 Yes, your chances are 5/8 if you switch. The initial chances of your first choice were 1/4, and opening another door without the prize doesn't change that, so the remaining 2 doors now have a 3/8 chance because the chances of all possibilities must sum to 1. But then when Monty opens door 3, using the same reasoning, door 2 stays at 3/8 chance and so the remaining door changes to 5/8.
@@ -229,23 +230,23 @@ There are two envelopes, one contains twice as much money as the other. You pick
 \subsection{Solution}
 This is a strange paradox because it appears that the expected value is the average of $2x$ and $1/2x$ which are equally probable. The result is therefore $1.25x$ so you should switch. However, this would be true for any value of $x$ you find, so it wouldn't even matter if you open the envelope or not. This same logic suggests that you should also immediately switch back to the original envelope again, which doesn't make sense at all.
 
-The fault is in the wrong working out of the expetency. The $x$ in each option is not the same $x$ since the sums $1/2x$, $x$ and $2x$ do not occur simultaneously. Lets do the calculation more carefully. We will denote the envelopes with the sums $1/2x$ and $x$. With probability of $1/2$ you got the envelope with $1/2x$ which means you $1/2x$ to gain if you switch. With the same probability of $1/2$ you got the envelope with $x$ in which case you have $1/2x$ to lose if you switch. This means that the expected value of switching is $0$ as it should be. No paradox at all. If we had denoted the two envlopes $x$ and $2x$ we would have got the same result: with probability $1/2$ we got the envelope with $x$ in it and can gain $x$ if we switch. With the same probability we got the envelope with $2x$ and stand to lose $x$ if we switch. The overall expected value is again $0$ as it should be.
+The fault is in the wrong working out of the expectation. The $x$ in each option is not the same $x$ since the sums $1/2x$, $x$ and $2x$ do not occur simultaneously. Let's do the calculation more carefully. We will denote the envelopes with the sums $1/2x$ and $x$. With probability of $1/2$ you got the envelope with $1/2x$ which means you $1/2x$ to gain if you switch. With the same probability of $1/2$ you got the envelope with $x$ in which case you have $1/2x$ to lose if you switch. This means that the expected value of switching is $0$ as it should be. No paradox at all. If we had denoted the two envelopes $x$ and $2x$ we would have got the same result: with probability $1/2$ we got the envelope with $x$ in it and can gain $x$ if we switch. With the same probability we got the envelope with $2x$ and stand to lose $x$ if we switch. The overall expected value is again $0$ as it should be.
 
 \section{100 urns (Combinatorics)}
 There's a room with 100 urns, 2 people standing outside, while they decide on what to do 100 notes with the numbers $1, 2, \ldots,100$ are randomly placed inside the urns. One of the people from outside will enter the room and will examine all the urns. That person will be allowed to switch at most one pair of notes. That person is then whisked away to a vacation in Mali. The other one will then enter, be given a random number and will be asked to find the note with that number on it. He needs to find it while checking as few urns as possible. Design a strategy for the pair that will allow the second person to look into less than 50 urns to find any number required and in general look at the least number of urns in order to find the note with the required number on it.
 
 \subsection{Solution}
-Lets give a solution which is not good, analyze it and then improve it.
+Let's give a solution which is not good, analyze it and then improve it.
 Here is the bad solution. Whenever the second person comes in he is given the task of finding the note marked $x$. He will proceed to look into urn $x$. If $x$ is there he is done. If not, then some other note $y$ is there. He will process to do the same for $y$.
 
-Analysis: Can the second person get stuck in an infinite loop? No. There are only 100 urns so in the worst case scenario he will check all 100 urns and find the note $x$ in the last one. Now lets take this further. Lets define an equivalence relation on the urns: two urns $x$ and $y$ are equivalent if there exists a route from $x$ to $y$. This is indeed an equivalence relation since there is always a route from $x$ to $x$. If there is a route from $x$ to $y$ then there is also a route from $y$ to $x$ since in our case there is only one route to each urn (only one urn carries the note with it's number). Since starting a route from $y$ must eventually lead back to $y$ (routes do not just end), it must pass through $x$. All this means is that our 100 urns are divided into cycles of equivalence.
+Analysis: Can the second person get stuck in an infinite loop? No. There are only 100 urns so in the worst case scenario he will check all 100 urns and find the note $x$ in the last one. Now let's take this further. Let's define an equivalence relation on the urns: two urns $x$ and $y$ are equivalent if there exists a route from $x$ to $y$. This is indeed an equivalence relation since there is always a route from $x$ to $x$. If there is a route from $x$ to $y$ then there is also a route from $y$ to $x$ since in our case there is only one route to each urn (only one urn carries the note with it's number). Since starting a route from $y$ must eventually lead back to $y$ (routes do not just end), it must pass through $x$. All this means is that our 100 urns are divided into cycles of equivalence.
 
 Now for the first players job. When the first player comes along he will either see all cycles with $size<=50$ in which case he need not do anything (unless he wants to break up the largest cycle to reduce the expected value of urns checked by the second player) or will be confronted with utmost a single cycle with $size > 50$ which means he needs to break just this one cycle.
 
-How does one go about "breaking" a cycle? A cycle is a list of urns $x_1, x_2, \ldots,x_{n-1} ,x_n$ that make up a cycle, which means their content is $x_2, x_3, \ldots, x_n, x_1$. In order to break the cycle you need to find the center of the cycle. If the length of the cycle is odd then the center is the middle element if the lengh is even pick any of the central two elements. In our case the longest cycle cannot be of length greater than $100$ which means that breaking it up in the center will  break it up to pieces less or equal to 50. Lets say the center is in urn $k$. Switch the content of urns $k$ and $n$. This will create two cycles: $x_1, x_2, \ldots, x_k$ with content $x_2, x_3, \ldots, x_1$ and another cycle $x_{k+1}, x_{k+2}, \ldots, x_n$ with content $x_{k+2}, x_{k+3}, \ldots, x_{k+1}$.
+How does one go about "breaking" a cycle? A cycle is a list of urns $x_1, x_2, \ldots,x_{n-1} ,x_n$ that make up a cycle, which means their content is $x_2, x_3, \ldots, x_n, x_1$. In order to break the cycle you need to find the center of the cycle. If the length of the cycle is odd then the center is the middle element if the length is even pick any of the central two elements. In our case the longest cycle cannot be of length greater than $100$ which means that breaking it up in the center will  break it up to pieces less or equal to 50. Let's say the center is in urn $k$. Switch the content of urns $k$ and $n$. This will create two cycles: $x_1, x_2, \ldots, x_k$ with content $x_2, x_3, \ldots, x_1$ and another cycle $x_{k+1}, x_{k+2}, \ldots, x_n$ with content $x_{k+2}, x_{k+3}, \ldots, x_{k+1}$.
 
 \subsection{Follow up}
-A similar riddle. In this one you do not need to change the content of any urn. Imagine that 100 prisoners numbered zero to a hundred need to find their own number in the urns above and follow the same algorithm as in the solution. What are the chances that they will all succeed? Phrased a different way we ask what are the chances that given that the notes in the urns were randomally distributed what are the chances that there are no cycles greater than 50?
+A similar riddle. In this one you do not need to change the content of any urn. Imagine that 100 prisoners numbered zero to a hundred need to find their own number in the urns above and follow the same algorithm as in the solution. What are the chances that they will all succeed? Phrased a different way we ask what are the chances that given that the notes in the urns were randomly distributed what are the chances that there are no cycles greater than 50?
 
 In this version each prisoner may open at most 50 urns, and if even one of them fails to find his number they are all executed.
 If every prisoner opens urns at random, each one succeeds with probability $1/2$ and they all succeed with probability $(1/2)^{100}$, which is practically zero.
@@ -272,7 +273,7 @@ On mars live two types of aliens: ones with blue dots on their head and ones wit
 Since the martians are very smart, if there are $N$ martians then all of them will leave on day $N$. How is that? The proof is by induction. Imagine that there is only one martian with a blue dot. He sees everyone with red dots on their head and since he knows that there is at least one martian with a blue dot on his/her head he deduces that it is he. He therefor leaves in the first possible occasion, meaning the first day. Now imagine that the proposition is true for $N$. Now imagine that there are $N+1$ martians. Each of them sees only $N$ blue dots in the crowd. The deduce that there are either $N$ martians with blue dots (excluding themselves) or $N+1$ blue dotted martians (including themselves). They don't know which. So they wait for day $N$. If there were indeed $N$ martians all of them would have left on day $N$. They do not leave. From this each one of the $N+1$ deduces that the other $N$ martians see $N$ blue dots in the crowd which means that they themselves are blue dotted which means that there are $N+1$ blue dotted martians which include themselves. This prompts them to leave on the first possible occasion, which is day $N+1$.
 
 \section{The Wardens challenge (Distributed algorithms)}
-A warden summons all of his prisoners to a talk. "From this day on you will not see each other. I will select, by random and with possible repetitions, one of you each day and will place him or her in a special holding chamber. The holding chamber has a light bulb with a switch. When the day is done I will lead the prisoner back to his or her cell. At any time, any one of who understands that all of you have been in the special holding cell may callout and stop the experiment. If that person is right the you will all go free and if he is wrong you will stay here for life". The prisoners then have time to confer and plan a strategy before they are taken to their cells and are prevented from speaking to one another for the remainder of the experiment. Plan the prisoners strategy.
+A warden summons all of his prisoners to a talk. "From this day on you will not see each other. I will select, by random and with possible repetitions, one of you each day and will place him or her in a special holding chamber. The holding chamber has a light bulb with a switch. When the day is done I will lead the prisoner back to his or her cell. At any time, any one of who understands that all of you have been in the special holding cell may call out and stop the experiment. If that person is right then you will all go free and if he is wrong you will stay here for life". The prisoners then have time to confer and plan a strategy before they are taken to their cells and are prevented from speaking to one another for the remainder of the experiment. Plan the prisoners strategy.
 
 \subsection{Solution}
 A first solution would be to use a special designated person to act as counter. The counter never flips the light switch on. Every time the counter is called into the holding cell and sees the light he/she adds $1$ to a sum he/she is storing in memory as to the number of people that have been in the holding cell and flips the light off. Every other prisoner will follow the following rules: If you have never flipped the switch on and the switch is off when you enter the room then switch it on. Otherwise do nothing. The counter is the only person to proclaim that everyone has been to the holding cell and obviously has to count himself/herself as well.
@@ -280,21 +281,21 @@ A first solution would be to use a special designated person to act as counter. 
 The problem with this solution is that it's efficiency is quite low. Time is also wasted when a prisoner that has never been to the cell enters it and sees the light on which prevents him from turning the light on himself and makes him wait for the next time he/she is called to the holding cell.
 
 \section{Jumping frogs (Geometry)}
-Four frogs are sitting on the vertices of a square the side of which is of length $1$. In turns, a frog may lep over any other frog jumping twice the distance between them. Could the frogs, after any number of steps, form a square of a size different than $1$? Another version would be: can you prove that if, after any number of jumps, the frogs form a square then the size of the square will be $1$?
+Four frogs are sitting on the vertices of a square the side of which is of length $1$. In turns, a frog may leap over any other frog jumping twice the distance between them. Could the frogs, after any number of steps, form a square of a size different than $1$? Another version would be: can you prove that if, after any number of jumps, the frogs form a square then the size of the square will be $1$?
 
 \subsection{Solution}
-If we put the frogs on an infinite grid of size $1$ then after each jump all frogs must be located on that grid. So if the frogs can create a square of a size bigger than $1$ then that size must be a whole number which is bigger than $1$. Now lets note that if the frogs can create a square bigger than $1$ then, starting from that square, then can reverse their steps and create a square which is of size $1$. This means that the frogs can make the square they form bigger or smaller by some factor at any time. The problem with this is that this is also true for the original sized $1$ square: the frogs can make it smaller by that same factor but that is a contradiction to the fact that the frogs always remain on the grid.
+If we put the frogs on an infinite grid of size $1$ then after each jump all frogs must be located on that grid. So if the frogs can create a square of a size bigger than $1$ then that size must be a whole number which is bigger than $1$. Now let's note that if the frogs can create a square bigger than $1$ then, starting from that square, then can reverse their steps and create a square which is of size $1$. This means that the frogs can make the square they form bigger or smaller by some factor at any time. The problem with this is that this is also true for the original sized $1$ square: the frogs can make it smaller by that same factor but that is a contradiction to the fact that the frogs always remain on the grid.
 
 \section{Liars and Truth tellers (Logic)}
 In a circle there are $n$ people, some tall and some short. Tall people always tell the truth while short people always lie. All of them tell you that the two people on their side are of different heights. How many liars and truth tellers are there?
 
 \subsection{Solution}
-Lets see what happens on the circle itself. Pick any spot and look at the two people from that spot onwards. There could be only 4 possibilities: $(t,t) (l,t) (t,l) (l,l)$. If possibility one occurs then the next person must be a liar for the truth teller in the middle to be right, creating $(t,t,l)$. If possibility two occurs then the next person must be a truth teller for the same reason and we get $(l,t,t)$. If the third option is the one then the next person must be a truth teller so that the liar reports, wrongly, that two people of different height are near him. This will give us $(t,l,t)$. Consider these three options, they all combine to form an endless chain of $(t,t,l,t,t,l,t,t,l,\ldots)$ which means that a third of people are liars. Option 4, $(l,l)$ means that the next person is also a liar and so on forever which gives us all liars. To sum up: either a third of people are liars or all of them.
+Let's see what happens on the circle itself. Pick any spot and look at the two people from that spot onward. There could be only 4 possibilities: $(t,t) (l,t) (t,l) (l,l)$. If possibility one occurs then the next person must be a liar for the truth teller in the middle to be right, creating $(t,t,l)$. If possibility two occurs then the next person must be a truth teller for the same reason and we get $(l,t,t)$. If the third option is the one then the next person must be a truth teller so that the liar reports, wrongly, that two people of different height are near him. This will give us $(t,l,t)$. Consider these three options, they all combine to form an endless chain of $(t,t,l,t,t,l,t,t,l,\ldots)$ which means that a third of people are liars. Option 4, $(l,l)$ means that the next person is also a liar and so on forever which gives us all liars. To sum up: either a third of people are liars or all of them.
 
 There is also a formula. Write $a_i=1$ if person $i$ is tall and $a_i=0$ if short. A tall person tells the
-truth, so their two neighbours differ: $a_{i-1}+a_{i+1}\equiv1 \pmod 2$. A short person lies, so their two
-neighbours are the same: $a_{i-1}+a_{i+1}\equiv0 \pmod 2$. In both cases $a_{i-1}+a_{i+1}\equiv a_i$, or
-$a_{i+1}\equiv a_i+a_{i-1} \pmod 2$, which is the Fibonacci rule taken modulo $2$. Whatever two neighbours we
+truth, so their two neighbors differ: $a_{i-1}+a_{i+1}\equiv1 \pmod 2$. A short person lies, so their two
+neighbors are the same: $a_{i-1}+a_{i+1}\equiv0 \pmod 2$. In both cases $a_{i-1}+a_{i+1}\equiv a_i$, or
+$a_{i+1}\equiv a_i+a_{i-1} \pmod 2$, which is the Fibonacci rule taken modulo $2$. Whatever two neighbors we
 start from, the sequence is either $0,0,0,\ldots$ or repeats $0,1,1,0,1,1,\ldots$ with period $3$. Going
 around the circle it must come back to where it started after $n$ steps, so the second pattern needs $n$ to
 be divisible by $3$. This also shows what the solution above glossed over: if $n$ is divisible by $3$ then
@@ -306,8 +307,8 @@ Prove that for each $n\in \mathbb{N}>0$, $2^{2n}-1$ is divisible by 3
 \subsection{Solution}
 $2^{2n}-1=(2^{n})^2-1^2=(2^n-1)(2^n+1)$.
 $2^n$ is not divisible by three (because it's primary decomposition is made up of only $2$'s\ldots).
-For each three consequitive numbers one must be divisible by $3$ and this applies to the following
-three consequitive numbers: $2^n-1,2^n,2^n+1$. Since $2^n$ is not divisible by $3$ then either
+For each three consecutive numbers one must be divisible by $3$ and this applies to the following
+three consecutive numbers: $2^n-1,2^n,2^n+1$. Since $2^n$ is not divisible by $3$ then either
 $2^n-1$ or $2^n+1$ must be divisible by three and hence, using the equation above, $2^{2n}-1$ is
 divisible by $3$.
 
@@ -316,14 +317,14 @@ You need to find the 3 fastest horses out of 25. You can only race 5 at a time a
 the minimum number of races you need and who will you race?
 
 \subsection{Solution}
-Lets mark all horses as $H_1$ - $H_{25}$.
+Let's mark all horses as $H_1$ - $H_{25}$.
 First race 5 races $H_1$-$H_5$, $H_6$-$H_{10}$, $H_{11}$-$H_{15}$, $H_{16}$-$H_{20}$, $H_{21}$-$H_{25}$.
 Denote the winners as $W_{1,5}$, $W_{6,10}$, $W_{11,15}$, $W_{16,20}$, $W_{21,25}$. 
 Second runners up will be $SRU_{1,5}$, $SRU_{6,10}$, $SRU_{11,15}$, $SRU_{16,20}$, $SRU_{21,25}$.
 Third runners up will be $TRU_{1,5}$, $TRU_{6,10}$, $TRU_{11,15}$, $TRU_{16,20}$, $TRU_{21,25}$.
 We will race all the winners and get $WW_1$ - $WW_5$.
 
-Now lets use some logic.
+Now let's use some logic.
 
 $WW_1$ is the fastest around so we don't need to race him again and he will be the top in the top 3.
 
@@ -443,10 +444,10 @@ Unfortunately, one of his panels got stolen and he now only has $12$ panels. Can
 \end{center}
 
 \section {Three buckets with false info (Boolean logic)}
-You have three buckets in front of you. One has only black balls in it. One has only white balls in it. The last one has an even mix of black and white. You don't know which is which. Each bucket carries a note. The notes say "black only", "white only" and "mixed". It is known that all three notes are wrong. You need to design an experiment in which you will extract balls from the buckets of your choosing in order to find out which bucket has which content. Your aim is to minimze the number of ball extractions to attain your goal. How many balls will you need to extract in order to ascertain which content is in which bucket?
+You have three buckets in front of you. One has only black balls in it. One has only white balls in it. The last one has an even mix of black and white. You don't know which is which. Each bucket carries a note. The notes say "black only", "white only" and "mixed". It is known that all three notes are wrong. You need to design an experiment in which you will extract balls from the buckets of your choosing in order to find out which bucket has which content. Your aim is to minimize the number of ball extractions to attain your goal. How many balls will you need to extract in order to ascertain which content is in which bucket?
 
 \subsection{Solution}
-Only one ball needs to be extracted from the bucket which is labeled $Mixed$. Since the bucket is marked as $Mixed$ and that is known to be false then the bucket must be either all black or all white. So the single ball we extract tells us which of the two it is. Lets call this color $N$ and it's opposite $M$. Now we know what this bucket is of color $N$. One of the two other buckets claims to be of color $M$. Since it's label is false it must either be $N$ or the true $Mixed$ bucket. We already know which bucket is $N$ and it's not that one. That means that the bucket labeled as $M$ is actually the true $Mixed$ bucket. The last bucket is the bucket of true $M$.
+Only one ball needs to be extracted from the bucket which is labeled $Mixed$. Since the bucket is marked as $Mixed$ and that is known to be false then the bucket must be either all black or all white. So the single ball we extract tells us which of the two it is. Let's call this color $N$ and it's opposite $M$. Now we know what this bucket is of color $N$. One of the two other buckets claims to be of color $M$. Since it's label is false it must either be $N$ or the true $Mixed$ bucket. We already know which bucket is $N$ and it's not that one. That means that the bucket labeled as $M$ is actually the true $Mixed$ bucket. The last bucket is the bucket of true $M$.
 
 \section {Three or four boxes (Visual illusion)}
 Are there three or four boxes in the following drawing? How do you explain the illusion?

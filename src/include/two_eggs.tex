@@ -14,7 +14,7 @@ So with two eggs we use the first egg to find a range of floors, and then check 
 Suppose we allow ourselves $d$ drops. Drop the first egg from floor $d$. If it breaks, check floors $1$ to $d-1$ with the second egg,
 for a total of at most $d$ drops. If it survives we have used one drop and have $d-1$ left, so the next drop of the first egg can be at most $d-1$ floors higher,
 at floor $d + (d-1)$. Then $d-2$ floors higher, and so on.
-So with $d$ drops we can cover at most $d + (d-1) + \ldots + 1 = \frac{d(d+1)}{2}$ floors.
+So with $d$ drops we can cover at most $d + (d-1) + \cdots + 1 = \frac{d(d+1)}{2}$ floors.
 For $100$ floors we need $\frac{d(d+1)}{2} \ge 100$. Since $\frac{13 \cdot 14}{2} = 91$ is not enough and $\frac{14 \cdot 15}{2} = 105$ is,
 we need $d = 14$.
 
@@ -31,6 +31,6 @@ and if it survives, the floors above can be handled with $e$ eggs and $d-1$ drop
 \begin{center}
 $F(e,d) = F(e-1,d-1) + 1 + F(e,d-1)$
 \end{center}
-with $F(e,0) = 0$ and $F(0,d) = 0$. This works out to $F(e,d) = \binom{d}{1} + \binom{d}{2} + \ldots + \binom{d}{e}$.
+with $F(e,0) = 0$ and $F(0,d) = 0$. This works out to $F(e,d) = \binom{d}{1} + \binom{d}{2} + \cdots + \binom{d}{e}$.
 For two eggs that is $d + \frac{d(d-1)}{2} = \frac{d(d+1)}{2}$, as before.
 For three eggs, $F(3,8) = 8 + 28 + 56 = 92$ and $F(3,9) = 9 + 36 + 84 = 129$, so $9$ drops are needed.

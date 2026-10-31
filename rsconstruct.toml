@@ -40,10 +40,28 @@ input_globs = ["src/include/*.tex", "out/src/sk/*.tex"]
 output_files = ["docs/riddling.pdf"]
 required_tools = ["pdflatex"]
 
+# lacheck on the whole book. It follows \input into the sketch figures, so,
+# like the book, it is an explicit processor whose input_globs name them; the
+# stamp file is its output. scripts/wrapper_lacheck.py makes warnings fail
+# and lists the few that are wrong for this book.
+[processor.explicit.generic.lacheck]
+command = "scripts/wrapper_lacheck.py"
+inputs = ["src/tex/riddling.tex"]
+input_globs = ["src/include/*.tex", "out/src/sk/*.tex"]
+output_files = ["out/lacheck.stamp"]
+required_tools = ["lacheck"]
+
+# every riddle has its category in parentheses at the end of its title
+[processor.checker.script.categories]
+command = "scripts/check_categories.py"
+src_dirs = ["src/tex", "src/include"]
+src_extensions = [".tex"]
+
 # sketch and the TeX Live parts riddling.tex loads: hyperref (latex-base),
 # thumbpdf (latex-recommended), tikz (pictures), pst-pdf (pstricks), and what
 # pst-pdf itself requires: environ (latex-extra) and luatex85 (luatex, which
-# none of the others depends on).
+# none of the others depends on). Then the checkers' tools: lacheck, and aspell
+# with its English dictionary.
 [dependencies]
 system = [
     "sketch",
@@ -53,6 +71,25 @@ system = [
     "texlive-pictures",
     "texlive-pstricks",
     "texlive-luatex",
+    "lacheck",
+    "aspell",
+    "aspell-en",
+]
+
+# The book's text. --mode must be on the command line: aspell ignores a `mode`
+# line in the conf file. TeX mode skips commands but not math, so --ignore=2
+# drops the one and two letter tokens math is made of ($M_{kj}$, $dx$), and the
+# add-tex-command entries skip the arguments that are option names, not prose.
+[processor.checker.aspell]
+src_dirs = ["src/tex", "src/include"]
+src_extensions = [".tex"]
+args = [
+    "--mode=tex",
+    "--ignore=2",
+    "--add-tex-command=usepackage op",
+    "--add-tex-command=hypersetup p",
+    "--add-tex-command=definecolor pPp",
+    "--add-tex-command=usetikzlibrary p",
 ]
 
 [processor.checker.ruff]

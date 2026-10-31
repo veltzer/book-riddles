@@ -31,9 +31,9 @@ First write down where a knight can go from each key:
 4 -> 3, 9, 0     9 -> 2, 4
 \end{verbatim}
 
-A sequence of $n$ moves from key $k$ is a first move to a neighbour $j$ followed by a sequence of $n-1$ moves from $j$, so
+A sequence of $n$ moves from key $k$ is a first move to a neighbor $j$ followed by a sequence of $n-1$ moves from $j$, so
 \begin{center}
-$f(k, 0) = 1$, \quad $f(k, n) = \sum_{j \text{ a neighbour of } k} f(j, n-1)$
+$f(k, 0) = 1$, \quad $f(k, n) = \sum_{j \text{ a neighbor of } k} f(j, n-1)$
 \end{center}
 Computing this naively with recursion takes exponential time, but computing $f(\cdot, 1), f(\cdot, 2), \ldots, f(\cdot, n)$ one after the other,
 each time for all 10 keys, takes $O(n)$ time and $O(1)$ memory.

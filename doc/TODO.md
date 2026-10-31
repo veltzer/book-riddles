@@ -8,12 +8,6 @@ tikz, sketch, and more...).
 The advantage of this idea over the others is that it would you python as the interpreter with
 all of its power. (how about tying this to numpy?!?).
 
-## latex code
-
-- find a way to spell check the latex files and add it to the build.
-- run lacheck in the build; `scripts/wrapper_lacheck.py` (which makes lacheck's warnings fail the
-  run) is ready but not wired in.
-
 ## sketch code
 
 - start breaking down the .sk files into chunks of defs and reusing them all
