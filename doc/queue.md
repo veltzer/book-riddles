@@ -10,7 +10,7 @@
   One way to explain this is to explain what (n k) means and therefore
   deduce that it's whole. But what about a purely mathematical explanation
   of why n! is divisible by k!(n-k)! ?
-- http://brainden.com/forum/index.php?showtopic=38
+- <http://brainden.com/forum/index.php?showtopic=38>
 
 ```text
 Rorig=40000/2*PI
@@ -23,4 +23,4 @@ be very close to the surface. It turns out that the addition in height is
 independant of the circumfence of the thing you are adding to! 10m will buy you
 1.6 meters on the sun as well...:)
 
-- http://brainden.com/forum/index.php?showtopic=181
+- <http://brainden.com/forum/index.php?showtopic=181>

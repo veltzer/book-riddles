@@ -7,7 +7,7 @@ notes are in the git history.
 
 The book was once also published as HTML, made with latex2html. The drawings
 came out badly, pdftohtml gave poor results, and the other tools listed at
-http://enc.com.au/docs/latexhtml/ did not do better, so HTML generation was
+<http://enc.com.au/docs/latexhtml/> did not do better, so HTML generation was
 dropped in 2011 and only the PDF is published.
 
 The same choice explains a LaTeX hint from that time: `\htmladdnormallink`

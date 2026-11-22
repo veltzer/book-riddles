@@ -3,7 +3,7 @@
 ## running pdflatex
 
 references:
-http://ringlord.com/latex-to-pdf-howto.html
+<http://ringlord.com/latex-to-pdf-howto.html>
 
 - the executable we run:
   we need to run pdflatex and and pdftex since pdflatex has access to all the libraries of tex
@@ -24,7 +24,7 @@ See [building.md](building.md).
 Just add % at the start of the line and the rest is a comment.
 
 references:
-http://www.rasmusen.org/x/2007/09/07/comments-in-latex/
+<http://www.rasmusen.org/x/2007/09/07/comments-in-latex/>
 
 ## links in latex files
 

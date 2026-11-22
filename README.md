@@ -5,7 +5,7 @@
 
 description: A riddle collection done with open source tools
 
-project website: https://veltzer.github.io/book-riddles
+project website: <https://veltzer.github.io/book-riddles>
 
 author: Mark Veltzer
 

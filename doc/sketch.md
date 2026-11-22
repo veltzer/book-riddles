@@ -7,9 +7,9 @@ In ubuntu you just need to install the 'sketch' package.
 If you want documentation install 'sketch-doc'.
 
 web site is:
-http://www.frontiernet.net/~eugene.ressler/
+<http://www.frontiernet.net/~eugene.ressler/>
 and
-http://groups.google.com/group/sketch-users
+<http://groups.google.com/group/sketch-users>
 
 The documentation package also has examples that you can copy from.
 Ubuntu also has examples in the sketch-doc package and you can find them at:
