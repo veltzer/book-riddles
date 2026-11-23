@@ -6,7 +6,7 @@ Test
 
 import random
 
-import numpy
+import numpy as np
 
 large_set_size = 3000
 small_set_size = 10
@@ -29,4 +29,4 @@ for _ in range(attempts):
         iters += 1
     print(len(large_set))
     results.append(len(large_set) / large_set_size)
-print(numpy.mean(results))
+print(np.mean(results))

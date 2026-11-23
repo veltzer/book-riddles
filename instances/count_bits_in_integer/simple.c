@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-char number_of_bits_in_uint(unsigned int uvalue) {
+static char number_of_bits_in_uint(unsigned int uvalue) {
 	char bits=0;
 	while(uvalue!=0) {
 		if(uvalue & 1) {
@@ -13,6 +13,7 @@ char number_of_bits_in_uint(unsigned int uvalue) {
 	return bits;
 }
 
+// cppcheck-suppress unusedFunction ; teaching: the wrong version (loops forever on negatives) is kept as the cautionary example
 char number_of_bits_in_int_wrong(int value) {
 	char bits=0;
 	while(value!=0) {
@@ -25,7 +26,7 @@ char number_of_bits_in_int_wrong(int value) {
 	return bits;
 }
 
-char number_of_bits_in_int(int value) {
+static char number_of_bits_in_int(int value) {
 	unsigned int uvalue=*(unsigned int*)&value;
 	if(value<0) {
 		return 32-number_of_bits_in_uint(uvalue);

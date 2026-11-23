@@ -6,7 +6,7 @@
 	(version 8.3.0 with -O2)
 	Amazing!!!
 */
-unsigned int simple() {
+static unsigned int simple() {
 	unsigned int i=0;
 	unsigned int j;
 	do {
@@ -16,7 +16,7 @@ unsigned int simple() {
 	return j;
 }
 
-unsigned int fill_in_ones() {
+static unsigned int fill_in_ones() {
 	unsigned int i=1;
 	for(int c=0;c<128;c++) {
 		i<<=1;
@@ -25,7 +25,7 @@ unsigned int fill_in_ones() {
 	return i;
 }
 
-unsigned int egg_dropping_riddle() {
+static unsigned int egg_dropping_riddle() {
 	unsigned int i=1;
 	unsigned int j=0;
 	while(j<i) {
@@ -40,7 +40,7 @@ unsigned int egg_dropping_riddle() {
 	our knowledge of how numbers are represents in conteporary
 	binary architectures
 */
-unsigned int egg_dropping_riddle_better() {
+static unsigned int egg_dropping_riddle_better() {
 	unsigned int base=0;
 	unsigned int jump;
 	unsigned int got_to;

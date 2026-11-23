@@ -16,7 +16,7 @@ macros (\\buildtime, \\buildcommit, \\buildversion), so they are not inputs:
 the PDF says when it was last actually built, and rsconstruct restoring it
 from the cache keeps that stamp. """
 
-import datetime
+import datetime as dt
 import os
 import shutil
 import subprocess
@@ -65,7 +65,7 @@ def tex_escape(text):
 
 def build_info():
     """ The \\def's for the build time, commit and version macros. """
-    now = datetime.datetime.now().astimezone()
+    now = dt.datetime.now().astimezone()
     offset = now.strftime("%z")
     when = now.strftime(f"%Y-%m-%d %H:%M %Z (UTC{offset[:3]}:{offset[3:]})")
     commit = git("rev-parse", "--short", "HEAD") or "unknown"

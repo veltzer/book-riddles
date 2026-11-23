@@ -20,8 +20,6 @@ class PrisonerFull:public Prisoner {
 		bool doYourThing(bool light) override;
 		void output(std::ostream& out) const override;
 
-		bool hasBit(unsigned int bit);
-		unsigned int getNumBits(void);
 		void updateBit(unsigned int bit);
 };
 

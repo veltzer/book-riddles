@@ -6,7 +6,7 @@ Solution
 
 import random
 
-import numpy
+import numpy as np
 
 large_set_size = 1000
 small_set_size = 20
@@ -46,6 +46,6 @@ for _ in range(stat_num):
     stats[1].append(large_set_count)
     stats[2].append(small_set_count)
 
-print(numpy.average(stats[0]))
-print(numpy.average(stats[1]))
-print(numpy.average(stats[2]))
+print(np.average(stats[0]))
+print(np.average(stats[1]))
+print(np.average(stats[2]))

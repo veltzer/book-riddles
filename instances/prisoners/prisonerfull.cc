@@ -30,12 +30,6 @@ void PrisonerFull::output(std::ostream& out) const {
 	}
 	out << std::endl;
 }
-bool PrisonerFull::hasBit(unsigned int bit) {
-	return bits[bit];
-}
-unsigned int PrisonerFull::getNumBits(void) {
-	return numBits;
-}
 void PrisonerFull::updateBit(unsigned int bit) {
 	if(bits[bit]==false) {
 		bits[bit]=true;

@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <stdbool.h>
 
-bool is_one_bit(int v) {
+static bool is_one_bit(int v) {
 	return (v&(v-1))==0;
 }
 

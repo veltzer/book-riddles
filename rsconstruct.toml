@@ -140,13 +140,26 @@ src_dirs = ["instances"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
 
+# every other riddle file is a standalone program with its own main: one run per file.
 # instances/print_stars is the riddle text verbatim: the unused and shadowed
 # `i` are the puzzle, so those lines carry inline cppcheck-suppress comments
-[processor.checker.cppcheck]
+[processor.checker.cppcheck.programs]
 src_dirs = ["instances"]
+src_exclude_dirs = ["prisoners"]
 args = [
 	"--error-exitcode=1",
-	"--enable=warning,style,performance,portability",
+	"--enable=warning,style,performance,portability,information,unusedFunction",
+	"--check-level=exhaustive",
+	"--inline-suppr",
+]
+
+# prisoners is one program of several files (see its Makefile): one run per directory
+[processor.checker.cppcheck.prisoners]
+batch_by_dir = true
+src_dirs = ["instances/prisoners"]
+args = [
+	"--error-exitcode=1",
+	"--enable=warning,style,performance,portability,information,unusedFunction",
 	"--check-level=exhaustive",
 	"--inline-suppr",
 ]

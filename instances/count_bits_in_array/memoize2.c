@@ -1,24 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-	return how many bits are turned on in the integer
-	whose value is 'value'
-*/
-int int_to_bits(int value) {
-	unsigned int uvalue=*(unsigned*)&value;
-	unsigned int p=1;
-	int bits=0;
-	while(p!=0) {
-		if(p & uvalue) {
-			bits+=1;
-		}
-		p<<=1;
-	}
-	return bits;
-}
-
-int int_to_bits_alt(int value) {
+static int int_to_bits_alt(int value) {
 	unsigned int uvalue=*(unsigned*)&value;
 	int bits=0;
 	while(uvalue!=0) {
