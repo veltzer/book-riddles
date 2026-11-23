@@ -39,7 +39,7 @@ def complete_tree(t):
 def complete_tree_2_inter(s):
     """
     non recursive solution, better performance if implemented with efficient data structures
-    input is 
+    input is
     """
     this_level_full = True
     saw_none = False

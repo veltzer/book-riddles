@@ -77,36 +77,36 @@ class Matrix:
         return p.x < 0 or p.x >= self.w or p.y < 0 or p.y >= self.h
 
     def add(self, m):
-        for y, l in enumerate(self.data):
-            for x, _e in enumerate(l):
+        for y, row in enumerate(self.data):
+            for x, _e in enumerate(row):
                 if m.get(x, y) is not None and _e is not None:
-                    l[x] += m.get(x, y)
+                    row[x] += m.get(x, y)
 
     def minimum(self):
         val = math.inf
-        for l in self.data:
-            for e in l:
+        for row in self.data:
+            for e in row:
                 if e is not None and e < val:
                     val = e
         return val
 
     def duplicate(self):
         m = Matrix(None, self.w, self.h)
-        for y, l in enumerate(self.data):
-            for x, e in enumerate(l):
+        for y, row in enumerate(self.data):
+            for x, e in enumerate(row):
                 m.set(x, y, e)
         return m
 
     def print(self):
-        for l in self.data:
-            for e in l:
+        for row in self.data:
+            for e in row:
                 print(e, end="")
             print()
 
     def __str__(self):
         res = ""
-        for l in self.data:
-            for e in l:
+        for row in self.data:
+            for e in row:
                 res += str(e) + ", "
             res += "\n"
         return res
@@ -114,8 +114,8 @@ class Matrix:
     @staticmethod
     def from_strings(m):
         s = Matrix(" ", len(m[0]), len(m))
-        for y, l in enumerate(m):
-            for x, c in enumerate(l):
+        for y, row in enumerate(m):
+            for x, c in enumerate(row):
                 s.set(x, y, c)
         return s
 
@@ -124,9 +124,7 @@ def solve(m):
     # first find all the people in the matrix
     people = []
     for y in range(m.h):
-        for x in range(m.w):
-            if m.get(x, y) == "P":
-                people.append(Position(x, y))
+        people.extend(Position(x, y) for x in range(m.w) if m.get(x, y) == "P")
     assert len(people) > 0
     # now calculate shortest distance per person
     sdms = []

@@ -24,7 +24,7 @@ def combine(a, b):
         append_next_or_drop(b, bb, aa)
         if len(aa) == 0:
             break
-        yield list(zip(aa, reversed(bb)))
+        yield list(zip(aa, reversed(bb), strict=False))
 
 
 def main():

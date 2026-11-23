@@ -42,9 +42,11 @@ def two_loops_and_binary(data):
     results = []
     s_data = sorted(data)
     for p1, x1 in enumerate(s_data):
-        for x2 in s_data[p1 + 1:]:
-            if binary_search(s_data, x1 + x2) is not None:
-                results.append((x1, x2, x1 + x2))
+        results.extend(
+            (x1, x2, x1 + x2)
+            for x2 in s_data[p1 + 1:]
+            if binary_search(s_data, x1 + x2) is not None
+        )
     results.sort()
     return results
 
@@ -57,9 +59,7 @@ def using_hash(data):
     results = []
     s = set(data)
     for p1, x1 in enumerate(data):
-        for x2 in data[p1 + 1:]:
-            if x1 + x2 in s:
-                results.append((x1, x2, x1 + x2))
+        results.extend((x1, x2, x1 + x2) for x2 in data[p1 + 1:] if x1 + x2 in s)
     results.sort()
     return results
 

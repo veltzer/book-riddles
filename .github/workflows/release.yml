@@ -19,16 +19,20 @@ on:
     types: [completed]
     branches: [master]
 
+# Nothing by default: the job below asks for exactly what it uses.
+permissions: {}
+
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
 
 jobs:
   release:
+    name: release
     if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-26.04
     permissions:
-      contents: write
+      contents: write  # check out the built commit and create the release
     steps:
     - uses: actions/checkout@v7
       with:

@@ -10,7 +10,7 @@ import random
 # random.seed(7)
 
 atfound = 0
-for x in range(1000):
+for _ in range(1000):
     my_list = list(range(100))
     random.shuffle(my_list)
     # number of midgets finding their number

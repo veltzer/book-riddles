@@ -23,10 +23,7 @@ for i in range(1, size):
     n = i
     while n >= size or (n != 1 and lengths[n] == 0):
         series.append(n)
-        if n % 2 == 0:
-            n = n // 2
-        else:
-            n = n * 3 + 1
+        n = n // 2 if n % 2 == 0 else n * 3 + 1
     count = lengths[n] + len(series)
     steps = count
     for k in series:
