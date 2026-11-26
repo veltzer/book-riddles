@@ -183,3 +183,8 @@ src_dirs = ["instances/path"]
 
 [processor.checker.itidy]
 src_dirs = ["docs"]
+
+# every lint suppression names a rule and says why (see the fleet's CLAUDE.md)
+[processor.checker.suppressions]
+src_dirs = [".github", "config", "doc", "instances", "scripts"]
+src_files = [".yamllint.yaml", "README.md"]
