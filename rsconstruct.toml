@@ -111,6 +111,11 @@ src_dirs = ["config"]
 
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
 
+# check the XML files with xmllint
+[processor.checker.ixmllint]
+src_files = ["checkstyle.xml"]
+strict = true
+
 [processor.checker.taplo]
 src_files = [".ruff.toml", ".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
