@@ -73,7 +73,7 @@ def main():
 
     # First remove the output (if it exists)
     if os.path.exists(output_file):
-        unlink_check(output_file, True)
+        unlink_check(output_file, check=True)
 
     # Run the sketch command
     try:
@@ -84,16 +84,16 @@ def main():
             f.write(e.stderr)
         printout(tmp_fname)
         if REMOVE_TMP:
-            unlink_check(tmp_fname, True)
+            unlink_check(tmp_fname, check=True)
         if os.path.exists(output_file):
-            unlink_check(output_file, True)
+            unlink_check(output_file, check=True)
         sys.exit(e.returncode)
     else:
         # Everything is ok
         if REMOVE_TMP:
-            unlink_check(tmp_fname, True)
+            unlink_check(tmp_fname, check=True)
         # Change the output to be unchangeable (but only in the second time!)
-        chmod_check(output_file, True)
+        chmod_check(output_file, check=True)
 
 if __name__ == "__main__":
     main()
