@@ -42,12 +42,12 @@ what makes the first two steps run before pdflatex.
 - pdflatex runs three times: the first pass writes the table of contents, the
   second typesets it (which moves every section a few pages on), and the third
   picks up the moved page numbers. With two passes the contents are wrong.
-- The title page shows when the PDF was built (to the minute), the commit it
-  was built from (marked "with uncommitted changes" when the sources differ
-  from it), and `git describe --tags` when the repository has tags.
-  `build_pdf.py` passes these to LaTeX as `\buildtime`, `\buildcommit` and
-  `\buildversion`. They are not inputs of the build, so a PDF restored from the
-  cache keeps the stamp of the build that made it.
+- The build is reproducible: the same sources give a byte-identical PDF.
+  `riddling.tex` omits the PDF dates and trailer id, and the title page has
+  no build time, commit or version. rsconstruct caches the PDF by the contents
+  of its inputs alone, so anything taken from the clock or from git would make
+  two builds of the same sources differ, and a cache restore would bring back
+  whatever stamp the cached copy happened to get.
 - The packages the book needs are listed in `[dependencies]` in
   `rsconstruct.toml`, with the reason for each.
 - `itemize` labels are taken from the math fonts. Current LaTeX takes three of

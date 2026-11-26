@@ -12,9 +12,8 @@ is the same file GitHub Pages serves (Pages here serves master:/docs).
 - The release is a workflow of its own, triggered by the build finishing,
   because build.yml is byte-identical across the fleet. book-openbook releases
   its books the same way.
-- The title page of each release's PDF shows the commit it was built from,
-  usually the one before the released commit, since the PDF is built before
-  it is committed.
+- The PDF carries no commit or date (the build is reproducible, see
+  building.md); the release's tag and target commit say where it came from.
 
 ## How many releases are kept
 

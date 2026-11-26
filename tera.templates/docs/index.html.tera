@@ -151,8 +151,7 @@
 			<h2>About</h2>
 			<p>
 				The book is written in LaTeX, with its drawings done in TikZ and
-				sketch, and is rebuilt and released on every change. The title page
-				of the PDF says exactly when and from which commit it was built.
+				sketch, and is rebuilt and released on every change.
 				Corrections and new riddles are welcome as issues or pull requests.
 			</p>
 
