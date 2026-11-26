@@ -60,10 +60,8 @@
 % fallbacks are for running pdflatex by hand
 \providecommand{\buildtime}{unknown}
 \providecommand{\buildcommit}{unknown}
-\providecommand{\buildversion}{}
-\date{Built \buildtime\\
-	Commit \texttt{\buildcommit}%
-	\ifx\buildversion\empty\else\\Version \buildversion\fi}
+\date{Commit \texttt{\buildcommit}\\
+	of \buildtime}
 
 \begin{document}
 

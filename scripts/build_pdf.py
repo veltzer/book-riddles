@@ -10,11 +10,19 @@ build. pdflatex runs from the repository root, because riddling.tex \\inputs
 its parts by root-relative path, and writes its aux/log files into a scratch
 directory so nothing lands in the tree.
 
-The title page states when the book was built, from which commit, and the
-book's version when the repository has a tag. These are passed to LaTeX as
-macros (\\buildtime, \\buildcommit, \\buildversion), so they are not inputs:
-the PDF says when it was last actually built, and rsconstruct restoring it
-from the cache keeps that stamp. """
+The title page names the commit the book was built from and that commit's
+date, passed to LaTeX as macros (\\buildtime, \\buildcommit). The build is
+reproducible: the same sources give a byte-identical PDF. So the stamp holds
+nothing that changes between runs of the same sources:
+- the commit is the last one that changed anything but the PDF itself, not
+  HEAD: committing the PDF moves HEAD, and stamping HEAD would make every
+  rebuild after that commit differ;
+- the time is that commit's committer date in UTC, not the wall clock or the
+  local time zone;
+- there is no `git describe` version: CI's release workflow tags a commit
+  after building it, so the description of a commit changes after the fact.
+With uncommitted changes the commit is marked so, and the PDF is final only
+once those changes are committed and the book is built again. """
 
 import datetime as dt
 import os
@@ -64,18 +72,20 @@ def tex_escape(text):
 
 
 def build_info():
-    """ The \\def's for the build time, commit and version macros. """
-    now = dt.datetime.now().astimezone()
-    offset = now.strftime("%z")
-    when = now.strftime(f"%Y-%m-%d %H:%M %Z (UTC{offset[:3]}:{offset[3:]})")
-    commit = git("rev-parse", "--short", "HEAD") or "unknown"
-    if git("status", "--porcelain", "--", ".", f":!{PDF}"):
+    """ The \\def's for the commit and commit date macros. """
+    sources = ("--", ".", f":!{PDF}")
+    last = git("log", "-1", "--format=%H %ct", *sources)
+    if last:
+        commit, stamp = last.split()
+        commit = commit[:7]
+        when = dt.datetime.fromtimestamp(int(stamp), dt.UTC).strftime("%Y-%m-%d %H:%M UTC")
+    else:
+        commit, when = "unknown", "unknown"
+    if git("status", "--porcelain", *sources):
         commit += " with uncommitted changes"
-    # Exactly the tag when HEAD is tagged, otherwise tag-N-gHASH.
-    version = git("describe", "--tags") or ""
     return "".join(
         f"\\def\\{name}{{{tex_escape(value)}}}"
-        for name, value in (("buildtime", when), ("buildcommit", commit), ("buildversion", version))
+        for name, value in (("buildtime", when), ("buildcommit", commit))
     )
 
 
