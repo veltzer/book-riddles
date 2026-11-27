@@ -26,7 +26,7 @@ for _ in range(stat_num):
     large_set_size_when_small_set_complete = None
     while not stop:
         # if i % print_diff == 0:
-        #    print(len(lset), len(sset))
+        #    print(len(lset), len(sset))  # noqa: ERA001  teaching: kept in the comment for the reader
         r = random.randrange(large_set_size)
         if r < small_set_size:
             sset.add(r)

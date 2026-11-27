@@ -8,14 +8,14 @@ data1 = [[ 1,2,3], [4,5,6], [7,8,9]]
 data2 = [[ 1,2,3], [4,5,6], [7,8,9]]
 
 def spiral_recursive(d, x, y):
-    # print(x,y)
+    # print(x,y)  # noqa: ERA001  teaching: kept in the comment for the reader
     if x>=len(d) or y>=len(d[x]):
         return
     if x<0 or y<0:
         return
     if d[x][y] is None:
         return
-    # print(x,y)
+    # print(x,y)  # noqa: ERA001  teaching: kept in the comment for the reader
     print(d[x][y])
     d[x][y]=None
     spiral_recursive(d, x, y+1)
@@ -32,7 +32,7 @@ def spiral_non_recursive(d):
     x,y = 0,0
     num_printed = 0
     while num_printed<num_elements:
-        # print(x,y)
+        # print(x,y)  # noqa: ERA001  teaching: kept in the comment for the reader
         print(d[x][y])
         d[x][y]=None
         num_printed+=1

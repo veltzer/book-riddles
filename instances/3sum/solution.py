@@ -92,7 +92,7 @@ def pointers_going_inward(data):
 def main():
     data = [22, 1, 7, 2, 3, 19]
     print(data)
-    # print(sorted(data))
+    # print(sorted(data))  # noqa: ERA001  teaching: kept in the comment for the reader
     print(three_loops(data))
     print(two_loops_and_binary(data))
     print(using_hash(data))

@@ -7,7 +7,7 @@ Solution to the midgets riddle in python
 import random
 
 # for deterministic behaviour
-# random.seed(7)
+# random.seed(7)  # noqa: ERA001  teaching: kept in the comment for the reader
 
 atfound = 0
 for _ in range(1000):
@@ -25,5 +25,5 @@ for _ in range(1000):
             found += 1
     if found == 100:
         atfound += 1
-    # print(found)
+    # print(found)  # noqa: ERA001  teaching: kept in the comment for the reader
 print(atfound)
