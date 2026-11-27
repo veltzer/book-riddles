@@ -10,8 +10,8 @@ returns height, complete, last level full
 
 class Tree:
     def __init__(self):
-        self.left = None
-        self.right = None
+        self.left: Tree | None = None
+        self.right: Tree | None = None
 
 
 def complete_tree_inter(t):
