@@ -29,7 +29,7 @@ FOLLOWS = re.compile(r"^%\s*follows:\s*(?P<name>\S+)\s*$", re.MULTILINE)
 
 def parse_args(argv):
     """ Split the --inputs/--output-files argument lists. """
-    lists = {"--inputs": [], "--output-files": []}
+    lists: dict[str, list[str]] = {"--inputs": [], "--output-files": []}
     current = None
     for arg in argv:
         if arg in lists:

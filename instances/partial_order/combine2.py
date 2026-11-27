@@ -17,8 +17,8 @@ def append_next_or_drop(a, aa, bb):
 
 
 def combine(a, b):
-    aa = []
-    bb = []
+    aa: list[object] = []
+    bb: list[object] = []
     while True:
         append_next_or_drop(a, aa, bb)
         append_next_or_drop(b, bb, aa)

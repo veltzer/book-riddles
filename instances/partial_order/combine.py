@@ -5,8 +5,8 @@ Combine
 """
 
 def combine(gen_a, gen_b):
-    list_a = []
-    list_b = []
+    list_a: list[object] = []
+    list_b: list[object] = []
     a_active = True
     b_active = True
     c = 0
