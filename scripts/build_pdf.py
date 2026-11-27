@@ -29,7 +29,7 @@ import tempfile
 RUNS = 3
 
 
-def parse_args(argv):
+def parse_args(argv: list[str]) -> tuple[str, str]:
     """ Split the --inputs/--output-files argument lists. """
     lists: dict[str, list[str]] = {"--inputs": [], "--output-files": []}
     current = None
@@ -46,7 +46,7 @@ def parse_args(argv):
     return inputs[0], outputs[0]
 
 
-def main():
+def main() -> None:
     """ main entry point """
     # rsconstruct doctor probes every configured command with --version
     if sys.argv[1:] == ["--version"]:

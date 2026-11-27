@@ -4,10 +4,10 @@
 Solution
 """
 
-data1 = [[ 1,2,3], [4,5,6], [7,8,9]]
-data2 = [[ 1,2,3], [4,5,6], [7,8,9]]
+data1: list[list[int | None]] = [[ 1,2,3], [4,5,6], [7,8,9]]
+data2: list[list[int | None]] = [[ 1,2,3], [4,5,6], [7,8,9]]
 
-def spiral_recursive(d, x, y):
+def spiral_recursive(d: list[list[int | None]], x: int, y: int) -> None:
     # print(x,y)  # noqa: ERA001  teaching: kept in the comment for the reader
     if x>=len(d) or y>=len(d[x]):
         return
@@ -24,7 +24,7 @@ def spiral_recursive(d, x, y):
     spiral_recursive(d, x-1, y)
 
 
-def spiral_non_recursive(d):
+def spiral_non_recursive(d: list[list[int | None]]) -> None:
     num_elements=len(d)*len(d[0])
     direction_pos = 0
     directions = [ (0,1), (1,0), (0,-1), (-1,0), ]

@@ -4,7 +4,7 @@
 Solution
 """
 
-def count_zeroes_right_of(s):
+def count_zeroes_right_of(s: str) -> int:
     c = 0
     p = len(s) - 1
     while s[p] == "0":

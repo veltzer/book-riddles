@@ -7,14 +7,20 @@ this one will scan everything.
 returns height, complete, last level full
 """
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+
 
 class Tree:
-    def __init__(self):
+    def __init__(self) -> None:
         self.left: Tree | None = None
         self.right: Tree | None = None
 
 
-def complete_tree_inter(t):
+def complete_tree_inter(t: Tree | None):
     if t is None:
         return 0, True, True
     (lh, _labl, llll) = complete_tree_inter(t.left)
@@ -32,11 +38,11 @@ def complete_tree_inter(t):
     raise ValueError("shouldnt be here")
 
 
-def complete_tree(t):
+def complete_tree(t: Tree):
     return complete_tree_inter(t)[1]
 
 
-def complete_tree_2_inter(s):
+def complete_tree_2_inter(s: Sequence[Tree | None]) -> bool:
     """
     non recursive solution, better performance if implemented with efficient data structures
     input is
@@ -72,7 +78,7 @@ def complete_tree_2_inter(s):
     raise ValueError("shouldnt be here")
 
 
-def complete_tree_2(t):
+def complete_tree_2(t: Tree) -> bool:
     s = [t]
     return complete_tree_2_inter(s)
 

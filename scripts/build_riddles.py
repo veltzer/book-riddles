@@ -22,12 +22,13 @@ rsconstruct runs it as an explicit processor:
 import os
 import re
 import sys
+from typing import Any
 
 SECTION = re.compile(r"\\section\s*\{(?P<title>.*) \((?P<category>[^()]*)\)\}\s*$")
 FOLLOWS = re.compile(r"^%\s*follows:\s*(?P<name>\S+)\s*$", re.MULTILINE)
 
 
-def parse_args(argv):
+def parse_args(argv: list[str]) -> tuple[list[str], str]:
     """ Split the --inputs/--output-files argument lists. """
     lists: dict[str, list[str]] = {"--inputs": [], "--output-files": []}
     current = None
@@ -44,7 +45,7 @@ def parse_args(argv):
     return inputs, outputs[0]
 
 
-def read_riddle(path):
+def read_riddle(path: str):
     """ The title, category and follows: name of one riddle file. """
     with open(path, encoding="utf-8") as stream:
         text = stream.read()
@@ -61,12 +62,12 @@ def read_riddle(path):
     }
 
 
-def sort_key(riddle):
+def sort_key(riddle: dict[str, Any]) -> str:
     """ Alphabetical by title, ignoring case and a leading article. """
     return re.sub(r"^(the|a) ", "", riddle["title"].casefold())
 
 
-def order_chapter(riddles):
+def order_chapter(riddles: list[dict[str, Any]]):
     """ The riddles of one chapter, each follower right after what it follows. """
     by_name = {riddle["name"]: riddle for riddle in riddles}
     followers = {}
@@ -80,7 +81,7 @@ def order_chapter(riddles):
         followers.setdefault(name, []).append(riddle)
     ordered = []
 
-    def place(riddle):
+    def place(riddle: dict[str, Any]) -> None:
         ordered.append(riddle)
         for follower in sorted(followers.get(riddle["name"], []), key=sort_key):
             place(follower)
@@ -93,7 +94,7 @@ def order_chapter(riddles):
     return ordered
 
 
-def main():
+def main() -> None:
     """ main entry point """
     # rsconstruct doctor probes every configured command with --version
     if sys.argv[1:] == ["--version"]:

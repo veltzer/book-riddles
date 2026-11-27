@@ -9,7 +9,7 @@ import random
 options = [True, False]
 
 
-def generate_state_state():
+def generate_state_state() -> tuple[bool, bool, bool, bool]:
     return (
         random.choice(options),
         random.choice(options),
@@ -18,15 +18,15 @@ def generate_state_state():
     )
 
 
-def get_turn_angle():
+def get_turn_angle() -> int:
     return random.choice([0, 1, 2, 3])
 
 
-def apply_turn(state, turn):
+def apply_turn(state: tuple[bool, bool, bool, bool], turn: int):
     return state[turn % 4], state[(1 + turn) % 4], state[(2 + turn) % 4], state[(3 + turn) % 4]
 
 
-def apply_mod(state, mod):
+def apply_mod(state: tuple[bool, bool, bool, bool], mod: str):
     if mod == "c":
         return not state[0], state[1], not state[2], state[3]
     if mod == "b":
@@ -36,11 +36,11 @@ def apply_mod(state, mod):
     raise ValueError("shouldnt get here")
 
 
-def check_win(state):
+def check_win(state: tuple[bool, bool, bool, bool]) -> bool:
     return len(set(state)) == 1
 
 
-def main():
+def main() -> None:
     experiments = 1000000
     for _ in range(experiments):
         state = generate_state_state()

@@ -4,7 +4,7 @@
 Solution
 """
 
-def sums_to_target(data, k):
+def sums_to_target(data: list[int], k: int) -> bool:
     data.sort()
     lhs = 0
     rhs = len(data) - 1
@@ -19,7 +19,7 @@ def sums_to_target(data, k):
     return False
 
 
-def all_pairs(data, k):
+def all_pairs(data: list[int], k: int):
     data.sort()
     lhs = 0
     rhs = len(data) - 1
@@ -37,7 +37,7 @@ def all_pairs(data, k):
     return results
 
 
-def main():
+def main() -> None:
     data = [2 ** x for x in range(10)]
     print(data)
     for i in range(10):

@@ -25,6 +25,7 @@ N*P*N = N^2*P
 We code the more efficient solution here.
 """
 import math  # for inf
+from typing import Any
 
 # should we do debugging?
 do_debug = False
@@ -32,15 +33,15 @@ do_debug = False
 
 
 class Position:
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int) -> None:
         self.x = x
         self.y = y
 
-    def add(self, p):
+    def add(self, p: Position) -> None:
         self.x += p.x
         self.y += p.y
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"({self.x},{self.y})"
 
 
@@ -53,30 +54,30 @@ directions = [
 
 
 class Matrix:
-    def __init__(self, v, w, h):
+    def __init__(self, v: Any, w: int, h: int) -> None:
         self.data = [[v for _ in range(w)] for _ in range(h)]
         self.w = w
         self.h = h
 
-    def get(self, x, y):
+    def get(self, x: int, y: int):
         return self.data[y][x]
 
-    def get_pos(self, p):
+    def get_pos(self, p: Position):
         return self.data[p.y][p.x]
 
-    def set(self, x, y, v):
+    def set(self, x: int, y: int, v: Any) -> None:
         self.data[y][x] = v
 
-    def set_pos(self, p, v):
+    def set_pos(self, p: Position, v: Any) -> None:
         self.data[p.y][p.x] = v
 
-    def illegal(self, x, y):
+    def illegal(self, x: int, y: int):
         return x < 0 or x >= self.w or y < 0 or y >= self.h
 
-    def illegal_pos(self, p):
+    def illegal_pos(self, p: Position):
         return p.x < 0 or p.x >= self.w or p.y < 0 or p.y >= self.h
 
-    def add(self, m):
+    def add(self, m: Matrix) -> None:
         for y, row in enumerate(self.data):
             for x, _e in enumerate(row):
                 if m.get(x, y) is not None and _e is not None:
@@ -90,20 +91,20 @@ class Matrix:
                     val = e
         return val
 
-    def duplicate(self):
+    def duplicate(self) -> Matrix:
         m = Matrix(None, self.w, self.h)
         for y, row in enumerate(self.data):
             for x, e in enumerate(row):
                 m.set(x, y, e)
         return m
 
-    def print(self):
+    def print(self) -> None:
         for row in self.data:
             for e in row:
                 print(e, end="")
             print()
 
-    def __str__(self):
+    def __str__(self) -> str:
         res = ""
         for row in self.data:
             for e in row:
@@ -112,7 +113,7 @@ class Matrix:
         return res
 
     @staticmethod
-    def from_strings(m):
+    def from_strings(m: list[str]) -> Matrix:
         s = Matrix(" ", len(m[0]), len(m))
         for y, row in enumerate(m):
             for x, c in enumerate(row):
@@ -120,7 +121,7 @@ class Matrix:
         return s
 
 
-def solve(m):
+def solve(m: Matrix) -> None:
     # first find all the people in the matrix
     people = []
     for y in range(m.h):

@@ -6,7 +6,7 @@ Solution
 
 
 class Algo:
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         self.n = n
         # standard union-find stuff
         self.root = list(range(n))
@@ -15,13 +15,13 @@ class Algo:
         self.succ: list[int | None] = list(range(n))
 
     # standard union-find methods
-    def find_root(self, i):
+    def find_root(self, i: int):
         """returns the root"""
         while self.root[i] != i:
             i = self.root[i]
         return i
 
-    def union(self, i, j):
+    def union(self, i: int, j: int):
         """returns the new root"""
         ri = self.find_root(i)
         rj = self.find_root(j)
@@ -29,13 +29,13 @@ class Algo:
         return rj
 
     # methods for this exercise
-    def successor(self, i):
+    def successor(self, i: int):
         if self.inset[i]:
             return i
         r = self.find_root(i)
         return self.succ[r]
 
-    def remove(self, i):
+    def remove(self, i: int) -> None:
         self.inset[i] = False
         if i + 1 < self.n:
             if not self.inset[i + 1]:
@@ -51,17 +51,17 @@ class Algo:
             r = self.union(i, i - 1)
             self.succ[r] = s
 
-    def print(self):
+    def print(self) -> None:
         print(self.root)
         print(self.inset)
         print(self.succ)
 
-    def print_short(self):
+    def print_short(self) -> None:
         print(self.inset)
         print([self.successor(i) for i in range(self.n)])
 
 
-def main():
+def main() -> None:
     s = Algo(15)
     s.print_short()
     s.remove(10)

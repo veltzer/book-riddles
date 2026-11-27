@@ -14,7 +14,7 @@ DAYS = 365
 TRIALS = 100000
 
 
-def exact(n):
+def exact(n: int) -> float:
     """ Probability that at least two of n people share a birthday. """
     all_different = 1.0
     for i in range(n):
@@ -22,7 +22,7 @@ def exact(n):
     return 1 - all_different
 
 
-def simulate(n):
+def simulate(n: int) -> float:
     """ Fraction of TRIALS random groups of n people with a shared birthday. """
     shared = 0
     for _ in range(TRIALS):

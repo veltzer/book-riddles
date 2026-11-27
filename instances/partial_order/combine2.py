@@ -4,11 +4,17 @@
 Combine 2
 """
 
-def gen(*data):
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
+
+
+def gen(*data: object):
     yield from data
 
 
-def append_next_or_drop(a, aa, bb):
+def append_next_or_drop(a: Generator[object], aa: list[object], bb: list[object]) -> None:
     try:
         aa.append(next(a))  # either append one new item to aa...
     except StopIteration:
@@ -16,7 +22,7 @@ def append_next_or_drop(a, aa, bb):
         bb.pop(0)  # or pop of the first element of bb.
 
 
-def combine(a, b):
+def combine(a: Generator[object], b: Generator[object]):
     aa: list[object] = []
     bb: list[object] = []
     while True:
@@ -27,7 +33,7 @@ def combine(a, b):
         yield list(zip(aa, reversed(bb), strict=False))
 
 
-def main():
+def main() -> None:
     for data in combine(gen(1, 2, 3, 4), gen(1, 2, 3, 4)):
         print(data)
 

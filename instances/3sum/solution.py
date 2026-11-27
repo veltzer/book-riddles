@@ -4,7 +4,7 @@
 Solution
 """
 
-def three_loops(data):
+def three_loops(data: list[int]):
     """ this is n^3 complexity """
     results = []
     for p1, x1 in enumerate(data):
@@ -20,7 +20,7 @@ def three_loops(data):
     return results
 
 
-def binary_search(array, target):
+def binary_search(array: list[int], target: int) -> int:
     lower = 0
     upper = len(array)
     while lower < upper:  # use < instead of <=
@@ -37,7 +37,7 @@ def binary_search(array, target):
     raise ValueError("shouldnt be here")
 
 
-def two_loops_and_binary(data):
+def two_loops_and_binary(data: list[int]):
     """ this is n^2*log(n) complexity """
     results = []
     s_data = sorted(data)
@@ -51,7 +51,7 @@ def two_loops_and_binary(data):
     return results
 
 
-def using_hash(data):
+def using_hash(data: list[int]):
     """ the idea here is to put all the elements of the data array in a
     hash table (O(n*log(n)) or O(n) in the average case) and then do a O(n^2)
     double loop and check for each pair if they sum up to the third.
@@ -64,7 +64,7 @@ def using_hash(data):
     return results
 
 
-def pointers_going_inward(data):
+def pointers_going_inward(data: list[int]):
     """ this is n^2 complexity """
     # the sorting is n*log(n)
     s_data = sorted(data)
@@ -89,7 +89,7 @@ def pointers_going_inward(data):
     return results
 
 
-def main():
+def main() -> None:
     data = [22, 1, 7, 2, 3, 19]
     print(data)
     # print(sorted(data))  # noqa: ERA001  teaching: kept in the comment for the reader

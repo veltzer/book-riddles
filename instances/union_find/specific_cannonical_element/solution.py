@@ -5,7 +5,7 @@ Solution
 """
 
 class Algo:
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         self.n = n
         # standard union-find stuff
         self.root = list(range(n))
@@ -13,13 +13,13 @@ class Algo:
         self.largest = list(range(n))
 
     # standard union-find methods
-    def find_root(self, i):
+    def find_root(self, i: int):
         """returns the root"""
         while self.root[i] != i:
             i = self.root[i]
         return i
 
-    def union(self, i, j):
+    def union(self, i: int, j: int):
         """returns the new root"""
         ri = self.find_root(i)
         rj = self.find_root(j)
@@ -28,11 +28,11 @@ class Algo:
         return rj
 
     # methods for this exercise
-    def find(self, i):
+    def find(self, i: int):
         r = self.find_root(i)
         return self.largest[r]
 
-    def print(self):
+    def print(self) -> None:
         print('================================')
         print([self.find_root(i) for i in range(self.n)])
         print([self.find(i) for i in range(self.n)])

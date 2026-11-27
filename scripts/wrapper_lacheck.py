@@ -35,7 +35,7 @@ IGNORE = [
 WARNING = re.compile(r'^"(?P<file>[^"]*)", line (?P<line>\d+): (?P<message>.*)$')
 
 
-def parse_args(argv):
+def parse_args(argv: list[str]) -> tuple[str, str]:
     """ Split the --inputs/--output-files argument lists. """
     lists: dict[str, list[str]] = {"--inputs": [], "--output-files": []}
     current = None
@@ -52,7 +52,7 @@ def parse_args(argv):
     return inputs[0], outputs[0]
 
 
-def ignored(file, line, message):
+def ignored(file: str, line: int, message: str) -> bool:
     """ Whether a warning is on the IGNORE list. """
     with open(file, encoding="utf-8") as stream:
         lines = stream.read().split("\n")
@@ -63,7 +63,7 @@ def ignored(file, line, message):
     )
 
 
-def main():
+def main() -> None:
     """ main entry point """
     # rsconstruct doctor probes every configured command with --version
     if sys.argv[1:] == ["--version"]:

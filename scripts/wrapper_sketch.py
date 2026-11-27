@@ -17,7 +17,7 @@ import tempfile
 DEBUG = False
 REMOVE_TMP = True
 
-def printout(filename):
+def printout(filename: str) -> None:
     """Print to stderr the content of a file."""
     if DEBUG:
         print(f"printing [{filename}]")
@@ -25,7 +25,7 @@ def printout(filename):
         for line in file:
             print(line, end="", file=sys.stderr)
 
-def unlink_check(file, check):
+def unlink_check(file: str, *, check: bool) -> None:
     """Remove a file and optionally die if there is a problem."""
     if DEBUG:
         print(f"unlinking [{file}]")
@@ -35,7 +35,7 @@ def unlink_check(file, check):
         if check:
             raise RuntimeError(f"problem unlinking file [{file}]: {e}") from e
 
-def chmod_check(file, check):
+def chmod_check(file: str, *, check: bool) -> None:
     """Change file permissions and optionally die if there is a problem."""
     if DEBUG:
         print(f"chmodding [{file}]")
@@ -45,7 +45,7 @@ def chmod_check(file, check):
         if check:
             raise RuntimeError(f"problem chmodding file [{file}]: {e}") from e
 
-def main():
+def main() -> None:
     """ main entry point """
     # rsconstruct doctor probes every configured command with --version
     if sys.argv[1:] == ["--version"]:

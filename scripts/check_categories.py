@@ -16,7 +16,7 @@ SECTION = re.compile(r"\\section\s*\{(?P<title>.*)\}\s*$")
 CATEGORIZED = re.compile(r".+ \([A-Z][^()]*\)$")
 
 
-def main():
+def main() -> None:
     """ main entry point """
     # rsconstruct doctor probes every configured command with --version
     if sys.argv[1:] == ["--version"]:

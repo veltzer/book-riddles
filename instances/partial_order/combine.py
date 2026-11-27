@@ -4,7 +4,13 @@
 Combine
 """
 
-def combine(gen_a, gen_b):
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
+
+
+def combine(gen_a: Generator[object], gen_b: Generator[object]):
     list_a: list[object] = []
     list_b: list[object] = []
     a_active = True
@@ -31,7 +37,7 @@ def combine(gen_a, gen_b):
         c += 1
 
 
-def main():
+def main() -> None:
 
     def gen_a():
         yield from [1, 2, 3, 4]
